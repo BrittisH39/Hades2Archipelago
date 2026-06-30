@@ -63,5 +63,7 @@ Currently the multiplying locations feature isn't working, so if you only choose
 
 Some of the "Starting \_\_\_\_" items and other filler checks aren't quite working how I want them to yet.
 
+To move/resize the mod overlay, it should be Insert on your keyboard
+
 
 
