@@ -1,0 +1,839 @@
+﻿# Q. What is this file?
+# A. This file contains options which allow you to configure your multiworld experience while allowing
+#    others to play how they want as well.
+#
+# Q. How do I use it?
+# A. The options in this file are weighted. This means the higher number you assign to a value, the
+#    more chances you have for that option to be chosen. For example, an option like this:
+#
+#    map_shuffle:
+#      on: 5
+#      off: 15
+#
+#    Means you have 5 chances for map shuffle to occur, and 15 chances for map shuffle to be turned
+#    off.
+#
+# Q. I've never seen a file like this before. What characters am I allowed to use?
+# A. This is a .yaml file. You are allowed to use most characters.
+#    To test if your yaml is valid or not, you can use this website:
+#        http://www.yamllint.com/
+#    You can also verify that your Archipelago options are valid at this site:
+#        https://archipelago.gg/check
+
+# Your name in-game, limited to 16 characters.
+#     {player} will be replaced with the player's slot number.
+#     {PLAYER} will be replaced with the player's slot number, if that slot number is greater than 1.
+#     {number} will be replaced with the counter value of the name.
+#     {NUMBER} will be replaced with the counter value of the name, if the counter value is greater than 1.
+name: Player{number}
+
+# Used to describe your yaml. Useful if you have multiple files.
+description: Default Hades 2 Template
+
+game: Hades 2
+requires:
+  version: 0.6.7 # Version of Archipelago required for this yaml to work as expected.
+
+Hades 2:
+  ################
+  # Game Options #
+  ################
+  progression_balancing:
+    # A system that can move progression earlier, to try and prevent the player from getting stuck and bored early.
+    # 
+    # A lower setting means more getting stuck. A higher setting means less getting stuck.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 99
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-99: 0 # random value between 0 and 99
+    disabled: 0 # equivalent to 0
+    normal: 50 # equivalent to 50
+    extreme: 0 # equivalent to 99
+
+  accessibility:
+    # Set rules for reachability of your items/locations.
+    # 
+    # **Full:** ensure everything can be reached and acquired.
+    # 
+    # **Minimal:** ensure what is needed to reach your goal can be acquired.
+    full: 50
+    minimal: 0
+
+  ##################
+  # Weapon Options #
+  ##################
+  initial_weapon:
+    # Choose which will be your starting weapon.
+    staff: 0
+    blades: 0
+    flames: 0
+    axe: 0
+    skull: 0
+    coat: 0
+    random: 50
+
+  aspectsanity:
+    # How you'll get the various weapon aspects.
+    # unlocked: every Aspect is available from the start, fully upgraded
+    # randomized: each of the 24 aspects becomes its own item; each weapon starts with one level one aspect, and the items grant their respective aspect at max level.
+    # progressive: you start with only Melinoe's Aspect; a "Progressive <Weapon> Aspect" item is added per weapon - the first unlocks all of that weapon's other aspects, and the rest upgrade them (up to rank 5). Normal unlocking/upgrading is blocked.
+    unlocked: 0
+    randomized: 0
+    progressive: 50
+
+  weapon_aspect_combine:
+    # If aspectsanity is set to progressive, replaces weapon unlocks and progressive aspects with "Progressive (Weapon)". The first you get unlocks the weapon and all aspects, the rest level up those aspects.
+    # If aspectsanity is set to randomized, when you unlock an aspect for a weapon, that weapon becomes unlocked but only using the aspects it's unlocked.
+    'false': 0
+    'true': 50
+
+  ####################
+  # Location Options #
+  ####################
+  location_system:
+    # How to handle progression based checks.
+    # point_based: Each room you clear, you get points equal to it's room number, then you send checks when you get points equal to that check's number. Meaning clearing rooms 3 and 4 would give you 7 points, and unlock check 7. Then you clear 5 and 6, unlocking check 8, and leaving some progress to check 9.
+    # room_based: each check is the first time you clear that many rooms in one run. Room Check 10 would send when you clear 10 rooms in one run.
+    # per_weapon_room_based: like room_based, but a separate check for each depth cleared with each weapon - This multiplies the amount of checks by 6, leading to a substantial amount of checks.
+    point_based: 50
+    room_based: 0
+    per_weapon_room_based: 0
+
+  score_rewards_amount:
+    # (point_based only) How many points checks are available. If the total number of items before fillers is larger than the total locations, this will be increased to accommodate.
+    # The more locations, the more filler checks, which are beneficial, but none are required.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 40
+    # Maximum value is 1000
+    200: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-40-1000: 0 # random value between 40 and 1000
+
+  enemy_locations:
+    # Add locations for the first time you defeat each enemy type.
+    'false': 0
+    'true': 50
+
+  npc_locations:
+    # Add locations for the first time you speak to each NPC.
+    'false': 0
+    'true': 50
+
+  ##################
+  #  Item Options  #
+  ##################
+  graspsanity:
+    # Adds progressive Grasp to the item pool, each raising your maximum Grasp from the starting 0.
+    'false': 0
+    'true': 50
+
+  grasp_count:
+    # How many Progressive Grasp items in the item pool.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 1
+    # Maximum value is 30
+    6: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-1-30: 0 # random value between 1 and 30
+
+  grasp_intervals:
+    # How much each Progressive Grasp raises your maximum Grasp. (0 disables grasp gains.)
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 10
+    5: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-10: 0 # random value between 0 and 10
+
+  arcanasanity:
+    # How Arcana Cards are obtained.
+    # false: unlocked normally by purchasing at the Altar of Ashes.
+    # arcana: each card is unlocked by an item and cannot be purchased, but is still upgraded normally.
+    # Progressive_Arcana: each card gets multiple progressive items - the first unlocks
+    # it and the rest upgrade it; cards cannot be upgraded any other way.
+    'false': 0
+    arcana: 0
+    progressive_arcana: 50
+
+  keepsakesanity:
+    # How Keepsakes are handled.
+    # normal: unchanged from the base game.
+    # randomized: receiving each (reachable) keepsake is a check, and every keepsake is added as an item. (Chronos's, Zagreus's, and Hades' keepsake are added as an item, but not a location)
+    # progressive: receiving each keepsake is still a check, but the pool gets 3 Progressive Keepsake items - the first unlocks all keepsakes, the next two upgrade them. Normal keepsake leveling is blocked.
+    normal: 0
+    randomized: 50
+    progressive: 0
+
+  petsanity:
+    # How Familiars (pets: Frinos, Toula, Raki, Hecuba, Gale) are handled. Items only - no new check locations.
+    # unlocked: every familiar is available from the start.
+    # randomized: each familiar becomes its own item; you start with none and unlock each at maximum bond when you receive its item.
+    # progressive: a Progressive Familiar item is added - the first unlocks all familiars, the rest upgrade their bonds. Normal familiar unlocking/bonding is blocked.
+    unlocked: 0
+    randomized: 0
+    progressive: 50
+
+  #############
+  # Deathlink #
+  #############
+  deathlink:
+    # When you die, everyone who enabled death link dies. Of course, the reverse is true too.
+    'false': 0
+    'true': 50
+
+  deathlink_percent:
+    # When you receive a DeathLink, how much of your health you'll lose, as a percentage of your maximum health. Or, set to 0 to end the run regardless of available revives.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 100
+    100: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-100: 0 # random value between 0 and 100
+
+  deathlink_amnesty:
+    # How many of your own deaths before a DeathLink is sent to everyone else. 0 means you never send, only receive. 1 means you send one each death, anything above one is how many deaths before you send one.
+    # This can alleviate some pain for games where dying is a more substantial burden.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 5
+    1: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-5: 0 # random value between 0 and 5
+
+  no_death_on_winning_runs:
+    # After winning a run, you don't send a deathlink for returning back to the crossroads. I don't know why you would want to turn this off.
+    'false': 0
+    'true': 50
+
+  ###############
+  # Vow Options #
+  ###############
+  reverse_vow:
+    # Start each run with the vows below already active (raising difficulty); each is then removed, one level at a time, by items found in the multiworld.
+    'false': 0
+    'true': 50
+
+  vow_pain:
+    # How many levels of Vow of Pain to start with (foes deal more damage).
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 3
+    1: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-3: 0 # random value between 0 and 3
+
+  vow_grit:
+    # How many levels of Vow of Grit to start with (foes have more health).
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 3
+    1: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-3: 0 # random value between 0 and 3
+
+  vow_wards:
+    # How many levels of Vow of Wards to start with (foes gain Barrier).
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 2
+    1: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-2: 0 # random value between 0 and 2
+
+  vow_frenzy:
+    # How many levels of Vow of Frenzy to start with (foes are faster).
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 2
+    1: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-2: 0 # random value between 0 and 2
+
+  vow_hordes:
+    # How many levels of Vow of Hordes to start with (more foes).
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 3
+    1: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-3: 0 # random value between 0 and 3
+
+  vow_menace:
+    # How many levels of Vow of Menace to start with (foes from the next region).
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 2
+    1: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-2: 0 # random value between 0 and 2
+
+  vow_return:
+    # How many levels of Vow of Return to start with (slain foes may revive).
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 2
+    1: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-2: 0 # random value between 0 and 2
+
+  vow_fangs:
+    # How many levels of Vow of Fangs to start with (armored foes gain perks).
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 2
+    1: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-2: 0 # random value between 0 and 2
+
+  vow_scars:
+    # How many levels of Vow of Scars to start with (healing is less effective).
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 2
+    1: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-2: 0 # random value between 0 and 2
+
+  vow_debt:
+    # How many levels of Vow of Debt to start with (Higher gold costs).
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 2
+    1: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-2: 0 # random value between 0 and 2
+
+  vow_shadow:
+    # How many levels of Vow of Shadow to start with (Shadow Servants).
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 1
+    0: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-1: 0 # random value between 0 and 1
+
+  vow_forfeit:
+    # How many levels of Vow of Forfeit to start with (first Boon becomes Red Onion).
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 1
+    0: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-1: 0 # random value between 0 and 1
+
+  vow_time:
+    # How many levels of Vow of Time to start with (time limit per region).
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 3
+    1: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-3: 0 # random value between 0 and 3
+
+  vow_void:
+    # How many levels of Vow of Void to start with (less Grasp for Arcana).
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 4
+    2: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-4: 0 # random value between 0 and 4
+
+  vow_hubris:
+    # How many levels of Vow of Hubris to start with (Primes Magick after Boons).
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 2
+    1: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-2: 0 # random value between 0 and 2
+
+  vow_denial:
+    # How many levels of Vow of Denial to start with (unpicked blessings vanish).
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 1
+    0: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-1: 0 # random value between 0 and 1
+
+  vow_rivals:
+    # How many levels of Vow of Rivals to start with (Guardians are stronger).
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 4
+    2: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-4: 0 # random value between 0 and 4
+
+  reverse_rivals:
+    # Reverse which Guardians the Vow of Rivals strengthens: this makes Chronos and Typhon the last boss to return to normal.
+    'false': 0
+    'true': 50
+
+  ########################
+  # Goal & Route Options #
+  ########################
+  goal:
+    # Which final boss(es) you must defeat to win
+    chronos: 0
+    typhon: 0
+    chronos_or_typhon: 50
+    chronos_and_typhon: 0
+
+  included_routes:
+    # Which routes to include. If your goal includes the final boss of a route you didn't choose, it will also be included.
+    both: 50
+    underworld_only: 0
+    surface_only: 0
+
+  separate_checks:
+    # If you've included each route; should each route have it's own set of checks, or should they be combined?
+    # For Room based, this would mean clearing the first underworld room is a separate check than clearing the first surface room
+    # For Score based, this means half the score checks will be underworld, half will be surface. Meaning if you set it to 200 score checks, each route will only have 100.
+    split_pools: 50
+    combine_pools: 0
+
+  lock_routes:
+    # Lock each route's regions behind Progressive Underworld / Progressive Surface items.
+    'false': 0
+    'true': 50
+
+  starting_route:
+    # Which route you can access from the start. The other route(s) open once you
+    # receive the route-unlock progressive item(s).
+    # If you pick a route you didn't include, it snaps to a route you did include. A route
+    # your goal forces in (e.g. the Surface when your goal is Typhon) is still reachable, but
+    # it won't be your starting route unless you also chose it here.
+    random: 0
+    underworld: 50
+    surface: 0
+    both: 0
+
+  start_with_surface_cure:
+    # Start with the "Unraveling a Fateful Bond" incantation, avoiding taking constant damage on the surface path.
+    # When off, the Surface Penalty Cure becomes a normal item placed in the multiworld (even on a surface start),
+    # and the Surface curse limits you to its earliest checks until you find it.
+    'false': 0
+    'true': 50
+
+  chronos_defeats_needed:
+    # How many times you must defeat Chronos to satisfy the Chronos part of the goal.
+    # Ignored if Chronos is not part of your goal.
+    # Note: with the "Chronos or Typhon" goal you only need to reach EITHER this count
+    # or the Typhon count (whichever boss you choose), not both.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 1
+    # Maximum value is 20
+    1: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-1-20: 0 # random value between 1 and 20
+
+  typhon_defeats_needed:
+    # How many times you must defeat Typhon to satisfy the Typhon part of the goal.
+    # Ignored if Typhon is not part of your goal.
+    # Note: with the "Chronos or Typhon" goal you only need to reach EITHER this count
+    # or the Chronos count (whichever boss you choose), not both.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 1
+    # Maximum value is 20
+    1: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-1-20: 0 # random value between 1 and 20
+
+  weapons_clears_needed:
+    # How many different weapons must clear a goal route to win.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 1
+    # Maximum value is 6
+    1: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-1-6: 0 # random value between 1 and 6
+
+  ################
+  # Misc Options #
+  ################
+  arachne_armor:
+    # Adds a "Starting Arachne Armor" item to the pool, which grants you a random arachne silk armor at the beginning of each run.
+    'false': 0
+    'true': 50
+
+  daedalus_upgrade:
+    # Adds this many Daedalus Upgrade items to the pool, each of which grants you a random Daedalus upgrade at the beginning of each run.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 5
+    1: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-5: 0 # random value between 0 and 5
+
+  ##################
+  # Filler Options #
+  ##################
+  nectar_pack_value:
+    # Amount of Nectar granted per Nectar item.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 50
+    2: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-50: 0 # random value between 0 and 50
+
+  nectar_pack_percentage:
+    # Share of the filler pool that is Nectar.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 100
+    20: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-100: 0 # random value between 0 and 100
+
+  starting_health_value:
+    # Amount of starting max health gained from each Starting Health item.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 50
+    20: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-50: 0 # random value between 0 and 50
+
+  starting_health_percentage:
+    # Share of the filler pool that is Max Health.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 100
+    15: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-100: 0 # random value between 0 and 100
+
+  starting_magick_value:
+    # Amount of starting max Magick gained from each Starting Magick item.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 50
+    2: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-50: 0 # random value between 0 and 50
+
+  starting_magick_percentage:
+    # Share of the filler pool that is Max Magick.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 100
+    15: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-100: 0 # random value between 0 and 100
+
+  starting_gold_value:
+    # Amount of starting gold gained from each Starting Gold item.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 1
+    # Maximum value is 100
+    10: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-1-100: 0 # random value between 1 and 100
+
+  starting_gold_percentage:
+    # Share of the filler pool that is Starting Gold.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 100
+    15: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-100: 0 # random value between 0 and 100
+
+  starting_armor_value:
+    # Amount of starting armor gained from each Starting Armor item.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 1
+    # Maximum value is 100
+    10: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-1-100: 0 # random value between 1 and 100
+
+  starting_armor_percentage:
+    # Share of the filler pool that is Starting Armor.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 100
+    15: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-100: 0 # random value between 0 and 100
+
+  rarity_increase_percentage:
+    # Share of the filler pool that is Rarity Increase, which increase the chances of higher rarity boons.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 100
+    10: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-100: 0 # random value between 0 and 100
+
+  major_finds_percentage:
+    # Share of the filler pool that is Increased Odds of Major Finds, which biases the rewards behind doors toward Major Finds (Boons, Daedalus Hammers, Centaur Heart, etc.) instead of Minor Finds (Bones, Ash, and Nectar).
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 100
+    10: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-100: 0 # random value between 0 and 100
+
+  ashes_pack_value:
+    # Amount of Ashes granted per Ashes item.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 1000
+    100: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-1000: 0 # random value between 0 and 1000
+
+  ashes_pack_percentage:
+    # Share of the filler pool that is Ashes. I don't recommend this if Arcanasanity is on.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 100
+    0: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-100: 0 # random value between 0 and 100
+
+  psyche_pack_value:
+    # Amount of Psyche granted per Psyche item.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 500
+    20: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-500: 0 # random value between 0 and 500
+
+  psyche_pack_percentage:
+    # Share of the filler pool that is Psyche. I don't recommend this if Graspsanity is on.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 100
+    0: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-100: 0 # random value between 0 and 100
+
+  bones_pack_value:
+    # Amount of Bones granted per Bones item.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 500
+    20: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-500: 0 # random value between 0 and 500
+
+  bones_pack_percentage:
+    # Share of the filler pool that is Bones. (Bones has no sink in this mod, so it is
+    # always dropped from the pool regardless of this value.)
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 100
+    0: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-100: 0 # random value between 0 and 100
+
+  moon_dust_pack_value:
+    # Amount of Moon dust granted per Moon dust item.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 50
+    2: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-50: 0 # random value between 0 and 50
+
+  moon_dust_pack_percentage:
+    # Share of the filler pool that is Moon dust. I don't recommend this for Progressive Arcana Arcanasanity option.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 100
+    0: 50
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-100: 0 # random value between 0 and 100
+
+  ###########################
+  # Item & Location Options #
+  ###########################
+  local_items:
+    # Forces these items to be in their native world.
+    []
+
+  non_local_items:
+    # Forces these items to be outside their native world.
+    []
+
+  start_inventory:
+    # Start with the specified amount of these items. Example: "Bomb: 1"
+    {}
+
+  start_inventory_from_pool:
+    # Start with the specified amount of these items and don't place them in the world. Example: "Bomb: 1"
+    # 
+    # The game decides what the replacement items will be.
+    {}
+
+  start_hints:
+    # Start with these item's locations prefilled into the ``!hint`` command.
+    []
+
+  start_location_hints:
+    # Start with these locations and their item prefilled into the ``!hint`` command.
+    []
+
+  exclude_locations:
+    # Prevent these locations from having an important item.
+    []
+
+  priority_locations:
+    # Prevent these locations from having an unimportant item.
+    []
+
+  item_links:
+    # Share part of your item pool with other players.
+    []
+
+  plando_items:
+    # Generic items plando.
+    []
