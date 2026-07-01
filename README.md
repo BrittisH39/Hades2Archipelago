@@ -15,9 +15,9 @@ Windows only at this time
 #### **Mod**
 
 * Install [r2modman](https://thunderstore.io/c/riskofrain2/p/ebkr/r2modman/)
-* Launch, then find and select Hades II. Select which store you own Hades 2 on (Epic Games Launcher untested at this time)
+* Launch, then find and select Hades 2. Select which store you own Hades 2 on (Epic Games Launcher untested at this time)
 * Select or create a profile.
-* Select online on the left side, and search and find "Hades2Archipelago"
+* Select online on the left side, and search and find "Hades2RogueArchipelago"
 * Select download, then Download with Dependencies
 
 
@@ -39,7 +39,7 @@ Windows only at this time
 
 * Open you Archipelago installation
 * Find the "Custom\_worlds" folder
-* Place the Hades\_2.apworld file into that folder
+* Place the Hades2Rogue.apworld file into that folder
 
 
 
