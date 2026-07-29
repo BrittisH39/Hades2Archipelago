@@ -50,7 +50,8 @@ Windows only at this time
 * Start a NEW SAVE
 * You should be good to go!
 
-
+# **YAML Creator**
+I put together an [quick website](https://brittish39.github.io/Hades2Archipelago/#home) for Hades 2 Rogue, included is a YAML Creator that should make things a lot easier to understand
 
 # **Notes**
 
