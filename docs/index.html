@@ -683,7 +683,7 @@ const GROUPS = [
     opts: [
       { key: "location_system", label: "Location System", type: "choice", def: "room_based",
         options: [["point_based","Point Based"],["room_based","Room Based"],["per_weapon_room_based","Per Weapon Room Based"],["per_aspect_room_based","Per Aspect Room Based"]],
-        desc: "Room_based: locations are the first time you clear N rooms/encounters in one run.\nPoint_based: locations are point totals accumulated from room depth on clear.\nPer_Weapon_Room_Based: like room_based, but separate pools per weapon.\nPer_Aspect_Room_Based: like per_weapon_room_based, but each weapon's own Aspects also get their own separate pool, gated behind that Aspect's level (1 for its 1st area, 2 for its 2nd, 4 for its 3rd, 5 for its 4th/final area)." },
+        desc: "Room_based: locations are the first time you clear N rooms/encounters in one run.\nPoint_based: locations are point totals accumulated from room depth on clear.\nPer_Weapon_Room_Based: like room_based, but separate pools per weapon.\nPer_Aspect_Room_Based: like per_weapon_room_based, but instead there's a separate pool for each accessible aspect." },
       { key: "score_rewards_amount", label: "Score Rewards Amount", type: "range", min: 40, max: 1000, def: 100,
         showIf: (s) => s.location_system === "point_based",
         desc: "Point_based only. How many score locations there are." },
