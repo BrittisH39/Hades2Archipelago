@@ -1,0 +1,2316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hades 2 Rogue</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #f6f5f2;
+    --panel: #ffffff;
+    --text: #24211d;
+    --muted: #6b6459;
+    --border: #ddd8cf;
+    --accent: #7a2e2e;
+    --accent-text: #ffffff;
+    --input-bg: #ffffff;
+    --code-bg: #1e1c19;
+    --code-text: #e8e3d8;
+    --link: #7a2e2e;
+    --accent-soft: rgba(122, 46, 46, 0.12);
+    --fs-xs: 0.75rem;
+    --fs-sm: 0.85rem;
+    --fs-base: 1rem;
+    --fs-md: 1.05rem;
+    --fs-lg: 1.25rem;
+    --fs-xl: 1.4rem;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #171512;
+      --panel: #211e1a;
+      --text: #ece7dd;
+      --muted: #a49b8c;
+      --border: #3a352d;
+      --accent: #c0605a;
+      --accent-text: #171512;
+      --input-bg: #2a261f;
+      --code-bg: #0d0c0a;
+      --code-text: #e8e3d8;
+      --link: #e2938d;
+      --accent-soft: rgba(192, 96, 90, 0.18);
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+  }
+  a { color: var(--link); }
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--panel);
+    border-bottom: 1px solid var(--border);
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  header h1 {
+    font-size: var(--fs-xl);
+    margin: 0;
+    padding: 14px 0;
+    white-space: nowrap;
+  }
+  nav.tabs {
+    display: flex;
+    gap: 4px;
+    flex: 1 1 auto;
+  }
+  nav.tabs button {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font: inherit;
+    font-weight: 600;
+    padding: 16px 14px;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+  }
+  nav.tabs button.active {
+    color: var(--text);
+    border-bottom-color: var(--accent);
+  }
+  nav.tabs button:hover { color: var(--text); }
+  nav.tabs button { white-space: nowrap; }
+  .toolbar { display: flex; gap: 8px; flex-wrap: wrap; padding: 10px 0; align-items: center; }
+  .toolbar input[type=text] {
+    background: var(--input-bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 12px;
+    font: inherit;
+    min-width: 240px;
+  }
+  .spacer { flex: 1 1 auto; }
+  button {
+    font: inherit;
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    color: var(--text);
+    cursor: pointer;
+  }
+  button.primary {
+    background: var(--accent);
+    color: var(--accent-text);
+    border-color: var(--accent);
+    font-weight: 600;
+  }
+  button:hover { filter: brightness(1.08); }
+  .page { display: none; }
+  .page.active { display: block; }
+  .layout {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    gap: 24px;
+    padding: 20px;
+  }
+  .prose {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 32px 20px;
+  }
+  .prose h2 { color: var(--accent); margin-top: 2em; font-size: var(--fs-lg); }
+  .prose h3 { margin-top: 1.5em; font-size: var(--fs-md); }
+  .prose ul { padding-left: 1.3em; }
+  .prose li { margin-bottom: 0.4em; }
+  .prose code {
+    background: var(--input-bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-size: 0.9em;
+  }
+  .lede {
+    font-size: var(--fs-md);
+    color: var(--text);
+  }
+  .callout {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin: 1.2em 0;
+  }
+  nav.toc {
+    flex: 0 0 200px;
+    position: sticky;
+    top: 60px;
+    align-self: flex-start;
+    font-size: var(--fs-sm);
+  }
+  nav.toc a {
+    display: block;
+    padding: 4px 0;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  nav.toc a:hover { color: var(--text); }
+  main.yaml-main { flex: 1 1 auto; min-width: 0; }
+  .group {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 18px;
+  }
+  .group-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+  }
+  .group h2 {
+    margin: 0;
+    font-size: var(--fs-lg);
+    color: var(--accent);
+  }
+  .group-toggle {
+    font-size: var(--fs-xs);
+    padding: 4px 10px;
+    color: var(--muted);
+  }
+  .opt {
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--border);
+  }
+  .opt:last-child { border-bottom: none; }
+  .opt label.title {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 2px;
+  }
+  .opt .desc {
+    color: var(--muted);
+    font-size: var(--fs-sm);
+    margin-bottom: 6px;
+    white-space: pre-line;
+  }
+  .opt select, .opt input[type=text], .opt input[type=number]:not(.range-number) {
+    background: var(--input-bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 8px;
+    font: inherit;
+    min-width: 220px;
+  }
+  .opt .setgrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+  }
+  .opt .setgrid label {
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--fs-sm);
+  }
+  .opt .boolrow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .opt .rangewrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .opt .rangewrap span { color: var(--muted); font-size: var(--fs-xs); }
+  .range-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+  .range-pills button { padding: 6px 12px; min-width: 38px; border-radius: 20px; }
+  .range-pills button.selected { background: var(--accent); color: var(--accent-text); border-color: var(--accent); font-weight: 600; }
+  .range-slider { display: flex; align-items: center; gap: 8px; width: 100%; }
+  .range-slider input[type=range] {
+    flex: 1 1 auto;
+    min-width: 60px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    height: 22px;
+  }
+  .range-slider input[type=range]::-webkit-slider-runnable-track {
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+  }
+  .range-slider input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 22px;
+    border-radius: 4px;
+    background: var(--accent);
+    border: none;
+    margin-top: -9px;
+    cursor: pointer;
+  }
+  .range-slider input[type=range]::-moz-range-track {
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+  }
+  .range-slider input[type=range]::-moz-range-thumb {
+    width: 10px;
+    height: 22px;
+    border-radius: 4px;
+    background: var(--accent);
+    border: none;
+    cursor: pointer;
+  }
+  .range-slider .range-minmax { color: var(--muted); font-size: var(--fs-xs); flex: 0 0 auto; }
+  .range-slider .range-number {
+    flex: 0 0 auto;
+    width: 3em;
+    background: var(--input-bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 4px 2px;
+    font: inherit;
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    text-align: center;
+  }
+  .metaform label.title { margin-top: 8px; }
+  #yamlOut {
+    width: 100%;
+    height: 420px;
+    background: var(--code-bg);
+    color: var(--code-text);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    font-family: Consolas, Menlo, monospace;
+    font-size: var(--fs-sm);
+    padding: 14px;
+    white-space: pre;
+    overflow: auto;
+  }
+  .previewbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .footer-note {
+    color: var(--muted);
+    font-size: var(--fs-xs);
+    margin-top: 6px;
+  }
+
+  /* Guided YAML Creator */
+  .wizard { max-width: 760px; margin: 0 auto; padding: 32px 20px 60px; }
+  .wizard-welcome { text-align: center; padding: 60px 20px; }
+  .wizard-welcome p { font-size: var(--fs-md); max-width: 560px; margin: 0 auto 24px; line-height: 1.6; }
+  .wizard-step-label-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+  .wizard-step-label { color: var(--muted); font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.04em; }
+  .wizard-progress-track { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; margin-bottom: 10px; }
+  .wizard-progress-fill { height: 100%; background: var(--accent); transition: width 0.2s ease; }
+  .wizard-step-title { font-size: var(--fs-xl); color: var(--accent); margin: 4px 0 16px; }
+  .wizard-intro { color: var(--text); margin-bottom: 16px; line-height: 1.6; }
+  .wizard-intro strong { color: var(--accent); }
+  .wizard-question { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; margin-bottom: 16px; }
+  .wizard-grid .wizard-question { margin-bottom: 0; }
+  .wizard-question .wq-prompt { font-weight: 600; font-size: var(--fs-md); display: block; margin-bottom: 4px; }
+  .wizard-question .wq-subtitle { color: var(--muted); font-size: var(--fs-sm); margin-bottom: 12px; white-space: pre-line; line-height: 1.55; }
+  .wizard-question input[type=text], .wizard-question input[type=number]:not(.range-number) {
+    background: var(--input-bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 10px;
+    font: inherit;
+    min-width: 220px;
+  }
+  .wizard-warning { color: var(--accent); font-size: var(--fs-xs); margin-top: 10px; }
+  .wizard-choices { display: flex; flex-direction: column; gap: 8px; }
+  .wizard-choice {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    gap: 2px;
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--input-bg);
+    color: var(--text);
+  }
+  .wizard-choice .wc-label { font-weight: 600; }
+  .wizard-choice .wc-desc { color: var(--muted); font-size: var(--fs-xs); }
+  .wizard-choice.selected { border-color: var(--accent); background: var(--accent-soft); }
+  .wizard-yesno { display: flex; gap: 10px; max-width: 320px; }
+  .wizard-yesno button { flex: 1 1 0; padding: 10px 14px; }
+  .wizard-yesno button.selected { background: var(--accent); color: var(--accent-text); border-color: var(--accent); font-weight: 600; }
+  .wizard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-bottom: 16px; }
+  .wizard-checkgrid { display: flex; flex-wrap: wrap; gap: 10px 18px; }
+  .wizard-checkgrid label { display: flex; align-items: center; gap: 6px; font-size: var(--fs-sm); cursor: pointer; }
+  .wizard-subcard-group { display: flex; flex-wrap: wrap; gap: 12px; }
+  .wizard-subcard { flex: 1 1 200px; border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; background: var(--input-bg); }
+  .wizard-subcard-row { display: flex; align-items: center; gap: 8px; font-weight: 600; cursor: pointer; }
+  .wizard-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 24px; }
+  .wizard-nav button:disabled { opacity: 0.4; cursor: not-allowed; }
+  .wizard-breadcrumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; margin-bottom: 14px; font-size: var(--fs-xs); }
+  .wizard-breadcrumbs button {
+    background: none; border: none; padding: 2px 0; color: var(--muted); cursor: pointer; font: inherit;
+    text-decoration: underline; text-underline-offset: 2px;
+  }
+  .wizard-breadcrumbs button.current { color: var(--accent); font-weight: 600; text-decoration: none; cursor: default; }
+  .wizard-breadcrumbs button.locked { color: var(--muted); opacity: 0.4; cursor: not-allowed; text-decoration: none; }
+  .wizard-breadcrumbs .crumb-sep { color: var(--muted); opacity: 0.5; }
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.55); display: flex; align-items: center; justify-content: center; z-index: 100; padding: 20px; }
+  .modal-box { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 22px 24px; max-width: 420px; }
+  .modal-box p { margin: 0 0 18px; line-height: 1.5; }
+  .modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
+
+  .wizard-yesno-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 28px; }
+  .wizard-yesno-row .wizard-yesno { flex: 0 0 auto; }
+  .vow-presets-inline { display: flex; flex-direction: column; align-items: center; flex: 0 0 auto; }
+  .vow-presets-title {
+    font-weight: 600;
+    color: var(--accent);
+    font-size: var(--fs-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 12px;
+  }
+  .vow-presets-circles { display: flex; gap: 22px; }
+  .vow-preset-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    background: var(--panel);
+    color: var(--text);
+    font-weight: 600;
+    font-size: var(--fs-sm);
+    cursor: pointer;
+    text-align: center;
+    padding: 4px;
+  }
+  .vow-preset-circle:hover { border-color: var(--accent); color: var(--accent); }
+  @media (max-width: 560px) {
+    .wizard-yesno-row { justify-content: flex-start; }
+    .vow-presets-inline { flex-basis: 100%; align-items: flex-start; }
+  }
+
+  @media (max-width: 700px) {
+    header {
+      padding: 0 12px;
+      gap: 4px;
+    }
+    header h1 {
+      width: 100%;
+      padding: 10px 0 4px;
+      font-size: var(--fs-lg);
+    }
+    nav.tabs {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    nav.tabs button {
+      padding: 10px 10px;
+      font-size: var(--fs-sm);
+    }
+    .layout {
+      flex-direction: column;
+      padding: 12px;
+      gap: 12px;
+    }
+    nav.toc {
+      position: static;
+      flex: none;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 14px;
+    }
+    .prose {
+      padding: 20px 12px;
+    }
+    .opt select, .opt input[type=text], .opt input[type=number]:not(.range-number) {
+      min-width: 0;
+      width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Hades 2 Rogue</h1>
+  <nav class="tabs" id="pageTabs">
+    <button data-page="home" class="active">Hades 2 Rogue</button>
+    <button data-page="setup">Setup Guide</button>
+    <button data-page="guided">Guided YAML Creator</button>
+    <button data-page="yaml">YAML Creator</button>
+  </nav>
+</header>
+
+<!-- ==================== PAGE: HOME / LANDING ==================== -->
+<div class="page active" id="page-home">
+  <div class="prose">
+    <p class="lede">
+      Hades 2 Rogue is an implementation of Hades 2 for Archipelago that aims to strip away most
+      of the meta-progression of the base game, and instead replace it with Archipelago
+      randomization. No Cauldron, no planting, no prophecies, just the more gameplay aspects with
+      a whole lot of randomization.
+    </p>
+    <p>
+      This means that, based on configuration, every form of meaningful progression can be
+      randomized. Your core locations will be making progress in routes; and you can configure
+      defeating new enemies, meeting new NPCs, and gaining new Keepsakes to be locations as well.
+    </p>
+    <p>
+      Items are configurable, but can include: Max Grasp, Arcanas, Weapons, Aspects, Pets,
+      Progressive Region Unlocks, unlocking helpers, and even unlocking gods themselves. Your goal
+      is to defeat bosses, configurable in the YAML.
+    </p>
+    <p>
+      Additionally, this mod has support for Zagreus' Journey, a mod by NikkelM that allows
+      Melinoë to fight through Zagreus' path from the first game; this only works if you have
+      Hades 1 installed, do not enable those settings otherwise.
+    </p>
+    <div class="callout">
+      Ready to play? Head to the <strong>Setup Guide</strong> tab to install everything, then the
+      <strong>YAML Creator</strong> tab to build your player options file.
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PAGE: SETUP GUIDE ==================== -->
+<div class="page" id="page-setup">
+  <div class="prose">
+    <h2>Required Software</h2>
+    <ul>
+      <li><a href="https://github.com/ArchipelagoMW/Archipelago/releases">Archipelago</a></li>
+      <li><a href="https://thunderstore.io/c/riskofrain2/p/ebkr/r2modman/">r2modman</a> (or a similar mod launcher for Thunderstore)</li>
+      <li>The Hades2Rogue <a href="https://github.com/BrittisH39/Hades2Archipelago/releases">APWorld</a></li>
+      <li>The Hades2Rogue <a href="https://thunderstore.io/c/hades-ii/p/BrittisH39/Hades2RogueArchipelago/">mod</a> (installed via r2modman)</li>
+    </ul>
+
+    <h2>Optional</h2>
+    <p>
+      An installation of Hades 1 will allow you to utilize the Zagreus' Journey mod made by
+      NikkelM to include some original Hades 1 content in your Hades 2 game. This includes the
+      original route, some NPCs, and some keepsakes. Zagreus' Journey is a dependency of the AP
+      mod, and will give you an "Installation Failed" message if you do not have Hades 1 installed
+      in the same location as Hades 2. This can be ignored if you didn't include the Zagreus'
+      Journey content.
+    </p>
+
+    <h2>Installation</h2>
+    <h3>Mod</h3>
+    <ul>
+      <li>Install and launch <a href="https://thunderstore.io/c/riskofrain2/p/ebkr/r2modman/">r2modman</a>.</li>
+      <li>Find and select Hades 2. Select which store you own Hades 2 on. (Epic Games Launcher untested at this time)</li>
+      <li>Select or create a profile (name doesn't matter).</li>
+      <li>Select Online on the left side, then search for and find "Hades2RogueArchipelago".</li>
+      <li>Select download, then download with dependencies.</li>
+    </ul>
+
+    <h3>APWorld</h3>
+    <ul>
+      <li>Launch <a href="https://github.com/ArchipelagoMW/Archipelago/releases">Archipelago</a>.</li>
+      <li>Drag and drop the <a href="https://github.com/BrittisH39/Hades2Archipelago/releases">APWorld</a> onto the Archipelago window.</li>
+      <li>Close and relaunch Archipelago.</li>
+    </ul>
+
+    <h2>Configuring Your YAML</h2>
+    <ul>
+      <li>Runs are designed to be possible regardless of your YAML settings, but it's recommended not to set maximum vows unless you are very confident in your Hades 2 skills. You will start the game with nothing, and the logic is set to believe you can at least make it to the boss of each region you have access to.</li>
+      <li>DO NOT enable Zagreus' Journey unless you have Hades 1 installed in the same location you have Hades 2 installed in; alternatively you can use the Zagreus' Journey config in r2modman to point to your Hades 1 installation.</li>
+    </ul>
+    <p>Use the <a href="#yaml" id="setupYamlLink">YAML Creator</a> above to build this file without hand-editing YAML.</p>
+
+    <h2>Connecting to a Game</h2>
+    <ul>
+      <li>Launch Archipelago, and launch the Hades 2 Rogue Client.</li>
+      <li>Put in the server you're connecting to and the port at the top (example: Archipelago.gg:45829). Hit connect.</li>
+      <li>Enter your slot name when it asks for it.</li>
+      <li>Once connected, hit "Launch Modded" in r2modman.</li>
+      <li>Launch into a save, ensure the client says "Game connected to Bridge", and enjoy!</li>
+    </ul>
+
+    <h2>For Troubleshooting/Issue Reports</h2>
+    <p>Visit the Hades 2 Rogue thread found <a href="https://discord.com/channels/731205301247803413/1521929337954238624">here</a>.</p>
+  </div>
+</div>
+
+<!-- ==================== PAGE: GUIDED YAML CREATOR ==================== -->
+<div class="page" id="page-guided">
+  <div class="wizard" id="guidedRoot"></div>
+</div>
+
+<!-- ==================== PAGE: YAML CREATOR ==================== -->
+<div class="page" id="page-yaml">
+  <div class="layout">
+    <nav class="toc" id="toc"></nav>
+    <main class="yaml-main">
+      <div class="callout" id="guidedBanner" style="display:none; align-items:center; justify-content:space-between; gap:12px;">
+        <span>Applied your guided answers below &mdash; feel free to review or tweak anything (including options the quick guide skipped) before downloading.</span>
+        <button type="button" id="guidedBannerClose">Got it</button>
+      </div>
+      <div class="toolbar">
+        <input type="text" id="searchInput" placeholder="Search options by name…">
+        <div class="spacer"></div>
+        <button id="btnReset">Reset to Defaults</button>
+        <button id="btnDownload" class="primary">Download YAML</button>
+      </div>
+
+      <div class="group" id="group-meta">
+        <h2>Player &amp; Meta</h2>
+        <div class="opt metaform">
+          <label class="title" for="meta_name">Name</label>
+          <div class="desc">Your name in-game (max 16 chars). {player}/{PLAYER}/{number}/{NUMBER} are replaced per Archipelago's usual template rules.</div>
+          <input type="text" id="meta_name" value="Player{number}">
+        </div>
+      </div>
+
+      <div id="groups"></div>
+
+      <div class="toolbar" style="justify-content:flex-end;">
+        <button id="btnDownload2" class="primary">Download YAML</button>
+      </div>
+
+      <div class="group" id="group-preview">
+        <h2>Preview</h2>
+        <div class="previewbar">
+          <span class="footer-note">Regenerates automatically as you change options.</span>
+          <div>
+            <button id="btnCopy">Copy</button>
+          </div>
+        </div>
+        <div id="yamlOut"></div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script>
+// ---------------------------------------------------------------------------
+// Page tab switching
+// ---------------------------------------------------------------------------
+const tabButtons = document.querySelectorAll("#pageTabs button");
+const pages = document.querySelectorAll(".page");
+
+function showPage(name) {
+  pages.forEach(p => p.classList.toggle("active", p.id === "page-" + name));
+  tabButtons.forEach(b => b.classList.toggle("active", b.dataset.page === name));
+  location.hash = name;
+}
+
+tabButtons.forEach(b => b.addEventListener("click", () => showPage(b.dataset.page)));
+
+const initialPage = (location.hash || "").replace("#", "");
+if (["home", "setup", "guided", "yaml"].includes(initialPage)) showPage(initialPage);
+
+document.getElementById("setupYamlLink").addEventListener("click", (e) => {
+  e.preventDefault();
+  showPage("yaml");
+});
+
+document.getElementById("guidedBannerClose").addEventListener("click", () => {
+  document.getElementById("guidedBanner").style.display = "none";
+});
+
+// ---------------------------------------------------------------------------
+// Option model, transcribed from Hades2Rogue_apworld/Options.py
+// ---------------------------------------------------------------------------
+const GROUPS = [
+  {
+    id: "core", title: "Archipelago Core Options",
+    opts: [
+      { key: "progression_balancing", label: "Progression Balancing", type: "range", min: 0, max: 99, def: 50,
+        desc: "A system that can move progression earlier, to try and prevent the player from getting stuck and bored early.\nA lower setting means more getting stuck. A higher setting means less getting stuck." },
+      { key: "accessibility", label: "Accessibility", type: "choice", def: "full",
+        options: [["full","Full - ensure everything can be reached and acquired."], ["minimal","Minimal - ensure what is needed to reach your goal can be acquired."]],
+        desc: "Set rules for reachability of your items/locations." },
+    ]
+  },
+  {
+    id: "weapon", title: "Weapon Options",
+    opts: [
+      { key: "included_weapons", label: "Included Weapons", type: "set",
+        keys: ["Staff","Blades","Flames","Axe","Skull","Coat"],
+        def: ["Staff","Blades","Flames","Axe","Skull","Coat"],
+        showIf: (s) => s.weapon_amount < 6,
+        desc: "Which weapons can be included in the run. Removing any of these will remove them and their aspects from the pool. These will be the weapons that the below 'weapon_amount' option chooses from." },
+      { key: "weapon_amount", label: "Weapon Amount", type: "range", min: 1, max: 6, def: 6,
+        desc: "How many of the above weapons should be included? It will randomly select the amount you specify from the pool you listed above. If you set it higher than the amount of weapons you included, it will just add all that you included." },
+      { key: "initial_weapon", label: "Initial Weapon", type: "choice", def: "random",
+        options: [["random","Random"],["Staff","Staff (Witch's Staff)"],["Blades","Blades (Sister Blades)"],["Flames","Flames (Umbral Flames)"],["Axe","Axe (Moonstone Axe)"],["Skull","Skull (Argent Skull)"],["Coat","Coat (Black Coat)"]],
+        desc: "Which weapon will you have at the beginning of the run." },
+      { key: "aspectsanity", label: "AspectSanity", type: "choice", def: "progressive",
+        options: [["unlocked","Unlocked"],["randomized","Randomized"],["progressive","Progressive"],["per_aspect","Per Aspect"]],
+        desc: "How you'll get the various weapon aspects.\nunlocked: every Aspect is available from the start, fully upgraded.\nrandomized: all 24 Aspects are shuffled, each its own item, granted at max level.\nprogressive: you start with one weapon's Melinoe Aspect; each weapon gets Progressive <Weapon> items.\nper_aspect: all 24 Aspects level independently via their own Progressive <Aspect> items (5 copies apiece, 120 total)." },
+      { key: "included_aspects", label: "Included Aspects", type: "range", min: 1, max: 4, def: 4,
+        desc: "If aspectsanity is randomized or per_aspect: how many of each weapon's aspects should be accessible." },
+    ]
+  },
+  {
+    id: "location", title: "Location Options",
+    opts: [
+      { key: "location_system", label: "Location System", type: "choice", def: "room_based",
+        options: [["point_based","Point Based"],["room_based","Room Based"],["per_weapon_room_based","Per Weapon Room Based"],["per_aspect_room_based","Per Aspect Room Based"]],
+        desc: "Room_based: locations are the first time you clear N rooms/encounters in one run.\nPoint_based: locations are point totals accumulated from room depth on clear.\nPer_Weapon_Room_Based: like room_based, but separate pools per weapon.\nPer_Aspect_Room_Based: like per_weapon_room_based, but each weapon's own Aspects also get their own separate pool, gated behind that Aspect's level (1 for its 1st area, 2 for its 2nd, 4 for its 3rd, 5 for its 4th/final area)." },
+      { key: "score_rewards_amount", label: "Score Rewards Amount", type: "range", min: 40, max: 1000, def: 100,
+        showIf: (s) => s.location_system === "point_based",
+        desc: "Point_based only. How many score locations there are." },
+      { key: "separate_checks", label: "Separate Checks", type: "choice", def: "separate_pools",
+        options: [["separate_pools","Separate Pools"],["combine_pools","Combine Pools"]],
+        showIf: (s) => (s.include_regions || []).length > 1,
+        desc: "When more than one route is included: separate_pools gives each route its own full location set; combine_pools shares one route-agnostic pool." },
+      { key: "enemy_locations", label: "Enemy Locations", type: "bool", def: true,
+        desc: "Add locations for the first time you defeat each enemy type." },
+      { key: "npc_locations", label: "NPC Locations", type: "bool", def: true,
+        desc: "Add locations for the first time you speak to each NPC." },
+    ]
+  },
+  {
+    id: "item", title: "Item Options",
+    opts: [
+      { key: "grasp_count", label: "Grasp Count", type: "range", min: 1, max: 30, def: 6,
+        desc: "How many Progressive Grasp items in the item pool." },
+      { key: "grasp_intervals", label: "Grasp Intervals", type: "range", min: 0, max: 10, def: 5,
+        desc: "How much each Progressive Grasp raises your maximum Grasp." },
+      { key: "arcanasanity", label: "ArcanaSanity", type: "choice", def: "progressive_arcana",
+        options: [["arcana","Arcana"],["progressive_arcana","Progressive Arcana"]],
+        desc: "arcana: each card is unlocked by an item at max level, can't be purchased.\nprogressive_arcana: each card gets progressive items, first unlocks, rest upgrade." },
+      { key: "keepsakesanity", label: "KeepsakeSanity", type: "choice", def: "randomized",
+        options: [["false","Off"],["randomized","Randomized"],["progressive","Progressive"]],
+        desc: "false: unchanged from base game.\nrandomized: each keepsake is its own check/item.\nprogressive: 3 Progressive Keepsake items; first unlocks all, rest level them." },
+      { key: "petsanity", label: "PetSanity", type: "choice", def: "randomized",
+        options: [["unlocked","Unlocked"],["randomized","Randomized"],["progressive","Progressive"]],
+        desc: "Familiars (Frinos, Toula, Raki, Hecuba, Gale). unlocked: all available from start.\nrandomized: each familiar its own item, max bond on receipt.\nprogressive: one Progressive Familiar item line unlocks/upgrades all." },
+      { key: "helper_room_sanity", label: "Helper Room Sanity", type: "choice", def: "unlocked_random",
+        options: [["unlocked","Unlocked"],["items","Items"],["unlocked_random","Unlocked (random rooms)"],["items_random","Items (random rooms)"]],
+        desc: "Helper NPC story rooms (Arachne, Narcissus, Echo, Hades, Medea, Circe, Dionysus; Nightmare adds Sisyphus, Eurydice, Patroclus).\nunlocked/items control how they're gated; _random variants let them appear in any helper's room." },
+      { key: "combat_helper_sanity", label: "Combat Helper Sanity", type: "choice", def: "unlocked_random",
+        options: [["unlocked","Unlocked"],["items","Items"],["unlocked_random","Unlocked (random spots)"],["items_random","Items (random spots)"]],
+        desc: "Mid-run combat helper NPCs (Artemis, Nemesis, Heracles, Icarus, Athena, Thanatos).\nunlocked/items control how they're gated; _random variants let them show up anywhere valid." },
+      { key: "godsanity", label: "GodSanity", type: "choice", def: "unlocked",
+        options: [["unlocked","Unlocked"],["onions","Onions"],["no_waste_less_odds","No Waste (less odds)"],["no_waste_same_odds","No Waste (same odds)"]],
+        desc: "Locks each god's boons behind a check.\nunlocked: all available from start.\nonions: locked gods' boons are replaced by Onions.\nno_waste_less_odds / no_waste_same_odds: boon spawn odds scale (or don't) with gods unlocked, but never waste a spawn on a locked god." },
+    ]
+  },
+  {
+    id: "deathlink", title: "Deathlink",
+    opts: [
+      { key: "deathlink", label: "DeathLink", type: "bool", def: true,
+        desc: "When you die, everyone who enabled death link dies. Of course, the reverse is true too." },
+      { key: "deathlink_percent", label: "DeathLink Damage Percent", type: "range", min: 0, max: 100, def: 100,
+        showIf: (s) => s.deathlink,
+        desc: "How much of your max health you lose when you receive a DeathLink. 0 ends the run regardless of defiances." },
+      { key: "deathlink_amnesty", label: "DeathLink Deaths To Send", type: "range", min: 0, max: 5, def: 1,
+        showIf: (s) => s.deathlink,
+        desc: "How many times you die in a row before it sends a DeathLink. 0 means you'll never send, only receive." },
+    ]
+  },
+  {
+    id: "vow", title: "Vow Options (Oath of the Unseen)",
+    opts: [
+      { key: "reverse_vow", label: "Reverse Vow", type: "bool", def: true,
+        desc: "Start each run with the vows below already active (raising difficulty); each is removed one at a time by items found in the multiworld." },
+      { key: "vow_pain", label: "Vow of Pain", type: "range", min: 0, max: 3, def: 0, desc: "Foes deal more damage.", showIf: (s) => s.reverse_vow },
+      { key: "vow_grit", label: "Vow of Grit", type: "range", min: 0, max: 3, def: 0, desc: "Foes have more health.", showIf: (s) => s.reverse_vow },
+      { key: "vow_wards", label: "Vow of Wards", type: "range", min: 0, max: 2, def: 0, desc: "Foes gain Barrier.", showIf: (s) => s.reverse_vow },
+      { key: "vow_frenzy", label: "Vow of Frenzy", type: "range", min: 0, max: 2, def: 0, desc: "Foes are faster.", showIf: (s) => s.reverse_vow },
+      { key: "vow_hordes", label: "Vow of Hordes", type: "range", min: 0, max: 3, def: 0, desc: "More foes.", showIf: (s) => s.reverse_vow },
+      { key: "vow_menace", label: "Vow of Menace", type: "range", min: 0, max: 2, def: 0, desc: "Foes from the next region.", showIf: (s) => s.reverse_vow },
+      { key: "vow_return", label: "Vow of Return", type: "range", min: 0, max: 2, def: 0, desc: "Slain foes may revive.", showIf: (s) => s.reverse_vow },
+      { key: "vow_fangs", label: "Vow of Fangs", type: "range", min: 0, max: 2, def: 0, desc: "Armored foes gain perks.", showIf: (s) => s.reverse_vow },
+      { key: "vow_scars", label: "Vow of Scars", type: "range", min: 0, max: 3, def: 0, desc: "Healing is less effective.", showIf: (s) => s.reverse_vow },
+      { key: "vow_debt", label: "Vow of Debt", type: "range", min: 0, max: 2, def: 0, desc: "Higher gold costs.", showIf: (s) => s.reverse_vow },
+      { key: "vow_shadow", label: "Vow of Shadow", type: "range", min: 0, max: 1, def: 0, desc: "Shadow Servants.", showIf: (s) => s.reverse_vow },
+      { key: "vow_forfeit", label: "Vow of Forfeit", type: "range", min: 0, max: 1, def: 0, desc: "First Boon becomes Red Onion.", showIf: (s) => s.reverse_vow },
+      { key: "vow_time", label: "Vow of Time", type: "range", min: 0, max: 3, def: 0, desc: "Time limit per region.", showIf: (s) => s.reverse_vow },
+      { key: "vow_void", label: "Vow of Void", type: "range", min: 0, max: 4, def: 0, desc: "Less Grasp for Arcana.", showIf: (s) => s.reverse_vow },
+      { key: "vow_hubris", label: "Vow of Hubris", type: "range", min: 0, max: 2, def: 0, desc: "Primes Magick after Boons.", showIf: (s) => s.reverse_vow },
+      { key: "vow_denial", label: "Vow of Denial", type: "range", min: 0, max: 1, def: 0, desc: "Unpicked blessings vanish.", showIf: (s) => s.reverse_vow },
+      { key: "vow_rivals", label: "Vow of Rivals", type: "range", min: 0, max: 4, def: 0, desc: "Guardians are stronger.", showIf: (s) => s.reverse_vow },
+      { key: "reverse_rivals", label: "Reverse Rivals", type: "bool", def: true, showIf: (s) => s.reverse_vow,
+        desc: "Reverse which Guardians the Vow of Rivals strengthens: makes Chronos and Typhon the last boss to return to normal." },
+    ]
+  },
+  {
+    id: "goal", title: "Goal &amp; Route Options",
+    opts: [
+      { key: "goals_required", label: "Goals Required", type: "set",
+        keys: ["Underworld","Surface","Nightmare"], def: ["Underworld","Surface"],
+        keyShowIf: (k, s) => k !== "Nightmare" || s.include_zagreus_journey,
+        desc: "Which routes' final bosses are part of the goal (Chronos/Underworld, Typhon/Surface, Hades/Nightmare). Nightmare needs the Zagreus' Journey mod + Hades 1 installed." },
+      { key: "goal_requires_zagreus", label: "Goal Requires Zagreus", type: "bool", def: false,
+        desc: "Whether defeating Zagreus is part of your Goal." },
+      { key: "goal_mode", label: "Goal Mode", type: "choice", def: "all_selected",
+        options: [["all_selected","All Selected"],["any_selected","Any Selected"]],
+        showIf: (s) => (s.goals_required || []).length + (s.goal_requires_zagreus ? 1 : 0) > 1,
+        desc: "Whether all toggled goals must be achieved, or just any one of them." },
+      { key: "zagreus_encounter_mode", label: "Zagreus Encounter Mode", type: "choice", def: "empowered",
+        options: [["vanilla","Vanilla"],["empowered","Empowered"],["final_challenge","Final Challenge"]],
+        showIf: (s) => s.goal_requires_zagreus,
+        desc: "Vanilla: normal late-game Zagreus fights.\nEmpowered: Zagreus starts heavily empowered; Progressive Zagreus Weaken items weaken him.\nFinal Challenge: any route's final boss spawns a contract to fight Zagreus instead of ending the run." },
+      { key: "zagreus_weaken_tiers", label: "Zagreus Weaken Tiers", type: "range", min: 1, max: 10, def: 5,
+        showIf: (s) => s.goal_requires_zagreus && s.zagreus_encounter_mode === "empowered",
+        desc: "Empowered mode only: how many Progressive Zagreus Weaken items exist." },
+      { key: "include_regions", label: "Include Regions", type: "set",
+        keys: ["Underworld","Surface","Nightmare"], def: ["Underworld","Surface"],
+        keyShowIf: (k, s) => k !== "Nightmare" || s.include_zagreus_journey,
+        desc: "Which routes are playable at all: Underworld, Surface, Nightmare (needs Zagreus' Journey mod + Hades 1)." },
+      { key: "include_zagreus_journey", label: "Include Zagreus Journey", type: "bool", def: false,
+        desc: "Whether to include any content from NikkelM's Zagreus' Journey mod. When off, Nightmare is fully removed and its 7 keepsakes never enter the pool." },
+      { key: "lock_routes", label: "Lock Routes", type: "bool", def: true,
+        desc: "Lock each route's regions behind its Progressive Route item." },
+      { key: "starting_route", label: "Starting Route", type: "choice", def: "random_1_route",
+        options: [["random_1_route","Random 1 Route"],["underworld","Underworld"],["surface","Surface"],["all","All"],["nightmare","Nightmare (Hades 1 Route)"]],
+        optionShowIf: (v, s) => v !== "nightmare" || (s.include_zagreus_journey && (s.include_regions || []).includes("Nightmare")),
+        desc: "If lock_routes is on, which route is open from the start (falls back to a random included route if you pick one you didn't include)." },
+      { key: "underworld_wins_needed", label: "Underworld Wins Needed", type: "range", min: 1, max: 20, def: 1,
+        showIf: (s) => (s.goals_required || []).includes("Underworld"),
+        desc: "How many Underworld wins are needed to mark that goal complete." },
+      { key: "surface_wins_needed", label: "Surface Wins Needed", type: "range", min: 1, max: 20, def: 1,
+        showIf: (s) => (s.goals_required || []).includes("Surface"),
+        desc: "How many Surface wins are needed to mark that goal complete." },
+      { key: "nightmare_wins_needed", label: "Nightmare Wins Needed", type: "range", min: 1, max: 20, def: 1,
+        showIf: (s) => (s.goals_required || []).includes("Nightmare"),
+        desc: "How many Nightmare wins are needed to mark that goal complete." },
+      { key: "zagreus_defeats_needed", label: "Zagreus Defeats Needed", type: "range", min: 1, max: 20, def: 1,
+        showIf: (s) => s.goal_requires_zagreus,
+        desc: "How many Zagreus defeats are needed to satisfy that part of the goal." },
+      { key: "weapons_clears_needed", label: "Weapons Clears Needed", type: "range", min: 1, max: 6, def: 1,
+        showIf: (s) => s.weapon_amount > 1,
+        desc: "How many different weapons must be used across boss clears." },
+    ]
+  },
+  {
+    id: "misc", title: "Misc Options",
+    opts: [
+      { key: "starting_npc_gifts", label: "Starting NPC Gifts", type: "set",
+        keys: ["Arachne","Medea","Icarus","Circe","Dionysus","Artemis","Athena","Hades"],
+        def: ["Arachne","Artemis","Athena","Circe","Dionysus","Hades","Icarus"],
+        desc: "Each NPC checked adds an item granting a random one of their normal boons/gifts. Medea defaults off since some of her curses can hurt a run." },
+      { key: "daedalus_upgrade", label: "Daedalus Upgrade", type: "range", min: 0, max: 5, def: 3,
+        desc: "Adds this many Daedalus Upgrade items; each grants a random Daedalus Hammer upgrade at run start." },
+      { key: "progressive_boon_level", label: "Progressive Boon Level", type: "range", min: 0, max: 10, def: 3,
+        desc: "Adds this many Progressive Boon Level items; each raises the base level of all leveled boons (Duo/Legendary excluded)." },
+    ]
+  },
+  {
+    id: "filler", title: "Filler Options",
+    opts: [
+      { key: "nectar_pack_value", label: "Nectar Pack Value", type: "range", min: 0, max: 50, def: 2, desc: "Amount of Nectar granted per Nectar item." },
+      { key: "nectar_pack_percentage", label: "Nectar Pack Percentage", type: "range", min: 0, max: 100, def: 5, desc: "Share of the filler pool that is Nectar." },
+      { key: "starting_health_value", label: "Starting Health Value", type: "range", min: 0, max: 50, def: 20, desc: "Max health granted per Starting Max Health item." },
+      { key: "starting_health_percentage", label: "Starting Health Percentage", type: "range", min: 0, max: 100, def: 15, desc: "Share of the filler pool that is Max Health." },
+      { key: "starting_magick_value", label: "Starting Magick Value", type: "range", min: 0, max: 50, def: 2, desc: "Max Magick granted per Starting Max Magick item." },
+      { key: "starting_magick_percentage", label: "Starting Magick Percentage", type: "range", min: 0, max: 100, def: 15, desc: "Share of the filler pool that is Max Magick." },
+      { key: "starting_gold_value", label: "Starting Gold Value", type: "range", min: 1, max: 100, def: 10, desc: "Run-start gold granted per Starting Gold item." },
+      { key: "starting_gold_percentage", label: "Starting Gold Percentage", type: "range", min: 0, max: 100, def: 15, desc: "Share of the filler pool that is Starting Gold." },
+      { key: "starting_armor_value", label: "Starting Armor Value", type: "range", min: 1, max: 100, def: 10, desc: "Run-start armor granted per Starting Armor item." },
+      { key: "starting_armor_percentage", label: "Starting Armor Percentage", type: "range", min: 0, max: 100, def: 15, desc: "Share of the filler pool that is Starting Armor." },
+      { key: "rarity_increase_percentage", label: "Rarity Increase Percentage", type: "range", min: 0, max: 100, def: 15, desc: "Share of the filler pool that permanently raises higher-rarity boon odds." },
+      { key: "major_finds_percentage", label: "Major Finds Percentage", type: "range", min: 0, max: 100, def: 10, desc: "Share of the filler pool that nudges door rewards toward Major Finds and away from Minor Finds." },
+    ]
+  },
+];
+
+// ---------------------------------------------------------------------------
+// DOM construction
+// ---------------------------------------------------------------------------
+const groupsEl = document.getElementById("groups");
+const tocEl = document.getElementById("toc");
+
+function el(tag, attrs, children) {
+  const e = document.createElement(tag);
+  if (attrs) for (const k in attrs) {
+    if (k === "class") e.className = attrs[k];
+    else if (k === "html") e.innerHTML = attrs[k];
+    else e.setAttribute(k, attrs[k]);
+  }
+  (children || []).forEach(c => e.appendChild(c));
+  return e;
+}
+
+const ROUTE_DISPLAY = { Nightmare: "Nightmare (Hades 1 Route)" };
+
+function buildRangeField(opt) {
+  const wrap = el("div", { class: "rangewrap" });
+  if (opt.max - opt.min <= 12) {
+    const hidden = el("input", { type: "hidden", id: "f_" + opt.key, "data-key": opt.key });
+    hidden.value = opt.def;
+    const pills = el("div", { class: "range-pills" });
+    function syncSelected(v) {
+      pills.querySelectorAll("button").forEach(b => b.classList.toggle("selected", Number(b.textContent) === Number(v)));
+    }
+    for (let i = opt.min; i <= opt.max; i++) {
+      const btn = el("button", { type: "button" }, [document.createTextNode(String(i))]);
+      if (i === opt.def) btn.classList.add("selected");
+      btn.addEventListener("click", () => {
+        hidden.value = i;
+        syncSelected(i);
+        hidden.dispatchEvent(new Event("change", { bubbles: true }));
+      });
+      pills.appendChild(btn);
+    }
+    hidden._uiSync = syncSelected;
+    wrap.appendChild(hidden);
+    wrap.appendChild(pills);
+    return wrap;
+  }
+  const slider = el("div", { class: "range-slider" });
+  const minLabel = el("span", { class: "range-minmax" }, [document.createTextNode(String(opt.min))]);
+  const input = el("input", { type: "range", id: "f_" + opt.key, "data-key": opt.key, min: opt.min, max: opt.max });
+  input.value = opt.def;
+  const maxLabel = el("span", { class: "range-minmax" }, [document.createTextNode(String(opt.max))]);
+  const number = el("input", { type: "number", class: "range-number", min: opt.min, max: opt.max });
+  number.value = opt.def;
+  input.addEventListener("input", () => { number.value = input.value; });
+  number.addEventListener("change", () => {
+    let v = Number(number.value);
+    if (Number.isNaN(v)) v = opt.min;
+    v = Math.min(opt.max, Math.max(opt.min, v));
+    number.value = v;
+    input.value = v;
+    input.dispatchEvent(new Event("change", { bubbles: true }));
+  });
+  input._uiSync = (v) => { number.value = v; };
+  slider.appendChild(minLabel);
+  slider.appendChild(input);
+  slider.appendChild(maxLabel);
+  slider.appendChild(number);
+  wrap.appendChild(slider);
+  return wrap;
+}
+
+tocEl.appendChild(el("a", { href: "#group-meta" }, [document.createTextNode("Player & Meta")]));
+
+GROUPS.forEach(group => {
+  const groupDiv = el("div", { class: "group", id: "group-" + group.id });
+
+  const toggleBtn = el("button", { class: "group-toggle", type: "button" }, [document.createTextNode("Collapse")]);
+  const header = el("div", { class: "group-header" }, [el("h2", { html: group.title }), toggleBtn]);
+  groupDiv.appendChild(header);
+
+  const bodyDiv = el("div", { class: "group-body" });
+  groupDiv.appendChild(bodyDiv);
+
+  group._collapsed = false;
+  group._opts = [];
+  group.groupEl = groupDiv;
+  group.bodyEl = bodyDiv;
+  group.toggleBtn = toggleBtn;
+
+  toggleBtn.addEventListener("click", () => {
+    group._collapsed = !group._collapsed;
+    applyFilter();
+  });
+
+  const tocLink = el("a", { href: "#group-" + group.id }, [document.createTextNode(group.title.replace(/&amp;/g, "&"))]);
+  tocLink.addEventListener("click", (e) => {
+    if (group._collapsed) {
+      e.preventDefault();
+      group._collapsed = false;
+      applyFilter();
+      requestAnimationFrame(() => groupDiv.scrollIntoView({ behavior: "smooth", block: "start" }));
+    }
+  });
+  tocEl.appendChild(tocLink);
+
+  group.opts.forEach(opt => {
+    const wrap = el("div", { class: "opt" });
+    wrap.appendChild(el("label", { class: "title", for: "f_" + opt.key }, [document.createTextNode(opt.label)]));
+    wrap.appendChild(el("div", { class: "desc" }, [document.createTextNode(opt.desc || "")]));
+
+    if (opt.type === "set") {
+      const grid = el("div", { class: "setgrid" });
+      opt._keyEls = {};
+      opt.keys.forEach(k => {
+        const id = "f_" + opt.key + "_" + k;
+        const cb = el("input", { type: "checkbox", id, "data-key": opt.key, "data-val": k });
+        cb.checked = opt.def.includes(k);
+        const label = el("label", { for: id }, [cb, document.createTextNode(ROUTE_DISPLAY[k] || k)]);
+        grid.appendChild(label);
+        opt._keyEls[k] = label;
+      });
+      wrap.appendChild(grid);
+    } else if (opt.type === "choice") {
+      const sel = el("select", { id: "f_" + opt.key, "data-key": opt.key });
+      opt._optionEls = {};
+      opt.options.forEach(([val, lbl]) => {
+        const o = el("option", { value: val }, [document.createTextNode(lbl)]);
+        if (val === opt.def) o.selected = true;
+        sel.appendChild(o);
+        opt._optionEls[val] = o;
+      });
+      wrap.appendChild(sel);
+    } else if (opt.type === "bool") {
+      const cb = el("input", { type: "checkbox", id: "f_" + opt.key, "data-key": opt.key });
+      cb.checked = !!opt.def;
+      wrap.appendChild(el("div", { class: "boolrow" }, [cb, document.createTextNode("Enabled")]));
+    } else if (opt.type === "range") {
+      wrap.appendChild(buildRangeField(opt));
+    }
+
+    bodyDiv.appendChild(wrap);
+    group._opts.push({ el: wrap, key: opt.key, label: opt.label, desc: opt.desc || "", opt });
+  });
+
+  groupsEl.appendChild(groupDiv);
+});
+
+// Turning off Zagreus' Journey removes it as an option elsewhere; clear now-invalid selections.
+const zjCheckbox = document.getElementById("f_include_zagreus_journey");
+if (zjCheckbox) {
+  zjCheckbox.addEventListener("change", () => {
+    if (zjCheckbox.checked) return;
+    const grCb = document.getElementById("f_goals_required_Nightmare");
+    const irCb = document.getElementById("f_include_regions_Nightmare");
+    if (grCb) grCb.checked = false;
+    if (irCb) irCb.checked = false;
+    const startSel = document.getElementById("f_starting_route");
+    if (startSel && startSel.value === "nightmare") startSel.value = "random_1_route";
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Search filtering / collapsible groups / conditional (showIf) visibility
+// ---------------------------------------------------------------------------
+const searchInput = document.getElementById("searchInput");
+
+function applyFilter() {
+  const term = searchInput.value.trim().toLowerCase();
+  const state = readState();
+  GROUPS.forEach(group => {
+    let anyVisible = false;
+    group._opts.forEach(o => {
+      const searchMatch = !term || o.label.toLowerCase().includes(term) || o.desc.toLowerCase().includes(term) || o.key.toLowerCase().includes(term);
+      const condMatch = !o.opt.showIf || o.opt.showIf(state);
+      const match = searchMatch && condMatch;
+      o.el.style.display = match ? "" : "none";
+      if (match) anyVisible = true;
+
+      if (o.opt.keyShowIf && o.opt._keyEls) {
+        Object.entries(o.opt._keyEls).forEach(([k, label]) => {
+          label.style.display = o.opt.keyShowIf(k, state) ? "" : "none";
+        });
+      }
+      if (o.opt.optionShowIf && o.opt._optionEls) {
+        Object.entries(o.opt._optionEls).forEach(([val, optionEl]) => {
+          const allowed = o.opt.optionShowIf(val, state);
+          optionEl.hidden = !allowed;
+          optionEl.disabled = !allowed;
+        });
+      }
+    });
+    group.groupEl.style.display = anyVisible ? "" : "none";
+    const expanded = term ? true : !group._collapsed;
+    group.bodyEl.style.display = expanded ? "" : "none";
+    group.toggleBtn.textContent = expanded ? "Collapse" : "Expand";
+  });
+}
+
+searchInput.addEventListener("input", applyFilter);
+applyFilter();
+
+// ---------------------------------------------------------------------------
+// YAML generation
+// ---------------------------------------------------------------------------
+const RESERVED_WORDS = new Set(["true","false","yes","no","on","off","null","~"]);
+
+function yamlScalar(value) {
+  const s = String(value);
+  if (RESERVED_WORDS.has(s.toLowerCase()) || /^-?\d+(\.\d+)?$/.test(s)) {
+    return "'" + s + "'";
+  }
+  return s;
+}
+
+function yamlList(values) {
+  if (!values.length) return "[]";
+  return "[" + values.map(v => "'" + v + "'").join(", ") + "]";
+}
+
+function wrapComment(desc, indent) {
+  const lines = [];
+  desc.split("\n").forEach(line => {
+    line.split(/(.{1,95}(?:\s|$))/).filter(Boolean).forEach(chunk => {
+      const trimmed = chunk.trim();
+      if (trimmed) lines.push(indent + "# " + trimmed);
+    });
+  });
+  return lines;
+}
+
+function readState() {
+  const state = {};
+  GROUPS.forEach(group => group.opts.forEach(opt => {
+    if (opt.type === "set") {
+      state[opt.key] = opt.keys.filter(k => document.getElementById("f_" + opt.key + "_" + k).checked);
+    } else if (opt.type === "bool") {
+      state[opt.key] = document.getElementById("f_" + opt.key).checked;
+    } else if (opt.type === "range") {
+      state[opt.key] = Number(document.getElementById("f_" + opt.key).value);
+    } else if (opt.type === "choice") {
+      state[opt.key] = document.getElementById("f_" + opt.key).value;
+    }
+  }));
+  return state;
+}
+
+function generateYaml() {
+  const state = readState();
+  const name = document.getElementById("meta_name").value || "Player{number}";
+  const desc = "My Hades2Rogue Template";
+  const version = "0.6.7";
+
+  const lines = [];
+  lines.push("# Generated with the Hades2Rogue YAML Configurator.");
+  lines.push("# Verify at https://archipelago.gg/check before using in a multiworld.");
+  lines.push("");
+  lines.push("name: " + name);
+  lines.push("description: " + desc);
+  lines.push("game: Hades2Rogue");
+  lines.push("requires:");
+  lines.push("  version: " + version);
+  lines.push("");
+  lines.push("Hades2Rogue:");
+
+  GROUPS.forEach(group => {
+    lines.push("  # ---- " + group.title.replace(/&amp;/g, "&") + " ----");
+    group.opts.forEach(opt => {
+      lines.push(...wrapComment(opt.desc || "", "  "));
+      let valueStr;
+      if (opt.type === "set") valueStr = yamlList(state[opt.key]);
+      else if (opt.type === "bool") valueStr = state[opt.key] ? "true" : "false";
+      else if (opt.type === "range") valueStr = String(state[opt.key]);
+      else if (opt.type === "choice") valueStr = yamlScalar(state[opt.key]);
+      lines.push("  " + opt.key + ": " + valueStr);
+      lines.push("");
+    });
+  });
+
+  return lines.join("\n");
+}
+
+function updatePreview() {
+  applyFilter();
+  document.getElementById("yamlOut").textContent = generateYaml();
+}
+
+function buildDefaults() {
+  const values = {};
+  GROUPS.forEach(g => g.opts.forEach(opt => { values[opt.key] = opt.type === "set" ? [...opt.def] : opt.def; }));
+  return values;
+}
+
+function applyValues(values) {
+  GROUPS.forEach(group => group.opts.forEach(opt => {
+    const v = values[opt.key];
+    if (opt.type === "set") {
+      opt.keys.forEach(k => { document.getElementById("f_" + opt.key + "_" + k).checked = v.includes(k); });
+    } else if (opt.type === "bool") {
+      document.getElementById("f_" + opt.key).checked = !!v;
+    } else {
+      const elm = document.getElementById("f_" + opt.key);
+      elm.value = v;
+      if (elm._uiSync) elm._uiSync(v);
+    }
+  }));
+  updatePreview();
+}
+
+function downloadYaml() {
+  const yaml = generateYaml();
+  const blob = new Blob([yaml], { type: "text/yaml" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "Hades2Rogue.yaml";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+}
+document.getElementById("btnDownload").addEventListener("click", downloadYaml);
+document.getElementById("btnDownload2").addEventListener("click", downloadYaml);
+document.getElementById("btnCopy").addEventListener("click", () => {
+  navigator.clipboard.writeText(document.getElementById("yamlOut").textContent);
+});
+document.getElementById("btnReset").addEventListener("click", () => {
+  document.getElementById("meta_name").value = "Player{number}";
+  applyValues(buildDefaults());
+});
+
+document.addEventListener("change", updatePreview);
+updatePreview();
+
+// ---------------------------------------------------------------------------
+// Guided YAML Creator
+// ---------------------------------------------------------------------------
+const OPTS_BY_KEY = {};
+GROUPS.forEach(g => g.opts.forEach(o => { OPTS_BY_KEY[o.key] = o; }));
+
+function getOptValue(key) {
+  const opt = OPTS_BY_KEY[key];
+  if (opt.type === "set") return opt.keys.filter(k => document.getElementById("f_" + key + "_" + k).checked);
+  if (opt.type === "bool") return document.getElementById("f_" + key).checked;
+  if (opt.type === "range") return Number(document.getElementById("f_" + key).value);
+  return document.getElementById("f_" + key).value;
+}
+function setOptValue(key, value) {
+  const opt = OPTS_BY_KEY[key];
+  if (opt.type === "set") {
+    opt.keys.forEach(k => { document.getElementById("f_" + key + "_" + k).checked = value.includes(k); });
+  } else if (opt.type === "bool") {
+    document.getElementById("f_" + key).checked = !!value;
+  } else {
+    const elm = document.getElementById("f_" + key);
+    elm.value = value;
+    if (elm._uiSync) elm._uiSync(value);
+  }
+}
+
+const WEAPON_FULL_NAMES = { Staff: "Witch's Staff", Blades: "Sister Blades", Flames: "Umbral Flames", Axe: "Moonstone Axe", Skull: "Argent Skull", Coat: "Black Coat" };
+
+// Guided-wizard "unanswered until touched" tracking. Real option keys are stored in the
+// shared form fields (via getOptValue/setOptValue); synthetic keys (yes/no toggles with no
+// backing option, like "multiWin") live in wizSynthetic.
+const wizAnswered = new Set();
+let wizSynthetic = {};
+function ans(ctx, key) { return ctx.isAnswered(key) ? getOptValue(key) : undefined; }
+function ansSet(ctx, key) { return ctx.isAnswered(key) ? getOptValue(key) : []; }
+function synAns(ctx, key) { return ctx.isAnswered(key) ? wizSynthetic[key] : undefined; }
+function synMark(ctx, key, value) { wizSynthetic[key] = value; ctx.markAnswered(key); }
+
+function showConfirmModal(message, onConfirm) {
+  const overlay = el("div", { class: "modal-overlay" });
+  const box = el("div", { class: "modal-box" });
+  box.appendChild(el("p", {}, [document.createTextNode(message)]));
+  const actions = el("div", { class: "modal-actions" });
+  const cancelBtn = el("button", { type: "button" }, [document.createTextNode("Cancel")]);
+  const confirmBtn = el("button", { type: "button", class: "primary" }, [document.createTextNode("Yes, I'm sure")]);
+  cancelBtn.addEventListener("click", () => overlay.remove());
+  confirmBtn.addEventListener("click", () => { overlay.remove(); onConfirm(); });
+  actions.appendChild(cancelBtn);
+  actions.appendChild(confirmBtn);
+  box.appendChild(actions);
+  overlay.appendChild(box);
+  document.body.appendChild(overlay);
+}
+
+function qCard(prompt, subtitle) {
+  const card = el("div", { class: "wizard-question" });
+  if (prompt) card.appendChild(el("span", { class: "wq-prompt" }, [document.createTextNode(prompt)]));
+  if (subtitle) card.appendChild(el("div", { class: "wq-subtitle" }, [document.createTextNode(subtitle)]));
+  const body = el("div", { class: "wq-body" });
+  card.appendChild(body);
+  return { card, body };
+}
+
+function introBlock(html) {
+  const p = el("div", { class: "wizard-intro" });
+  p.innerHTML = html;
+  return p;
+}
+
+function rangeControl(min, max, value, onChange) {
+  if (max - min <= 12) {
+    const wrap = el("div", { class: "range-pills" });
+    for (let i = min; i <= max; i++) {
+      const btn = el("button", { type: "button" }, [document.createTextNode(String(i))]);
+      if (i === value) btn.classList.add("selected");
+      btn.addEventListener("click", () => {
+        wrap.querySelectorAll("button").forEach(b => b.classList.remove("selected"));
+        btn.classList.add("selected");
+        onChange(i);
+      });
+      wrap.appendChild(btn);
+    }
+    return wrap;
+  }
+  const wrap = el("div", { class: "range-slider" });
+  const minLabel = el("span", { class: "range-minmax" }, [document.createTextNode(String(min))]);
+  const input = el("input", { type: "range", min, max });
+  input.value = value === undefined ? min : value;
+  const maxLabel = el("span", { class: "range-minmax" }, [document.createTextNode(String(max))]);
+  const number = el("input", { type: "number", class: "range-number", min, max });
+  if (value !== undefined) number.value = value;
+  input.addEventListener("input", () => {
+    number.value = input.value;
+    onChange(Number(input.value));
+  });
+  number.addEventListener("change", () => {
+    let v = Number(number.value);
+    if (Number.isNaN(v)) v = min;
+    v = Math.min(max, Math.max(min, v));
+    number.value = v;
+    input.value = v;
+    onChange(v);
+  });
+  wrap.appendChild(minLabel);
+  wrap.appendChild(input);
+  wrap.appendChild(maxLabel);
+  wrap.appendChild(number);
+  return wrap;
+}
+
+function choiceCards(options, value, onChange) {
+  const wrap = el("div", { class: "wizard-choices" });
+  options.forEach(opt => {
+    const card = el("button", { type: "button", class: "wizard-choice" });
+    card.appendChild(el("span", { class: "wc-label" }, [document.createTextNode(opt.label)]));
+    if (opt.desc) card.appendChild(el("span", { class: "wc-desc" }, [document.createTextNode(opt.desc)]));
+    if (opt.value === value) card.classList.add("selected");
+    card.addEventListener("click", () => {
+      wrap.querySelectorAll(".wizard-choice").forEach(c => c.classList.remove("selected"));
+      card.classList.add("selected");
+      onChange(opt.value);
+    });
+    wrap.appendChild(card);
+  });
+  return wrap;
+}
+
+function yesNoControl(value, onChange, opts) {
+  const wrap = el("div", { class: "wizard-yesno" });
+  const yesBtn = el("button", { type: "button" }, [document.createTextNode("Yes")]);
+  const noBtn = el("button", { type: "button" }, [document.createTextNode("No")]);
+  if (value === true) yesBtn.classList.add("selected");
+  else if (value === false) noBtn.classList.add("selected");
+  function selectYes() {
+    yesBtn.classList.add("selected"); noBtn.classList.remove("selected"); onChange(true);
+  }
+  yesBtn.addEventListener("click", () => {
+    if (opts && opts.confirmYes) showConfirmModal(opts.confirmYes, selectYes);
+    else selectYes();
+  });
+  noBtn.addEventListener("click", () => {
+    noBtn.classList.add("selected"); yesBtn.classList.remove("selected"); onChange(false);
+  });
+  wrap.appendChild(yesBtn);
+  wrap.appendChild(noBtn);
+  return wrap;
+}
+
+function checkGrid(items, isCheckedFn, onToggle) {
+  const wrap = el("div", { class: "wizard-checkgrid" });
+  items.forEach(item => {
+    const cb = el("input", { type: "checkbox" });
+    cb.checked = isCheckedFn(item.value);
+    cb.addEventListener("change", () => onToggle(item.value, cb.checked));
+    wrap.appendChild(el("label", {}, [cb, document.createTextNode(item.label)]));
+  });
+  return wrap;
+}
+
+const wizState = { step: 0, maxReached: 0 };
+
+const WIZARD_STEPS = [
+  {
+    id: "name",
+    title: null,
+    crumb: "Name",
+    render(root, ctx) {
+      const { card, body } = qCard(
+        "What name would you like to use?",
+        "This will be your slot name for the archipelago, the name you'll use to connect to the multiworld."
+      );
+      const input = el("input", { type: "text", placeholder: "Player{number}" });
+      if (ctx.isAnswered("name")) input.value = document.getElementById("meta_name").value;
+      input.addEventListener("input", () => {
+        document.getElementById("meta_name").value = input.value || "Player{number}";
+        ctx.markAnswered("name");
+        updatePreview();
+        ctx.notify();
+      });
+      body.appendChild(input);
+      root.appendChild(card);
+      ctx.setValidate(() => true);
+    }
+  },
+  {
+    id: "weapons",
+    title: "Weapon Settings",
+    crumb: "Weapons",
+    render(root, ctx) {
+      const weaponKeys = OPTS_BY_KEY.included_weapons.keys;
+      const q1 = qCard(
+        "How many weapons should you have access to?",
+        "In Hades 2 Rogue you start with only one weapon, and unlock any other weapons and all weapon upgrades by getting their items. That adds quite a few checks, and if you instead want to use less than all 6, this is your opportunity. Additionally, later on you'll have the option to split up checks so there are checks you can only get if you use certain weapons; by limiting how many weapons you have, that can dramatically lower how much time it'll take."
+      );
+      q1.body.appendChild(rangeControl(1, 6, ans(ctx, "weapon_amount"), (v) => {
+        setOptValue("weapon_amount", v);
+        ctx.markAnswered("weapon_amount");
+        updatePreview();
+        refreshIncluded();
+        ctx.notify();
+      }));
+      root.appendChild(q1.card);
+
+      const includedWrap = el("div");
+      root.appendChild(includedWrap);
+      const startWrap = el("div");
+
+      function refreshIncluded() {
+        includedWrap.innerHTML = "";
+        if (!ctx.isAnswered("weapon_amount")) { refreshStart(); return; }
+        if (getOptValue("weapon_amount") >= 6) { refreshStart(); return; }
+        const q2 = qCard(
+          "Which weapons should potentially be included?",
+          "This is your opportunity to pick and choose the weapons you actually get. If you want the randomizer to randomly select which weapons you'll bring, leave them all checked. If you want to make sure you won't have a certain weapon/weapons, uncheck them."
+        );
+        q2.body.appendChild(checkGrid(
+          weaponKeys.map(k => ({ value: k, label: k })),
+          (v) => ansSet(ctx, "included_weapons").includes(v),
+          (v, checked) => {
+            const cur = ansSet(ctx, "included_weapons");
+            setOptValue("included_weapons", checked ? [...new Set([...cur, v])] : cur.filter(x => x !== v));
+            ctx.markAnswered("included_weapons");
+            updatePreview();
+            refreshStart();
+            ctx.notify();
+          }
+        ));
+        includedWrap.appendChild(q2.card);
+        refreshStart();
+      }
+
+      root.appendChild(startWrap);
+      function refreshStart() {
+        startWrap.innerHTML = "";
+        if (!ctx.isAnswered("weapon_amount")) return;
+        const amt = getOptValue("weapon_amount");
+        if (amt < 6 && !ctx.isAnswered("included_weapons")) return;
+        const q3 = qCard(
+          "Which weapon will you start with?",
+          "Set this to random if you're okay with anything, otherwise select exactly which weapon you'll have from the very start."
+        );
+        const included = amt < 6 ? ansSet(ctx, "included_weapons") : weaponKeys;
+        let current = ans(ctx, "initial_weapon");
+        if (current !== undefined && current !== "random" && !included.includes(current)) current = undefined;
+        const choices = [{ value: "random", label: "Random" }].concat(included.map(k => ({ value: k, label: WEAPON_FULL_NAMES[k] })));
+        q3.body.appendChild(choiceCards(choices, current, (v) => {
+          setOptValue("initial_weapon", v);
+          ctx.markAnswered("initial_weapon");
+          updatePreview();
+          ctx.notify();
+        }));
+        startWrap.appendChild(q3.card);
+      }
+
+      refreshIncluded();
+
+      ctx.setValidate(() => {
+        if (!ctx.isAnswered("weapon_amount")) return false;
+        if (getOptValue("weapon_amount") < 6 && !ctx.isAnswered("included_weapons")) return false;
+        if (!ctx.isAnswered("initial_weapon")) return false;
+        return true;
+      });
+    }
+  },
+  {
+    id: "upgrades",
+    title: "Weapon/Aspect Upgrade Settings",
+    crumb: "Upgrades",
+    render(root, ctx) {
+      const q1 = qCard(
+        "How do you want your weapons to be upgraded?",
+        "There's a few different ways you can have your weapons be upgraded. Unlocked means the weapon will be max level on every aspect as soon as you have access to it. Randomized means each aspect is an item, and once you have it, it's available at max level. Progressive (my preference) adds 5 progressive items for each weapon: the first unlocks all 4 aspects at level one, the rest upgrade all four aspects one level at a time. Lastly there's Per Aspect, which instead adds 5 progressive items for each individual aspect. This adds a ton of items and I don't recommend it unless you know what you're doing."
+      );
+      q1.body.appendChild(choiceCards(OPTS_BY_KEY.aspectsanity.options.map(([v, l]) => ({ value: v, label: l })), ans(ctx, "aspectsanity"), (v) => {
+        setOptValue("aspectsanity", v);
+        ctx.markAnswered("aspectsanity");
+        updatePreview();
+        ctx.notify();
+      }));
+      root.appendChild(q1.card);
+
+      const q2 = qCard(
+        "How many aspects for each weapon would you like to include?",
+        "This randomly selects only this amount of aspects of each weapon to include. This is your opportunity to cut out a few items, and later on you can make it so each aspect has it's own unique checks to get, so lowering this means that is more doable"
+      );
+      ctx.markAnswered("included_aspects");
+      q2.body.appendChild(rangeControl(1, 4, getOptValue("included_aspects"), (v) => {
+        setOptValue("included_aspects", v);
+        ctx.markAnswered("included_aspects");
+        updatePreview();
+        ctx.notify();
+      }));
+      root.appendChild(q2.card);
+
+      ctx.setValidate(() => {
+        if (!ctx.isAnswered("aspectsanity")) return false;
+        return true;
+      });
+    }
+  },
+  {
+    id: "location",
+    title: "Location settings",
+    crumb: "Locations",
+    render(root, ctx) {
+      root.appendChild(introBlock(
+        "<strong>What should you do that sends out items?</strong> There are a few different ways Hades 2 Rogue can send out items, this is your opportunity to tailor it to your preferences. Don't worry, if you don't have enough locations to match the amount of items you have, we'll just make your core checks send out more."
+      ));
+
+      const q1 = qCard(
+        "What are the core locations?",
+        "Room Based is my preference: each location has a set amount of rooms and you'll need to get deeper in order to unlock more checks, this means if you don't make it further, you don't get more items. With Point Based you build up points in every room you clear, and once your points add up to the next threshold, it sends the check; this means you make progress even on runs that don't make it as far, but it can also mean a lot of grinding. Lastly we have Per Weapon Room Based and Per Aspect Room Based, which make it so each weapon/aspect have their own checks to go and find. I recommend against this unless you know what you're doing, or you've heavily limited the amount of weapons/aspects you'll have."
+      );
+      q1.body.appendChild(choiceCards(OPTS_BY_KEY.location_system.options.map(([v, l]) => ({ value: v, label: l })), ans(ctx, "location_system"), (v) => {
+        setOptValue("location_system", v);
+        ctx.markAnswered("location_system");
+        updatePreview();
+        refreshScore();
+        ctx.notify();
+      }));
+      root.appendChild(q1.card);
+
+      const scoreWrap = el("div");
+      root.appendChild(scoreWrap);
+
+      function refreshScore() {
+        scoreWrap.innerHTML = "";
+        if (!ctx.isAnswered("location_system") || getOptValue("location_system") !== "point_based") return;
+        const q2 = qCard(
+          "How many point checks should be available?",
+          "Keep in mind the more you add, the more grinding you might have to do. I recommend keeping this as low as you can, but I'm not your dad."
+        );
+        ctx.markAnswered("score_rewards_amount");
+        q2.body.appendChild(rangeControl(40, 1000, getOptValue("score_rewards_amount"), (v) => {
+          setOptValue("score_rewards_amount", v);
+          ctx.markAnswered("score_rewards_amount");
+          updatePreview();
+          ctx.notify();
+        }));
+        scoreWrap.appendChild(q2.card);
+      }
+
+      refreshScore();
+
+      const q3 = qCard("Enemy Locations?", "Here's an opportunity to add some extra locations if you want them. A check will send the first time you defeat every type of enemy in the game.");
+      q3.body.appendChild(yesNoControl(ans(ctx, "enemy_locations"), (v) => {
+        setOptValue("enemy_locations", v);
+        ctx.markAnswered("enemy_locations");
+        updatePreview();
+        ctx.notify();
+      }));
+      root.appendChild(q3.card);
+
+      const q4 = qCard("NPC Locations?", "A check will send the first time you interact with each NPC in the game.");
+      q4.body.appendChild(yesNoControl(ans(ctx, "npc_locations"), (v) => {
+        setOptValue("npc_locations", v);
+        ctx.markAnswered("npc_locations");
+        updatePreview();
+        ctx.notify();
+      }));
+      root.appendChild(q4.card);
+
+      ctx.setValidate(() => {
+        if (!ctx.isAnswered("enemy_locations")) return false;
+        if (!ctx.isAnswered("npc_locations")) return false;
+        if (!ctx.isAnswered("location_system")) return false;
+        if (getOptValue("location_system") === "point_based" && !ctx.isAnswered("score_rewards_amount")) return false;
+        return true;
+      });
+    }
+  },
+  {
+    id: "grasp",
+    title: "Grasp and Arcana settings",
+    crumb: "Grasp/Arcana",
+    render(root, ctx) {
+      root.appendChild(introBlock(
+        "In Hades 2 you can normally get upgrades to bring you up to 30 grasp, well, in Hades 2 Rogue you can get a lot more if you'd like. Below you'll be able to choose how many 'Progressive Grasp' items will be randomized into the pool, and how much grasp each one will grant."
+      ));
+
+      const q1 = qCard("Grasp Count", "How many 'Progressive Grasp' items should be in the pool?");
+      ctx.markAnswered("grasp_count");
+      q1.body.appendChild(rangeControl(1, 30, getOptValue("grasp_count"), (v) => {
+        setOptValue("grasp_count", v);
+        ctx.markAnswered("grasp_count");
+        updatePreview();
+        ctx.notify();
+      }));
+      root.appendChild(q1.card);
+
+      const q2 = qCard("Grasp Intervals", "How much grasp should each 'Progressive Grasp' item give you?");
+      q2.body.appendChild(rangeControl(0, 10, ans(ctx, "grasp_intervals"), (v) => {
+        setOptValue("grasp_intervals", v);
+        ctx.markAnswered("grasp_intervals");
+        updatePreview();
+        ctx.notify();
+      }));
+      root.appendChild(q2.card);
+
+      const q3 = qCard(
+        "How do you want to unlock Arcanas?",
+        "Two options: Arcana means each Arcana will be shuffled in as one single item. When you receive that item, it unlocks the Arcana at max level. The second option is Progressive Arcana. Instead of only one item, there are multiple; the first unlocks it at level one, and the rest level it up."
+      );
+      q3.body.appendChild(choiceCards(OPTS_BY_KEY.arcanasanity.options.map(([v, l]) => ({ value: v, label: l })), ans(ctx, "arcanasanity"), (v) => {
+        setOptValue("arcanasanity", v);
+        ctx.markAnswered("arcanasanity");
+        updatePreview();
+        ctx.notify();
+      }));
+      root.appendChild(q3.card);
+
+      ctx.setValidate(() => ["grasp_count", "grasp_intervals", "arcanasanity"].every(k => ctx.isAnswered(k)));
+    }
+  },
+  {
+    id: "keepsakes",
+    title: "Keepsakes and Pets",
+    crumb: "Keepsakes/Pets",
+    render(root, ctx) {
+      const q1 = qCard(
+        "Would you like Keepsakes to be items/locations? If so, how would you like that to work?",
+        "Off just makes it exactly the same as the base game, no randomization going on here. Randomized makes each individual keepsake an item, and an NPC giving you a keepsake will instead send a check. If you feel like you have too many items and not enough locations, we also have Progressive, which adds only 3 progressive keepsake items; the first unlocks all keepsakes, the rest level them up. If you choose Progressive you will not be able to level up the keepsakes like you normally would be able to."
+      );
+      q1.body.appendChild(choiceCards(OPTS_BY_KEY.keepsakesanity.options.map(([v, l]) => ({ value: v, label: l })), ans(ctx, "keepsakesanity"), (v) => {
+        setOptValue("keepsakesanity", v);
+        ctx.markAnswered("keepsakesanity");
+        updatePreview();
+        ctx.notify();
+      }));
+      root.appendChild(q1.card);
+
+      const q2 = qCard(
+        "How do you want to unlock pets?",
+        "Three options: Unlocked means you have all of them at max level from the start. Randomized means each familiar gets its own item, and you receive them at max level when the item is found. Lastly, Progressive adds a progressive familiar item; the first unlocks all of them at base level, the rest increase familiarity (upgrading them)."
+      );
+      q2.body.appendChild(choiceCards(OPTS_BY_KEY.petsanity.options.map(([v, l]) => ({ value: v, label: l })), ans(ctx, "petsanity"), (v) => {
+        setOptValue("petsanity", v);
+        ctx.markAnswered("petsanity");
+        updatePreview();
+        ctx.notify();
+      }));
+      root.appendChild(q2.card);
+
+      ctx.setValidate(() => ["keepsakesanity", "petsanity"].every(k => ctx.isAnswered(k)));
+    }
+  },
+  {
+    id: "extra",
+    title: "Extra Random Options",
+    crumb: "Extra Random",
+    render(root, ctx) {
+      root.appendChild(introBlock("Three more options to make things more random and weird."));
+      root.appendChild(introBlock(
+        "<strong>Helper Randomization?</strong> In Hades 2 Rogue you can randomize helpers, and you can choose whether you have to unlock them as items first or not. Unlocked/Items is whether they should be unlocked from the beginning or locked behind receiving items. Random rooms is whether you want them to show up where they don't usually show up."
+      ));
+
+      const q1 = qCard(
+        "Helper Room Randomization",
+        "Should the static room encounters be mixed up? This means you could enter a helper room in Erebus expecting to find Arachne and instead find Hades. Remember that the item options mean you'll only see those rooms once you find their item."
+      );
+      q1.body.appendChild(choiceCards(OPTS_BY_KEY.helper_room_sanity.options.map(([v, l]) => ({ value: v, label: l })), ans(ctx, "helper_room_sanity"), (v) => {
+        setOptValue("helper_room_sanity", v);
+        ctx.markAnswered("helper_room_sanity");
+        updatePreview();
+        ctx.notify();
+      }));
+      root.appendChild(q1.card);
+
+      const q2 = qCard(
+        "Combat Helper Randomization",
+        "Should the combat helpers be mixed up? This means that Nemesis might show up on the surface route, or that Heracles might show up in the underworld. Remember that the item options mean you'll only see those combat helpers once you find their item."
+      );
+      q2.body.appendChild(choiceCards(OPTS_BY_KEY.combat_helper_sanity.options.map(([v, l]) => ({ value: v, label: l })), ans(ctx, "combat_helper_sanity"), (v) => {
+        setOptValue("combat_helper_sanity", v);
+        ctx.markAnswered("combat_helper_sanity");
+        updatePreview();
+        ctx.notify();
+      }));
+      root.appendChild(q2.card);
+
+      const q3 = qCard(
+        "Should you have to unlock gods before they show up? (EXPERIMENTAL)",
+        "This option makes it so each god should (theoretically) only show up once you have unlocked them from an item in the item pool. This is still a little unstable, and might result in some weird situations, but it's pretty fun."
+      );
+      q3.body.appendChild(yesNoControl(synAns(ctx, "godsanity_enabled"), (v) => {
+        synMark(ctx, "godsanity_enabled", v);
+        if (!v) setOptValue("godsanity", "unlocked");
+        updatePreview();
+        refreshGods();
+        ctx.notify();
+      }));
+      root.appendChild(q3.card);
+
+      const godsWrap = el("div");
+      root.appendChild(godsWrap);
+      function refreshGods() {
+        godsWrap.innerHTML = "";
+        if (!synAns(ctx, "godsanity_enabled")) return;
+        const q4 = qCard(
+          "What should happen when you don't have all the gods?",
+          "A few options: you can make it so when you would get a boon from a god you don't have unlocked it'll just turn into an onion, or you can make it so only gods you've unlocked will spawn boons. To balance this, you can also lower the odds of boons spawning so you don't just get 20 boons from one god, which I promise you is overpowered (it's also very fun, but overpowered). Onions turns the boons into onions. No Waste (less odds) lowers the amount of boons that spawn, but each spawn is one you can use. No Waste (same odds) means you get a lot of boons, and those boons might all be from the same god if that's all you have unlocked."
+        );
+        const choices = OPTS_BY_KEY.godsanity.options.filter(([v]) => v !== "unlocked").map(([v, l]) => ({ value: v, label: l }));
+        q4.body.appendChild(choiceCards(choices, ans(ctx, "godsanity"), (v) => {
+          setOptValue("godsanity", v);
+          ctx.markAnswered("godsanity");
+          updatePreview();
+          ctx.notify();
+        }));
+        godsWrap.appendChild(q4.card);
+      }
+      refreshGods();
+
+      ctx.setValidate(() => {
+        if (!ctx.isAnswered("helper_room_sanity")) return false;
+        if (!ctx.isAnswered("combat_helper_sanity")) return false;
+        if (!ctx.isAnswered("godsanity_enabled")) return false;
+        if (synAns(ctx, "godsanity_enabled") && !ctx.isAnswered("godsanity")) return false;
+        return true;
+      });
+    }
+  },
+  {
+    id: "deathlink",
+    title: "Deathlink",
+    crumb: "Deathlink",
+    render(root, ctx) {
+      const q1 = qCard("Do you want to die when your friends die, and vice versa? (Assuming they have it on too)", null);
+      q1.body.appendChild(yesNoControl(ans(ctx, "deathlink"), (v) => {
+        setOptValue("deathlink", v);
+        ctx.markAnswered("deathlink");
+        updatePreview();
+        refreshRest();
+        ctx.notify();
+      }));
+      root.appendChild(q1.card);
+
+      const restWrap = el("div");
+      root.appendChild(restWrap);
+      function refreshRest() {
+        restWrap.innerHTML = "";
+        if (!ctx.isAnswered("deathlink") || !getOptValue("deathlink")) return;
+        const q2 = qCard(
+          "How dead should you be when your friends send you a deathlink?",
+          "This number is the percent of your max health you'll take as damage. 100 will always kill you, but won't end your run if you have death defiances. 0 will end your run even if you have death defiances left."
+        );
+        ctx.markAnswered("deathlink_percent");
+        q2.body.appendChild(rangeControl(0, 100, getOptValue("deathlink_percent"), (v) => {
+          setOptValue("deathlink_percent", v);
+          ctx.markAnswered("deathlink_percent");
+          updatePreview();
+          ctx.notify();
+        }));
+        restWrap.appendChild(q2.card);
+
+        const q3 = qCard("Deathlink Amnesty", "How many times should you die before it kills your friends. 0 means you'll never send deaths, only receive.");
+        q3.body.appendChild(rangeControl(0, 5, ans(ctx, "deathlink_amnesty"), (v) => {
+          setOptValue("deathlink_amnesty", v);
+          ctx.markAnswered("deathlink_amnesty");
+          updatePreview();
+          ctx.notify();
+        }));
+        restWrap.appendChild(q3.card);
+      }
+      refreshRest();
+
+      ctx.setValidate(() => {
+        if (!ctx.isAnswered("deathlink")) return false;
+        if (getOptValue("deathlink") && (!ctx.isAnswered("deathlink_percent") || !ctx.isAnswered("deathlink_amnesty"))) return false;
+        return true;
+      });
+    }
+  },
+  {
+    id: "vows",
+    title: "Vows",
+    crumb: "Vows",
+    render(root, ctx) {
+      root.appendChild(introBlock(
+        "In Hades 2 Rogue you can enable Reverse Vow, which adds a bunch of the vows from Oath of the Unseen to make things much more challenging. Then, each vow can be removed by receiving its corresponding vow removal, which is an item in the item pool. These can make things very tough — if you haven't played much of this game, turn them off for now."
+      ));
+
+      const q1 = qCard("Reverse Vow?", null);
+      q1.body.classList.add("wizard-yesno-row");
+      q1.body.appendChild(yesNoControl(ans(ctx, "reverse_vow"), (v) => {
+        setOptValue("reverse_vow", v);
+        ctx.markAnswered("reverse_vow");
+        updatePreview();
+        refreshRest();
+        refreshPresets();
+        ctx.notify();
+      }));
+      const presetsEl = el("div", { class: "vow-presets-inline" });
+      q1.body.appendChild(presetsEl);
+      root.appendChild(q1.card);
+
+      const restWrap = el("div");
+      root.appendChild(restWrap);
+      const vowOpts = GROUPS.find(g => g.id === "vow").opts.filter(o => o.key !== "reverse_vow" && o.key !== "reverse_rivals");
+
+      const VOW_PRESETS = [
+        { id: "easy", label: "Easy", values: {
+            vow_pain: 1, vow_grit: 1, vow_hordes: 1, vow_scars: 1, vow_debt: 1, vow_time: 1, vow_void: 1,
+            vow_wards: 0, vow_frenzy: 0, vow_menace: 0, vow_return: 0, vow_fangs: 0, vow_hubris: 0,
+            vow_shadow: 0, vow_forfeit: 0, vow_denial: 0, vow_rivals: 0,
+          } },
+        { id: "medium", label: "Medium", values: {
+            vow_pain: 2, vow_grit: 2, vow_hordes: 2, vow_scars: 2, vow_time: 2, vow_rivals: 2,
+            vow_wards: 1, vow_frenzy: 1, vow_menace: 1, vow_return: 1, vow_fangs: 1, vow_debt: 1, vow_hubris: 1,
+            vow_void: 0, vow_shadow: 0, vow_forfeit: 0, vow_denial: 0,
+          }, reverseRivals: true },
+        { id: "hard", label: "Hard", allMax: true },
+      ];
+
+      function applyPreset(preset) {
+        if (preset.allMax) {
+          vowOpts.forEach(opt => { setOptValue(opt.key, opt.max); ctx.markAnswered(opt.key); });
+        } else {
+          Object.entries(preset.values).forEach(([k, v]) => { setOptValue(k, v); ctx.markAnswered(k); });
+        }
+        if (preset.reverseRivals !== undefined) {
+          setOptValue("reverse_rivals", preset.reverseRivals);
+          ctx.markAnswered("reverse_rivals");
+        }
+        updatePreview();
+        refreshRest();
+        ctx.notify();
+      }
+
+      function refreshPresets() {
+        presetsEl.innerHTML = "";
+        if (!ctx.isAnswered("reverse_vow") || !getOptValue("reverse_vow")) return;
+        presetsEl.appendChild(el("div", { class: "vow-presets-title" }, [document.createTextNode("Presets")]));
+        const circles = el("div", { class: "vow-presets-circles" });
+        VOW_PRESETS.forEach(preset => {
+          const circle = el("button", { type: "button", class: "vow-preset-circle" }, [document.createTextNode(preset.label)]);
+          circle.addEventListener("click", () => applyPreset(preset));
+          circles.appendChild(circle);
+        });
+        presetsEl.appendChild(circles);
+      }
+
+      function refreshRest() {
+        restWrap.innerHTML = "";
+        if (!ctx.isAnswered("reverse_vow") || !getOptValue("reverse_vow")) return;
+        const grid = el("div", { class: "wizard-grid" });
+        vowOpts.forEach(opt => {
+          const q = qCard(opt.label, opt.desc);
+          q.body.appendChild(rangeControl(opt.min, opt.max, ans(ctx, opt.key), (v) => {
+            setOptValue(opt.key, v);
+            ctx.markAnswered(opt.key);
+            updatePreview();
+            ctx.notify();
+          }));
+          grid.appendChild(q.card);
+        });
+        restWrap.appendChild(grid);
+
+        const qr = qCard(
+          "Do you want to Reverse Vow of Rivals?",
+          "The Vow of Rivals gives bosses a stronger form. Normally these apply to earlier bosses first, and only apply to final bosses if you enable all 4. This option allows the opposite to be true, so the final boss can feel like a bigger barrier to get past, making the boss fight more epic."
+        );
+        qr.body.appendChild(yesNoControl(ans(ctx, "reverse_rivals"), (v) => {
+          setOptValue("reverse_rivals", v);
+          ctx.markAnswered("reverse_rivals");
+          updatePreview();
+          ctx.notify();
+        }));
+        restWrap.appendChild(qr.card);
+      }
+      refreshRest();
+      refreshPresets();
+
+      ctx.setValidate(() => {
+        if (!ctx.isAnswered("reverse_vow")) return false;
+        if (getOptValue("reverse_vow")) {
+          if (!vowOpts.every(o => ctx.isAnswered(o.key))) return false;
+          if (!ctx.isAnswered("reverse_rivals")) return false;
+        }
+        return true;
+      });
+    }
+  },
+  {
+    id: "zj",
+    title: "Zagreus' Journey",
+    crumb: "Zagreus' Journey",
+    render(root, ctx) {
+      const q1 = qCard(
+        "Include Zagreus' Journey?",
+        "NikkelM created an amazing mod that adds the entire Hades 1 route to Hades 2. I've included that route in the Archipelago. You can only access that route and all its offerings if you have Hades 1 installed, unmodded, in the same location you have Hades 2 installed. Otherwise there will be things you cannot access."
+      );
+      q1.body.appendChild(yesNoControl(ans(ctx, "include_zagreus_journey"), (v) => {
+        setOptValue("include_zagreus_journey", v);
+        ctx.markAnswered("include_zagreus_journey");
+        if (!v) {
+          setOptValue("include_regions", getOptValue("include_regions").filter(r => r !== "Nightmare"));
+          setOptValue("goals_required", getOptValue("goals_required").filter(r => r !== "Nightmare"));
+          if (getOptValue("starting_route") === "nightmare") setOptValue("starting_route", "random_1_route");
+        }
+        updatePreview();
+        ctx.notify();
+      }, { confirmYes: "Are you sure? This will add inaccessible locations if you don't have Hades 1 installed." }));
+      root.appendChild(q1.card);
+
+      ctx.setValidate(() => ctx.isAnswered("include_zagreus_journey"));
+    }
+  },
+  {
+    id: "routes",
+    title: "Routes",
+    crumb: "Routes",
+    render(root, ctx) {
+      const zjOn = getOptValue("include_zagreus_journey");
+      const routeItems = [{ value: "Underworld", label: "Underworld" }, { value: "Surface", label: "Surface" }];
+      if (zjOn) routeItems.push({ value: "Nightmare", label: "Nightmare (Hades 1 Route)" });
+
+      const q1 = qCard("Which routes do you want to include?", "Pick every route you want playable in this run.");
+      q1.body.appendChild(checkGrid(routeItems, (v) => ansSet(ctx, "include_regions").includes(v), (v, checked) => {
+        const cur = ansSet(ctx, "include_regions");
+        setOptValue("include_regions", checked ? [...new Set([...cur, v])] : cur.filter(x => x !== v));
+        ctx.markAnswered("include_regions");
+        updatePreview();
+        refreshStart();
+        refreshSeparate();
+        ctx.notify();
+      }));
+      root.appendChild(q1.card);
+
+      const startWrap = el("div");
+      root.appendChild(startWrap);
+      function refreshStart() {
+        startWrap.innerHTML = "";
+        if (!ctx.isAnswered("include_regions") || getOptValue("include_regions").length === 0) return;
+        const q2 = qCard("Which route do you want to start in?", "This is the route unlocked from the very first run. Only matters if you choose to lock routes below.");
+        const included = getOptValue("include_regions");
+        let current = ans(ctx, "starting_route");
+        const validValues = OPTS_BY_KEY.starting_route.options.map(([v]) => v).filter(v => {
+          if (v === "random_1_route") return true;
+          if (v === "all") return included.length >= 2;
+          return included.includes(v.charAt(0).toUpperCase() + v.slice(1));
+        });
+        if (current !== undefined && !validValues.includes(current)) current = undefined;
+        const choices = OPTS_BY_KEY.starting_route.options.filter(([v]) => validValues.includes(v)).map(([v, l]) => ({ value: v, label: l }));
+        const allIdx = choices.findIndex(c => c.value === "all");
+        if (allIdx !== -1) choices.push(choices.splice(allIdx, 1)[0]);
+        q2.body.appendChild(choiceCards(choices, current, (v) => {
+          setOptValue("starting_route", v);
+          ctx.markAnswered("starting_route");
+          updatePreview();
+          ctx.notify();
+        }));
+        startWrap.appendChild(q2.card);
+      }
+      refreshStart();
+
+      const separateWrap = el("div");
+      root.appendChild(separateWrap);
+      function refreshSeparate() {
+        separateWrap.innerHTML = "";
+        if (!ctx.isAnswered("include_regions") || getOptValue("include_regions").length < 2) return;
+        const qs = qCard(
+          "Should each route have its own separate checks?",
+          "For room options this means Underworld Room 1 and Surface Room 1 are separate locations. For score, this would mean however many score locations you set are in each route you enabled. Keep in mind this adds a lot more locations."
+        );
+        qs.body.appendChild(yesNoControl(synAns(ctx, "separate_checks_yn"), (v) => {
+          setOptValue("separate_checks", v ? "separate_pools" : "combine_pools");
+          synMark(ctx, "separate_checks_yn", v);
+          updatePreview();
+          ctx.notify();
+        }));
+        separateWrap.appendChild(qs.card);
+      }
+      refreshSeparate();
+
+      const q3 = qCard(
+        "Should route progression be hard locked behind items?",
+        "This option adds 'Progressive <Route>' items. The first grants you access to a route, the rest allow you to make it further. For example, you might start in Erebus, but to get to Oceanus you need the first Progressive Underworld. To access the surface route you'll need Progressive Surface."
+      );
+      q3.body.appendChild(yesNoControl(ans(ctx, "lock_routes"), (v) => {
+        setOptValue("lock_routes", v);
+        ctx.markAnswered("lock_routes");
+        updatePreview();
+        ctx.notify();
+      }));
+      root.appendChild(q3.card);
+
+      ctx.setValidate(() => {
+        if (!ctx.isAnswered("include_regions") || getOptValue("include_regions").length === 0) return false;
+        if (!ctx.isAnswered("starting_route")) return false;
+        if (getOptValue("include_regions").length >= 2 && !ctx.isAnswered("separate_checks_yn")) return false;
+        if (!ctx.isAnswered("lock_routes")) return false;
+        return true;
+      });
+    }
+  },
+  {
+    id: "goal",
+    title: "Goal(s)",
+    crumb: "Goal(s)",
+    render(root, ctx) {
+      root.appendChild(introBlock("In Hades 2 Rogue your goal is to defeat the final boss at the end of each route, and another extra one if you'd like."));
+
+      const included = getOptValue("include_regions");
+      const zjOn = getOptValue("include_zagreus_journey");
+      const prunedGoals = getOptValue("goals_required").filter(r => included.includes(r));
+      if (prunedGoals.length !== getOptValue("goals_required").length) { setOptValue("goals_required", prunedGoals); updatePreview(); }
+
+      const winKeyByBoss = { chronos: "underworld_wins_needed", typhon: "surface_wins_needed", hades: "nightmare_wins_needed", zagreus: "zagreus_defeats_needed" };
+      const labelByBoss = { chronos: "Chronos (Underworld) Wins Needed", typhon: "Typhon (Surface) Wins Needed", hades: "Hades (Nightmare, Hades 1 Route) Wins Needed", zagreus: "Zagreus Defeats Needed" };
+
+      function selectedBosses() {
+        const gr = ctx.isAnswered("goals_required") ? getOptValue("goals_required") : [];
+        const zg = ctx.isAnswered("goal_requires_zagreus") ? getOptValue("goal_requires_zagreus") : false;
+        const list = [];
+        if (gr.includes("Underworld")) list.push("chronos");
+        if (gr.includes("Surface")) list.push("typhon");
+        if (gr.includes("Nightmare")) list.push("hades");
+        if (zg) list.push("zagreus");
+        return list;
+      }
+
+      const bossItems = [];
+      if (included.includes("Underworld")) bossItems.push({ value: "chronos", label: "Chronos (Underworld)" });
+      if (included.includes("Surface")) bossItems.push({ value: "typhon", label: "Typhon (Surface)" });
+      if (zjOn && included.includes("Nightmare")) bossItems.push({ value: "hades", label: "Hades (Nightmare, Hades 1 Route)" });
+      bossItems.push({ value: "zagreus", label: "Zagreus" });
+
+      const q1 = qCard("Which Final bosses should be included as goals?", "If you select multiple you'll be able to choose whether defeating any of them is your goal, or defeating all of them.");
+      const warning = el("div", { class: "wizard-warning" }, [document.createTextNode("Select at least one boss, or your goal will be unreachable!")]);
+      q1.body.appendChild(checkGrid(bossItems, (v) => selectedBosses().includes(v), (v, checked) => {
+        if (v === "zagreus") {
+          setOptValue("goal_requires_zagreus", checked);
+          ctx.markAnswered("goal_requires_zagreus");
+        } else {
+          const routeName = v === "chronos" ? "Underworld" : v === "typhon" ? "Surface" : "Nightmare";
+          const cur = ctx.isAnswered("goals_required") ? getOptValue("goals_required") : [];
+          setOptValue("goals_required", checked ? [...new Set([...cur, routeName])] : cur.filter(r => r !== routeName));
+          ctx.markAnswered("goals_required");
+        }
+        updatePreview();
+        refreshAll();
+        ctx.notify();
+      }));
+      q1.body.appendChild(warning);
+      root.appendChild(q1.card);
+
+      const restWrap = el("div");
+      root.appendChild(restWrap);
+
+      function refreshAll() {
+        const bosses = selectedBosses();
+        warning.style.display = bosses.length === 0 ? "" : "none";
+        restWrap.innerHTML = "";
+        if (bosses.length === 0) return;
+
+        if (bosses.length >= 2) {
+          const q2 = qCard("Defeat any of the bosses you selected, or defeat all of them?", null);
+          q2.body.appendChild(choiceCards(OPTS_BY_KEY.goal_mode.options.map(([v, l]) => ({ value: v, label: l })), ans(ctx, "goal_mode"), (v) => {
+            setOptValue("goal_mode", v);
+            ctx.markAnswered("goal_mode");
+            updatePreview();
+            refreshAll();
+            ctx.notify();
+          }));
+          restWrap.appendChild(q2.card);
+          if (!ctx.isAnswered("goal_mode")) return;
+        }
+
+        if (bosses.includes("zagreus")) {
+          const q3 = qCard(
+            "How do you want to encounter Zagreus?",
+            "Vanilla means he'll show up relatively how he does in vanilla late game. Empowered means he'll show up the same as Vanilla, but that he will be buffed — weaken him by receiving Zagreus Weaken items from the item pool. Final Challenge means his contract will show up when you defeat any other final boss."
+          );
+          q3.body.appendChild(choiceCards(OPTS_BY_KEY.zagreus_encounter_mode.options.map(([v, l]) => ({ value: v, label: l })), ans(ctx, "zagreus_encounter_mode"), (v) => {
+            setOptValue("zagreus_encounter_mode", v);
+            ctx.markAnswered("zagreus_encounter_mode");
+            updatePreview();
+            refreshAll();
+            ctx.notify();
+          }));
+          restWrap.appendChild(q3.card);
+          if (!ctx.isAnswered("zagreus_encounter_mode")) return;
+
+          if (getOptValue("zagreus_encounter_mode") === "empowered") {
+            const q4 = qCard("How many Zagreus Weaken items should there be?", "Adding more won't make him eventually weaker, just make him weaker in smaller intervals.");
+            q4.body.appendChild(rangeControl(1, 10, ans(ctx, "zagreus_weaken_tiers"), (v) => {
+              setOptValue("zagreus_weaken_tiers", v);
+              ctx.markAnswered("zagreus_weaken_tiers");
+              updatePreview();
+              refreshAll();
+              ctx.notify();
+            }));
+            restWrap.appendChild(q4.card);
+            if (!ctx.isAnswered("zagreus_weaken_tiers")) return;
+          }
+        }
+
+        const q5 = qCard("Should more than one win be required for any of the bosses?", "Select this if you want to require beating a boss more than once.");
+        q5.body.appendChild(yesNoControl(synAns(ctx, "multiWin"), (v) => {
+          synMark(ctx, "multiWin", v);
+          if (!v) ["underworld_wins_needed", "surface_wins_needed", "nightmare_wins_needed", "zagreus_defeats_needed"].forEach(k => setOptValue(k, 1));
+          updatePreview();
+          refreshAll();
+          ctx.notify();
+        }));
+        restWrap.appendChild(q5.card);
+        if (!ctx.isAnswered("multiWin")) return;
+
+        if (synAns(ctx, "multiWin")) {
+          const grid = el("div", { class: "wizard-grid" });
+          bosses.forEach(b => {
+            const key = winKeyByBoss[b];
+            const q = qCard(labelByBoss[b], OPTS_BY_KEY[key].desc);
+            ctx.markAnswered(key);
+            q.body.appendChild(rangeControl(OPTS_BY_KEY[key].min, OPTS_BY_KEY[key].max, getOptValue(key), (v) => {
+              setOptValue(key, v);
+              ctx.markAnswered(key);
+              updatePreview();
+              refreshAll();
+              ctx.notify();
+            }));
+            grid.appendChild(q.card);
+          });
+          restWrap.appendChild(grid);
+          if (!bosses.every(b => ctx.isAnswered(winKeyByBoss[b]))) return;
+        }
+
+        const maxWeaponsClears = Math.min(6, getOptValue("weapon_amount"));
+        if (maxWeaponsClears <= 1) {
+          setOptValue("weapons_clears_needed", 1);
+          ctx.markAnswered("weapons_clears_needed");
+        } else {
+          let currentClears = ans(ctx, "weapons_clears_needed");
+          if (currentClears !== undefined && currentClears > maxWeaponsClears) currentClears = undefined;
+          const q6 = qCard(
+            "How many weapons should you have to win with before you've achieved your goal?",
+            "This requires you to beat any of the bosses with the amount of weapons you specify before you can goal. Setting it to " + maxWeaponsClears + " means you have to win a run with every weapon you have access to."
+          );
+          q6.body.appendChild(rangeControl(1, maxWeaponsClears, currentClears, (v) => {
+            setOptValue("weapons_clears_needed", v);
+            ctx.markAnswered("weapons_clears_needed");
+            updatePreview();
+            refreshAll();
+            ctx.notify();
+          }));
+          restWrap.appendChild(q6.card);
+        }
+      }
+      refreshAll();
+
+      ctx.setValidate(() => {
+        const bosses = selectedBosses();
+        if (bosses.length === 0) return false;
+        if (bosses.length >= 2 && !ctx.isAnswered("goal_mode")) return false;
+        if (bosses.includes("zagreus")) {
+          if (!ctx.isAnswered("zagreus_encounter_mode")) return false;
+          if (getOptValue("zagreus_encounter_mode") === "empowered" && !ctx.isAnswered("zagreus_weaken_tiers")) return false;
+        }
+        if (!ctx.isAnswered("multiWin")) return false;
+        if (synAns(ctx, "multiWin") && !bosses.every(b => ctx.isAnswered(winKeyByBoss[b]))) return false;
+        if (!ctx.isAnswered("weapons_clears_needed")) return false;
+        return true;
+      });
+    }
+  },
+  {
+    id: "misc",
+    title: "Misc and Filler",
+    crumb: "Misc/Filler",
+    render(root, ctx) {
+      root.appendChild(introBlock("A few extra fun options!"));
+
+      const q1 = qCard("Which NPCs should have starting gift items?", "Each you check will add an item called '<NPC> Starting Gift' which randomly grants you one of their boons for each run. Note that Medea's gifts can sometimes negatively impact runs, depending on your desired builds.");
+      q1.body.appendChild(checkGrid(OPTS_BY_KEY.starting_npc_gifts.keys.map(k => ({ value: k, label: k })), (v) => ansSet(ctx, "starting_npc_gifts").includes(v), (v, checked) => {
+        const cur = ansSet(ctx, "starting_npc_gifts");
+        setOptValue("starting_npc_gifts", checked ? [...new Set([...cur, v])] : cur.filter(x => x !== v));
+        ctx.markAnswered("starting_npc_gifts");
+        updatePreview();
+        ctx.notify();
+      }));
+      root.appendChild(q1.card);
+
+      const q2 = qCard("How many Daedalus Upgrades?", "This is the amount of Daedalus Upgrade items that will be in the pool. Each grants you a random Daedalus upgrade at the beginning of each run.");
+      q2.body.appendChild(rangeControl(0, 5, ans(ctx, "daedalus_upgrade"), (v) => {
+        setOptValue("daedalus_upgrade", v);
+        ctx.markAnswered("daedalus_upgrade");
+        updatePreview();
+        ctx.notify();
+      }));
+      root.appendChild(q2.card);
+
+      const q3 = qCard("How many Progressive Boon Levels?", "Each Progressive Boon Level raises the base level of all levelable boons by 1.");
+      q3.body.appendChild(rangeControl(0, 10, ans(ctx, "progressive_boon_level"), (v) => {
+        setOptValue("progressive_boon_level", v);
+        ctx.markAnswered("progressive_boon_level");
+        updatePreview();
+        ctx.notify();
+      }));
+      root.appendChild(q3.card);
+
+      const q4 = qCard("Do you want to see the nitty gritty of the filler options?", "Filler options are all helpful, but not required, or extremely meaningful. You can probably just skip the time it'd take for you to look through them.");
+      q4.body.appendChild(yesNoControl(synAns(ctx, "showFiller"), (v) => {
+        synMark(ctx, "showFiller", v);
+        refreshFiller();
+        ctx.notify();
+      }));
+      root.appendChild(q4.card);
+
+      const fillerWrap = el("div");
+      root.appendChild(fillerWrap);
+      function refreshFiller() {
+        fillerWrap.innerHTML = "";
+        if (!synAns(ctx, "showFiller")) return;
+        const grid = el("div", { class: "wizard-grid" });
+        GROUPS.find(g => g.id === "filler").opts.forEach(opt => {
+          const q = qCard(opt.label, opt.desc);
+          q.body.appendChild(rangeControl(opt.min, opt.max, getOptValue(opt.key), (v) => { setOptValue(opt.key, v); updatePreview(); }));
+          grid.appendChild(q.card);
+        });
+        fillerWrap.appendChild(grid);
+      }
+      refreshFiller();
+
+      ctx.setValidate(() => {
+        if (!ctx.isAnswered("daedalus_upgrade")) return false;
+        if (!ctx.isAnswered("progressive_boon_level")) return false;
+        if (!ctx.isAnswered("showFiller")) return false;
+        return true;
+      });
+    }
+  },
+];
+
+const guidedRoot = document.getElementById("guidedRoot");
+
+function stepCrumbLabel(step) { return step.crumb || step.title || "Name"; }
+
+function renderBreadcrumbs() {
+  const row = el("div", { class: "wizard-breadcrumbs" });
+  WIZARD_STEPS.forEach((s, i) => {
+    if (i > 0) row.appendChild(el("span", { class: "crumb-sep" }, [document.createTextNode("›")]));
+    const btn = el("button", { type: "button" }, [document.createTextNode(stepCrumbLabel(s))]);
+    if (i === wizState.step) {
+      btn.classList.add("current");
+      btn.disabled = true;
+    } else if (i > wizState.maxReached) {
+      btn.classList.add("locked");
+      btn.disabled = true;
+    } else {
+      btn.addEventListener("click", () => { wizState.step = i; renderWizardStep(); });
+    }
+    row.appendChild(btn);
+  });
+  return row;
+}
+
+function renderWelcome() {
+  wizAnswered.clear();
+  wizSynthetic = {};
+  wizState.step = 0;
+  wizState.maxReached = 0;
+  guidedRoot.innerHTML = "";
+  const wrap = el("div", { class: "wizard-welcome" });
+  wrap.appendChild(el("p", {}, [document.createTextNode(
+    "Welcome the Hades 2 Rogue YAML Creator. There are a lot of options, and it gets a little complex. Use this to be guided through it. Each option will be elaborated on so you know what you're getting yourself into."
+  )]));
+  const startBtn = el("button", { type: "button", class: "primary" }, [document.createTextNode("Starting YAMLing")]);
+  startBtn.addEventListener("click", () => { renderWizardStep(); });
+  wrap.appendChild(startBtn);
+  guidedRoot.appendChild(wrap);
+}
+
+function renderWizardStep() {
+  guidedRoot.innerHTML = "";
+  const idx = wizState.step;
+  wizState.maxReached = Math.max(wizState.maxReached, idx);
+  const step = WIZARD_STEPS[idx];
+
+  guidedRoot.appendChild(renderBreadcrumbs());
+
+  const track = el("div", { class: "wizard-progress-track" });
+  const fill = el("div", { class: "wizard-progress-fill" });
+  fill.style.width = (((idx + 1) / WIZARD_STEPS.length) * 100) + "%";
+  track.appendChild(fill);
+  guidedRoot.appendChild(track);
+
+  const labelRow = el("div", { class: "wizard-step-label-row" });
+  labelRow.appendChild(el("span", { class: "wizard-step-label" }, [document.createTextNode("Step " + (idx + 1) + " of " + WIZARD_STEPS.length)]));
+  const restartBtn = el("button", { type: "button", class: "group-toggle" }, [document.createTextNode("Restart")]);
+  restartBtn.addEventListener("click", () => renderWelcome());
+  labelRow.appendChild(restartBtn);
+  guidedRoot.appendChild(labelRow);
+
+  if (step.title) guidedRoot.appendChild(el("h2", { class: "wizard-step-title" }, [document.createTextNode(step.title)]));
+
+  let validateFn = () => true;
+  const ctx = {
+    isAnswered: (key) => wizAnswered.has(key),
+    markAnswered: (key) => wizAnswered.add(key),
+    setValidate: (fn) => { validateFn = fn; },
+    notify: () => { nextBtn.disabled = !validateFn(); },
+  };
+
+  const body = el("div", { class: "wizard-body" });
+  step.render(body, ctx);
+  guidedRoot.appendChild(body);
+
+  const nav = el("div", { class: "wizard-nav" });
+  const backBtn = el("button", { type: "button" }, [document.createTextNode("Back")]);
+  backBtn.addEventListener("click", () => {
+    if (idx === 0) { renderWelcome(); return; }
+    wizState.step -= 1;
+    renderWizardStep();
+  });
+  nav.appendChild(backBtn);
+
+  const nextBtn = el("button", { type: "button", class: "primary" }, [document.createTextNode(idx === WIZARD_STEPS.length - 1 ? "Finish" : "Next")]);
+  nextBtn.addEventListener("click", () => {
+    if (idx === WIZARD_STEPS.length - 1) {
+      updatePreview();
+      showPage("yaml");
+      document.getElementById("guidedBanner").style.display = "flex";
+      return;
+    }
+    wizState.step += 1;
+    renderWizardStep();
+  });
+  nav.appendChild(nextBtn);
+  guidedRoot.appendChild(nav);
+
+  nextBtn.disabled = !validateFn();
+
+  guidedRoot.appendChild(renderBreadcrumbs());
+
+  guidedRoot.scrollIntoView({ block: "start" });
+}
+
+renderWelcome();
+</script>
+</body>
+</html>
