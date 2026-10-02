@@ -4,7 +4,7 @@ Hades 2 implementation for the Archipelago Multiworld Randomizer - Created by Br
 
 
 
-Windows only at this time
+Windows only at this time.
 
 
 
@@ -19,7 +19,7 @@ Windows only at this time
 * Select or create a profile.
 * Select online on the left side, and search and find "Hades2RogueArchipelago"
 * Select download, then Download with Dependencies
-* I was forced to set Zagreus Journey as a Hard Dependency, but it will not break anything to leave it on, even if you don't have it enabled or you don't have Hades 1 installed.
+* (OPTIONAL) Search and Find Zagreus Journey so you can add the Nightmare route. Only works if you have Hades 1 installed.
 
 
 
@@ -58,6 +58,4 @@ I put together an [quick website](https://brittish39.github.io/Hades2Archipelago
 
 
 I consider this to be stable, but you will still likely run into a few bugs or issues. Please let me know if you do. Additionally I would love to hear any thoughts or ideas you have; the [Discord](https://discord.com/channels/731205301247803413/1375345291926044722) is the best way to share those.
-
-Zagreus Journey is a hard dependency for the mod, but you do not need to use it. It will pop-up and tell you it's not installed correctly. As long as you turned off (Or left off) Zagreus Journey in the YAML, you can ignore this.
 
