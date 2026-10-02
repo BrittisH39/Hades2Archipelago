@@ -90,6 +90,23 @@
   }
   nav.tabs button:hover { color: var(--text); }
   nav.tabs button { white-space: nowrap; }
+  .version-select {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    color: var(--muted);
+    font-size: var(--fs-sm);
+    font-weight: 600;
+  }
+  .version-select select {
+    font: inherit;
+    background: var(--input-bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 10px;
+  }
   .toolbar { display: flex; gap: 8px; flex-wrap: wrap; padding: 10px 0; align-items: center; }
   .toolbar input[type=text] {
     background: var(--input-bg);
@@ -475,6 +492,10 @@
     <button data-page="guided">Guided YAML Creator</button>
     <button data-page="yaml">YAML Creator</button>
   </nav>
+  <div class="version-select">
+    <label for="appVersion">Version:</label>
+    <select id="appVersion"></select>
+  </div>
 </header>
 
 <!-- ==================== PAGE: HOME / LANDING ==================== -->
@@ -499,7 +520,7 @@
     <p>
       Additionally, this mod has support for Zagreus' Journey, a mod by NikkelM that allows
       Melinoë to fight through Zagreus' path from the first game; this only works if you have
-      Hades 1 installed, do not enable those settings otherwise.
+      Zagreus' Journey downloaded and Hades 1 installed, do not enable those settings otherwise.
     </p>
     <div class="callout">
       Ready to play? Head to the <strong>Setup Guide</strong> tab to install everything, then the
@@ -523,10 +544,9 @@
     <p>
       An installation of Hades 1 will allow you to utilize the Zagreus' Journey mod made by
       NikkelM to include some original Hades 1 content in your Hades 2 game. This includes the
-      original route, some NPCs, and some keepsakes. Zagreus' Journey is a dependency of the AP
-      mod, and will give you an "Installation Failed" message if you do not have Hades 1 installed
-      in the same location as Hades 2. This can be ignored if you didn't include the Zagreus'
-      Journey content.
+      original route, some NPCs, and some keepsakes. Zagreus' Journey is no longer a dependency
+      of the AP mod, so it won't be downloaded automatically. If you want that content, search
+      for and download "Zagreus Journey" in r2modman, on the same profile as the AP mod.
     </p>
 
     <h2>Installation</h2>
@@ -536,7 +556,7 @@
       <li>Find and select Hades 2. Select which store you own Hades 2 on. (Epic Games Launcher untested at this time)</li>
       <li>Select or create a profile (name doesn't matter).</li>
       <li>Select Online on the left side, then search for and find "Hades2RogueArchipelago".</li>
-      <li>Select download, then download with dependencies.</li>
+      <li>Select download, then download with dependencies. This also downloads the other mods it needs (Hell2Modding, and zerp's NPCRoomRandomizer, Extended NPC Encounters, and DreamDiveTweaks).</li>
     </ul>
 
     <h3>APWorld</h3>
@@ -549,7 +569,7 @@
     <h2>Configuring Your YAML</h2>
     <ul>
       <li>Runs are designed to be possible regardless of your YAML settings, but it's recommended not to set maximum vows unless you are very confident in your Hades 2 skills. You will start the game with nothing, and the logic is set to believe you can at least make it to the boss of each region you have access to.</li>
-      <li>DO NOT enable Zagreus' Journey unless you have Hades 1 installed in the same location you have Hades 2 installed in; alternatively you can use the Zagreus' Journey config in r2modman to point to your Hades 1 installation.</li>
+      <li>DO NOT enable Zagreus' Journey unless you have downloaded the Zagreus' Journey mod, and have Hades 1 installed in the same location you have Hades 2 installed in; alternatively you can use the Zagreus' Journey config in r2modman to point to your Hades 1 installation.</li>
     </ul>
     <p>Use the <a href="#yaml" id="setupYamlLink">YAML Creator</a> above to build this file without hand-editing YAML.</p>
 
@@ -619,6 +639,64 @@
 
 <script>
 // ---------------------------------------------------------------------------
+// Version selector (defaults to the most recent entry)
+// ---------------------------------------------------------------------------
+const APP_VERSIONS = ["0.9.0", "0.9.3", "0.10.0"];
+let selectedAppVersion = APP_VERSIONS[APP_VERSIONS.length - 1];
+
+const appVersionSelect = document.getElementById("appVersion");
+APP_VERSIONS.forEach(v => {
+  const opt = document.createElement("option");
+  opt.value = v;
+  opt.textContent = v;
+  appVersionSelect.appendChild(opt);
+});
+appVersionSelect.value = selectedAppVersion;
+appVersionSelect.addEventListener("change", () => {
+  selectedAppVersion = appVersionSelect.value;
+  // Dropping below 0.10.0 has to clear Dream, not just hide it: readState()/generateYaml()
+  // emit whatever is checked, visible or not (same reason turning off Zagreus' Journey
+  // unchecks Nightmare rather than relying on keyShowIf).
+  if (!dreamAvailable()) clearDreamSelections();
+  // Some options only exist for a subset of versions (e.g. enemysanity replacing
+  // enemy_locations in 0.10.0) -- refresh both the flat form's visibility and the YAML
+  // preview/export so switching versions takes effect immediately.
+  applyFilter();
+  updatePreview();
+  renderWizardStep();
+});
+
+// Simple x.y.z version compare -- returns -1/0/1. Missing/short segments read as 0.
+function compareVersions(a, b) {
+  const pa = a.split(".").map(Number), pb = b.split(".").map(Number);
+  for (let i = 0; i < Math.max(pa.length, pb.length); i++) {
+    const da = pa[i] || 0, db = pb[i] || 0;
+    if (da !== db) return da < db ? -1 : 1;
+  }
+  return 0;
+}
+function versionAtLeast(v, min) { return compareVersions(v, min) >= 0; }
+function versionAtMost(v, max) { return compareVersions(v, max) <= 0; }
+
+// opt.minVersion/opt.maxVersion (absent = always visible) gate an option to a subset of
+// APP_VERSIONS -- e.g. the old enemy_locations bool only exists through 0.9.3, the new
+// enemysanity/include_minibosses only exist from 0.10.0 on.
+function optVisibleForVersion(opt, version) {
+  if (opt.minVersion && !versionAtLeast(version, opt.minVersion)) return false;
+  if (opt.maxVersion && !versionAtMost(version, opt.maxVersion)) return false;
+  return true;
+}
+
+// The Dream route arrived in 0.10.0. Its three supporting options carry minVersion, but the
+// route itself is a key inside the include_regions/goals_required sets, so it needs gating of
+// its own -- otherwise older versions get a YAML naming a route their apworld can't resolve.
+const DREAM_MIN_VERSION = "0.10.0";
+function dreamAvailable() { return versionAtLeast(selectedAppVersion, DREAM_MIN_VERSION); }
+// A Dream Dive can only draw as many regions as its biome pool holds: 8, or 12 once the Nightmare
+// route adds Zagreus' Journey's four. The apworld clamps to the same numbers at generation.
+function dreamRegionMax(includedRegions) { return (includedRegions || []).includes("Nightmare") ? 12 : 8; }
+
+// ---------------------------------------------------------------------------
 // Page tab switching
 // ---------------------------------------------------------------------------
 const tabButtons = document.querySelectorAll("#pageTabs button");
@@ -675,7 +753,7 @@ const GROUPS = [
         options: [["unlocked","Unlocked"],["randomized","Randomized"],["progressive","Progressive"],["per_aspect","Per Aspect"]],
         desc: "How you'll get the various weapon aspects.\nunlocked: every Aspect is available from the start, fully upgraded.\nrandomized: all 24 Aspects are shuffled, each its own item, granted at max level.\nprogressive: you start with one weapon's Melinoe Aspect; each weapon gets Progressive <Weapon> items.\nper_aspect: all 24 Aspects level independently via their own Progressive <Aspect> items (5 copies apiece, 120 total)." },
       { key: "included_aspects", label: "Included Aspects", type: "range", min: 1, max: 4, def: 4,
-        desc: "If aspectsanity is randomized or per_aspect: how many of each weapon's aspects should be accessible." },
+        desc: "How many of each weapon's aspects should be accessible, for every aspectsanity mode. Any locations requiring removed aspects will be removed." },
     ]
   },
   {
@@ -683,7 +761,7 @@ const GROUPS = [
     opts: [
       { key: "location_system", label: "Location System", type: "choice", def: "room_based",
         options: [["point_based","Point Based"],["room_based","Room Based"],["per_weapon_room_based","Per Weapon Room Based"],["per_aspect_room_based","Per Aspect Room Based"]],
-        desc: "Room_based: locations are the first time you clear N rooms/encounters in one run.\nPoint_based: locations are point totals accumulated from room depth on clear.\nPer_Weapon_Room_Based: like room_based, but separate pools per weapon.\nPer_Aspect_Room_Based: like per_weapon_room_based, but instead there's a separate pool for each accessible aspect." },
+        desc: "Room_based: locations are the first time you clear N rooms/encounters in a region in one run. Defeating a region's boss sends any room locations you have left in that region.\nPoint_based: locations are point totals accumulated from room depth on clear.\nPer_Weapon_Room_Based: like room_based, but separate pools per weapon.\nPer_Aspect_Room_Based: like per_weapon_room_based, but instead there's a separate pool for each accessible aspect." },
       { key: "score_rewards_amount", label: "Score Rewards Amount", type: "range", min: 40, max: 1000, def: 100,
         showIf: (s) => s.location_system === "point_based",
         desc: "Point_based only. How many score locations there are." },
@@ -691,7 +769,7 @@ const GROUPS = [
         options: [["separate_pools","Separate Pools"],["combine_pools","Combine Pools"]],
         showIf: (s) => (s.include_regions || []).length > 1,
         desc: "When more than one route is included: separate_pools gives each route its own full location set; combine_pools shares one route-agnostic pool." },
-      { key: "enemy_locations", label: "Enemy Locations", type: "bool", def: true,
+      { key: "enemy_locations", label: "Enemy Locations", type: "bool", def: true, maxVersion: "0.9.3",
         desc: "Add locations for the first time you defeat each enemy type." },
       { key: "npc_locations", label: "NPC Locations", type: "bool", def: true,
         desc: "Add locations for the first time you speak to each NPC." },
@@ -708,11 +786,16 @@ const GROUPS = [
         options: [["arcana","Arcana"],["progressive_arcana","Progressive Arcana"]],
         desc: "arcana: each card is unlocked by an item at max level, can't be purchased.\nprogressive_arcana: each card gets progressive items, first unlocks, rest upgrade." },
       { key: "keepsakesanity", label: "KeepsakeSanity", type: "choice", def: "randomized",
-        options: [["false","Off"],["randomized","Randomized"],["progressive","Progressive"]],
-        desc: "false: unchanged from base game.\nrandomized: each keepsake is its own check/item.\nprogressive: 3 Progressive Keepsake items; first unlocks all, rest level them." },
+        options: [["false","Off"],["randomized","Randomized"],["progressive","Progressive"],["progressive_per","Progressive Per Keepsake"]],
+        desc: "false: unchanged from base game.\nrandomized: each keepsake is its own check/item.\nprogressive: 3 Progressive Keepsake items; first unlocks all, rest level them.\nprogressive_per: 3 Progressive <Keepsake> items for each keepsake. This adds by far the most items." },
+      { key: "enemysanity", label: "EnemySanity", type: "choice", def: "vanilla_plus_locations", minVersion: "0.10.0",
+        options: [["vanilla","Vanilla"],["vanilla_plus_locations","Vanilla + Locations"],["shuffled","Shuffled"],["shuffled_plus_locations","Shuffled + Locations"],["pure_random","Pure Random"]],
+        desc: "How do you want enemies handled? Note that enemies are nerfed/buffed based on region number so they should feel relatively balanced to the depth you're at.\nvanilla: enemies spawn where they're supposed to, no locations.\nvanilla_plus_locations: vanilla spawns, plus a location the first time you kill each enemy.\nshuffled: (EXPERIMENTAL) enemies are shuffled, so each time an enemy would spawn, a specific different enemy spawns instead. No locations.\nshuffled_plus_locations: (EXPERIMENTAL) shuffled, plus a location the first time you kill each enemy.\npure_random: (EXPERIMENTAL) each time an enemy spawns, a different random enemy spawns instead. No locations." },
+      { key: "include_minibosses", label: "Include Minibosses", type: "bool", def: false, minVersion: "0.10.0",
+        desc: "(EXPERIMENTAL) Only matters if enemysanity has locations. Adds a location for the first time you defeat each miniboss and boss, and shuffles which miniboss room shows up where. They're scaled to match the region you find them in." },
       { key: "petsanity", label: "PetSanity", type: "choice", def: "randomized",
-        options: [["unlocked","Unlocked"],["randomized","Randomized"],["progressive","Progressive"]],
-        desc: "Familiars (Frinos, Toula, Raki, Hecuba, Gale). unlocked: all available from start.\nrandomized: each familiar its own item, max bond on receipt.\nprogressive: one Progressive Familiar item line unlocks/upgrades all." },
+        options: [["unlocked","Unlocked"],["randomized","Randomized"],["progressive","Progressive"],["progressive_per","Progressive Per Familiar"]],
+        desc: "Familiars (Frinos, Toula, Raki, Hecuba, Gale). unlocked: all available from start.\nrandomized: each familiar its own item, max bond on receipt.\nprogressive: one Progressive Familiar item line unlocks/upgrades all.\nprogressive_per: Each familiar has it's own progressive items, the first unlocks that familiar, the rest upgrade it. This adds the most items." },
       { key: "helper_room_sanity", label: "Helper Room Sanity", type: "choice", def: "unlocked_random",
         options: [["unlocked","Unlocked"],["items","Items"],["unlocked_random","Unlocked (random rooms)"],["items_random","Items (random rooms)"]],
         desc: "Helper NPC story rooms (Arachne, Narcissus, Echo, Hades, Medea, Circe, Dionysus; Nightmare adds Sisyphus, Eurydice, Patroclus).\nunlocked/items control how they're gated; _random variants let them appear in any helper's room." },
@@ -721,7 +804,7 @@ const GROUPS = [
         desc: "Mid-run combat helper NPCs (Artemis, Nemesis, Heracles, Icarus, Athena, Thanatos).\nunlocked/items control how they're gated; _random variants let them show up anywhere valid." },
       { key: "godsanity", label: "GodSanity", type: "choice", def: "unlocked",
         options: [["unlocked","Unlocked"],["onions","Onions"],["no_waste_less_odds","No Waste (less odds)"],["no_waste_same_odds","No Waste (same odds)"]],
-        desc: "Locks each god's boons behind a check.\nunlocked: all available from start.\nonions: locked gods' boons are replaced by Onions.\nno_waste_less_odds / no_waste_same_odds: boon spawn odds scale (or don't) with gods unlocked, but never waste a spawn on a locked god." },
+        desc: "Locks each god's boons behind a check.\nunlocked: all available from start.\nonions: (EXPERIMENTAL) locked gods' boons are replaced by Onions.\nno_waste_less_odds / no_waste_same_odds: (EXPERIMENTAL) boon spawn odds scale (or don't) with gods unlocked, but never waste a spawn on a locked god." },
     ]
   },
   {
@@ -767,9 +850,9 @@ const GROUPS = [
     id: "goal", title: "Goal &amp; Route Options",
     opts: [
       { key: "goals_required", label: "Goals Required", type: "set",
-        keys: ["Underworld","Surface","Nightmare"], def: ["Underworld","Surface"],
-        keyShowIf: (k, s) => k !== "Nightmare" || s.include_zagreus_journey,
-        desc: "Which routes' final bosses are part of the goal (Chronos/Underworld, Typhon/Surface, Hades/Nightmare). Nightmare needs the Zagreus' Journey mod + Hades 1 installed." },
+        keys: ["Underworld","Surface","Nightmare","Dream"], def: ["Underworld","Surface"],
+        keyShowIf: (k, s) => (k !== "Nightmare" || s.include_zagreus_journey) && (k !== "Dream" || dreamAvailable()),
+        desc: "Which routes' final bosses are part of the goal (Chronos/Underworld, Typhon/Surface, Hades/Nightmare, and whichever boss ends up at the end of your Dream Dive for Dream). Nightmare needs the Zagreus' Journey mod + Hades 1 installed." },
       { key: "goal_requires_zagreus", label: "Goal Requires Zagreus", type: "bool", def: false,
         desc: "Whether defeating Zagreus is part of your Goal." },
       { key: "goal_mode", label: "Goal Mode", type: "choice", def: "all_selected",
@@ -784,16 +867,25 @@ const GROUPS = [
         showIf: (s) => s.goal_requires_zagreus && s.zagreus_encounter_mode === "empowered",
         desc: "Empowered mode only: how many Progressive Zagreus Weaken items exist." },
       { key: "include_regions", label: "Include Regions", type: "set",
-        keys: ["Underworld","Surface","Nightmare"], def: ["Underworld","Surface"],
-        keyShowIf: (k, s) => k !== "Nightmare" || s.include_zagreus_journey,
-        desc: "Which routes are playable at all: Underworld, Surface, Nightmare (needs Zagreus' Journey mod + Hades 1)." },
+        keys: ["Underworld","Surface","Nightmare","Dream"], def: ["Underworld","Surface"],
+        keyShowIf: (k, s) => (k !== "Nightmare" || s.include_zagreus_journey) && (k !== "Dream" || dreamAvailable()),
+        desc: "Which routes are playable at all: Underworld, Surface, Nightmare (needs Zagreus' Journey mod + Hades 1), and Dream (The game's built in region randomizer)." },
+      { key: "dream_region_count", label: "Dream Region Count", type: "range", min: 1, max: 12, def: 4,
+        minVersion: "0.10.0",
+        showIf: (s) => (s.include_regions || []).includes("Dream"),
+        desc: "How many regions each Dream Dive run has. The max is 8, or 12 if Nightmare is included; anything higher is just lowered to the max. Logic assumes you need half your resources to make it halfway." },
+      { key: "dream_enemy_locations", label: "Dream Enemy Locations", type: "range", min: 1, max: 12, def: 8,
+        minVersion: "0.10.0",
+        showIf: (s) => (s.include_regions || []).includes("Dream"),
+        desc: "Only matters if enemysanity has locations. How many regions worth of enemies you'll need to defeat in Dream Dive to send every Dream Enemy check. The max is 8 unless Nightmare is included." },
       { key: "include_zagreus_journey", label: "Include Zagreus Journey", type: "bool", def: false,
         desc: "Whether to include any content from NikkelM's Zagreus' Journey mod. When off, Nightmare is fully removed and its 7 keepsakes never enter the pool." },
       { key: "lock_routes", label: "Lock Routes", type: "bool", def: true,
-        desc: "Lock each route's regions behind its Progressive Route item." },
+        desc: "Lock each route's regions behind its Progressive Route item (Progressive Underworld / Surface / Nightmare / Dream)." },
       { key: "starting_route", label: "Starting Route", type: "choice", def: "random_1_route",
-        options: [["random_1_route","Random 1 Route"],["underworld","Underworld"],["surface","Surface"],["all","All"],["nightmare","Nightmare (Hades 1 Route)"]],
-        optionShowIf: (v, s) => v !== "nightmare" || (s.include_zagreus_journey && (s.include_regions || []).includes("Nightmare")),
+        options: [["random_1_route","Random 1 Route"],["underworld","Underworld"],["surface","Surface"],["all","All"],["nightmare","Nightmare (Hades 1 Route)"],["dream","Dream"]],
+        optionShowIf: (v, s) => (v !== "nightmare" || (s.include_zagreus_journey && (s.include_regions || []).includes("Nightmare")))
+          && (v !== "dream" || (dreamAvailable() && (s.include_regions || []).includes("Dream"))),
         desc: "If lock_routes is on, which route is open from the start (falls back to a random included route if you pick one you didn't include)." },
       { key: "underworld_wins_needed", label: "Underworld Wins Needed", type: "range", min: 1, max: 20, def: 1,
         showIf: (s) => (s.goals_required || []).includes("Underworld"),
@@ -804,6 +896,10 @@ const GROUPS = [
       { key: "nightmare_wins_needed", label: "Nightmare Wins Needed", type: "range", min: 1, max: 20, def: 1,
         showIf: (s) => (s.goals_required || []).includes("Nightmare"),
         desc: "How many Nightmare wins are needed to mark that goal complete." },
+      { key: "dream_wins_needed", label: "Dream Wins Needed", type: "range", min: 1, max: 20, def: 1,
+        minVersion: "0.10.0",
+        showIf: (s) => (s.goals_required || []).includes("Dream"),
+        desc: "How many Dream Dive wins are needed to mark that goal complete." },
       { key: "zagreus_defeats_needed", label: "Zagreus Defeats Needed", type: "range", min: 1, max: 20, def: 1,
         showIf: (s) => s.goal_requires_zagreus,
         desc: "How many Zagreus defeats are needed to satisfy that part of the goal." },
@@ -988,6 +1084,16 @@ GROUPS.forEach(group => {
   groupsEl.appendChild(groupDiv);
 });
 
+// Selecting a version below 0.10.0 removes Dream as a route; clear now-invalid selections.
+function clearDreamSelections() {
+  ["f_include_regions_Dream", "f_goals_required_Dream"].forEach(id => {
+    const cb = document.getElementById(id);
+    if (cb) cb.checked = false;
+  });
+  const startSel = document.getElementById("f_starting_route");
+  if (startSel && startSel.value === "dream") startSel.value = "random_1_route";
+}
+
 // Turning off Zagreus' Journey removes it as an option elsewhere; clear now-invalid selections.
 const zjCheckbox = document.getElementById("f_include_zagreus_journey");
 if (zjCheckbox) {
@@ -1015,7 +1121,8 @@ function applyFilter() {
     group._opts.forEach(o => {
       const searchMatch = !term || o.label.toLowerCase().includes(term) || o.desc.toLowerCase().includes(term) || o.key.toLowerCase().includes(term);
       const condMatch = !o.opt.showIf || o.opt.showIf(state);
-      const match = searchMatch && condMatch;
+      const versionMatch = optVisibleForVersion(o.opt, selectedAppVersion);
+      const match = searchMatch && condMatch && versionMatch;
       o.el.style.display = match ? "" : "none";
       if (match) anyVisible = true;
 
@@ -1108,6 +1215,7 @@ function generateYaml() {
   GROUPS.forEach(group => {
     lines.push("  # ---- " + group.title.replace(/&amp;/g, "&") + " ----");
     group.opts.forEach(opt => {
+      if (!optVisibleForVersion(opt, selectedAppVersion)) return;
       lines.push(...wrapComment(opt.desc || "", "  "));
       let valueStr;
       if (opt.type === "set") valueStr = yamlList(state[opt.key]);
@@ -1516,14 +1624,19 @@ const WIZARD_STEPS = [
 
       refreshScore();
 
-      const q3 = qCard("Enemy Locations?", "Here's an opportunity to add some extra locations if you want them. A check will send the first time you defeat every type of enemy in the game.");
-      q3.body.appendChild(yesNoControl(ans(ctx, "enemy_locations"), (v) => {
-        setOptValue("enemy_locations", v);
-        ctx.markAnswered("enemy_locations");
-        updatePreview();
-        ctx.notify();
-      }));
-      root.appendChild(q3.card);
+      // enemy_locations was replaced by the enemysanity/include_minibosses questions in the
+      // "Keepsakes, Enemies, and Pets" step as of 0.10.0 -- only ask it here pre-0.10.0.
+      const preEnemysanity = !versionAtLeast(selectedAppVersion, "0.10.0");
+      if (preEnemysanity) {
+        const q3 = qCard("Enemy Locations?", "Here's an opportunity to add some extra locations if you want them. A check will send the first time you defeat every type of enemy in the game.");
+        q3.body.appendChild(yesNoControl(ans(ctx, "enemy_locations"), (v) => {
+          setOptValue("enemy_locations", v);
+          ctx.markAnswered("enemy_locations");
+          updatePreview();
+          ctx.notify();
+        }));
+        root.appendChild(q3.card);
+      }
 
       const q4 = qCard("NPC Locations?", "A check will send the first time you interact with each NPC in the game.");
       q4.body.appendChild(yesNoControl(ans(ctx, "npc_locations"), (v) => {
@@ -1535,7 +1648,7 @@ const WIZARD_STEPS = [
       root.appendChild(q4.card);
 
       ctx.setValidate(() => {
-        if (!ctx.isAnswered("enemy_locations")) return false;
+        if (preEnemysanity && !ctx.isAnswered("enemy_locations")) return false;
         if (!ctx.isAnswered("npc_locations")) return false;
         if (!ctx.isAnswered("location_system")) return false;
         if (getOptValue("location_system") === "point_based" && !ctx.isAnswered("score_rewards_amount")) return false;
@@ -1584,38 +1697,6 @@ const WIZARD_STEPS = [
       root.appendChild(q3.card);
 
       ctx.setValidate(() => ["grasp_count", "grasp_intervals", "arcanasanity"].every(k => ctx.isAnswered(k)));
-    }
-  },
-  {
-    id: "keepsakes",
-    title: "Keepsakes and Pets",
-    crumb: "Keepsakes/Pets",
-    render(root, ctx) {
-      const q1 = qCard(
-        "Would you like Keepsakes to be items/locations? If so, how would you like that to work?",
-        "Off just makes it exactly the same as the base game, no randomization going on here. Randomized makes each individual keepsake an item, and an NPC giving you a keepsake will instead send a check. If you feel like you have too many items and not enough locations, we also have Progressive, which adds only 3 progressive keepsake items; the first unlocks all keepsakes, the rest level them up. If you choose Progressive you will not be able to level up the keepsakes like you normally would be able to."
-      );
-      q1.body.appendChild(choiceCards(OPTS_BY_KEY.keepsakesanity.options.map(([v, l]) => ({ value: v, label: l })), ans(ctx, "keepsakesanity"), (v) => {
-        setOptValue("keepsakesanity", v);
-        ctx.markAnswered("keepsakesanity");
-        updatePreview();
-        ctx.notify();
-      }));
-      root.appendChild(q1.card);
-
-      const q2 = qCard(
-        "How do you want to unlock pets?",
-        "Three options: Unlocked means you have all of them at max level from the start. Randomized means each familiar gets its own item, and you receive them at max level when the item is found. Lastly, Progressive adds a progressive familiar item; the first unlocks all of them at base level, the rest increase familiarity (upgrading them)."
-      );
-      q2.body.appendChild(choiceCards(OPTS_BY_KEY.petsanity.options.map(([v, l]) => ({ value: v, label: l })), ans(ctx, "petsanity"), (v) => {
-        setOptValue("petsanity", v);
-        ctx.markAnswered("petsanity");
-        updatePreview();
-        ctx.notify();
-      }));
-      root.appendChild(q2.card);
-
-      ctx.setValidate(() => ["keepsakesanity", "petsanity"].every(k => ctx.isAnswered(k)));
     }
   },
   {
@@ -1862,7 +1943,7 @@ const WIZARD_STEPS = [
     render(root, ctx) {
       const q1 = qCard(
         "Include Zagreus' Journey?",
-        "NikkelM created an amazing mod that adds the entire Hades 1 route to Hades 2. I've included that route in the Archipelago. You can only access that route and all its offerings if you have Hades 1 installed, unmodded, in the same location you have Hades 2 installed. Otherwise there will be things you cannot access."
+        "NikkelM created an amazing mod that adds the entire Hades 1 route to Hades 2. I've included that route in the Archipelago. Zagreus' Journey is no longer downloaded automatically with the AP mod, so if you want it you'll need to download it yourself in r2modman. You can only access that route and all its offerings if you have Zagreus' Journey downloaded, and Hades 1 installed, unmodded, in the same location you have Hades 2 installed. Otherwise there will be things you cannot access."
       );
       q1.body.appendChild(yesNoControl(ans(ctx, "include_zagreus_journey"), (v) => {
         setOptValue("include_zagreus_journey", v);
@@ -1874,7 +1955,7 @@ const WIZARD_STEPS = [
         }
         updatePreview();
         ctx.notify();
-      }, { confirmYes: "Are you sure? This will add inaccessible locations if you don't have Hades 1 installed." }));
+      }, { confirmYes: "Are you sure? This will add inaccessible locations if you don't have Zagreus' Journey and Hades 1 installed." }));
       root.appendChild(q1.card);
 
       ctx.setValidate(() => ctx.isAnswered("include_zagreus_journey"));
@@ -1888,8 +1969,10 @@ const WIZARD_STEPS = [
       const zjOn = getOptValue("include_zagreus_journey");
       const routeItems = [{ value: "Underworld", label: "Underworld" }, { value: "Surface", label: "Surface" }];
       if (zjOn) routeItems.push({ value: "Nightmare", label: "Nightmare (Hades 1 Route)" });
+      if (dreamAvailable()) routeItems.push({ value: "Dream", label: "Dream" });
 
-      const q1 = qCard("Which routes do you want to include?", "Pick every route you want playable in this run.");
+      const q1 = qCard("Which routes do you want to include?", "Pick every route you want playable in this run."
+        + (dreamAvailable() ? " Dream is Dream Dive, the games built in region randomizer that they added later." : ""));
       q1.body.appendChild(checkGrid(routeItems, (v) => ansSet(ctx, "include_regions").includes(v), (v, checked) => {
         const cur = ansSet(ctx, "include_regions");
         setOptValue("include_regions", checked ? [...new Set([...cur, v])] : cur.filter(x => x !== v));
@@ -1897,9 +1980,38 @@ const WIZARD_STEPS = [
         updatePreview();
         refreshStart();
         refreshSeparate();
+        refreshDreamRegions();
         ctx.notify();
       }));
       root.appendChild(q1.card);
+
+      const dreamRegionsWrap = el("div");
+      root.appendChild(dreamRegionsWrap);
+      function refreshDreamRegions() {
+        dreamRegionsWrap.innerHTML = "";
+        if (!(getOptValue("include_regions") || []).includes("Dream")) return;
+        const qd = qCard(
+          "How many Dream Dive Regions?",
+          "Using zerp's DreamDiveTweaks we're able to add additional Dream Dive regions, up to 8, or up to 12 if you included Nightmare. This means much longer runs. Keep in mind though, logically it assumes that you need half the resources to make it halfway. If you set it to 12, you better be able to defeat the boss in region 6 with half your resources. Additionally, each region you add will add some room locations, if you're using a room system."
+        );
+        // Pre-filled control: the pill row already shows the current value, so it counts as
+        // answered on render (same as grasp_count/included_aspects above). Without this, Next
+        // stays disabled while every question on screen looks answered.
+        ctx.markAnswered("dream_region_count");
+        const dreamMax = dreamRegionMax(getOptValue("include_regions"));
+        if (getOptValue("dream_region_count") > dreamMax) {
+          setOptValue("dream_region_count", dreamMax);
+          updatePreview();
+        }
+        qd.body.appendChild(rangeControl(1, dreamMax, getOptValue("dream_region_count"), (v) => {
+          setOptValue("dream_region_count", v);
+          ctx.markAnswered("dream_region_count");
+          updatePreview();
+          ctx.notify();
+        }));
+        dreamRegionsWrap.appendChild(qd.card);
+      }
+      refreshDreamRegions();
 
       const startWrap = el("div");
       root.appendChild(startWrap);
@@ -1964,6 +2076,7 @@ const WIZARD_STEPS = [
         if (!ctx.isAnswered("starting_route")) return false;
         if (getOptValue("include_regions").length >= 2 && !ctx.isAnswered("separate_checks_yn")) return false;
         if (!ctx.isAnswered("lock_routes")) return false;
+        if (getOptValue("include_regions").includes("Dream") && !ctx.isAnswered("dream_region_count")) return false;
         return true;
       });
     }
@@ -1980,8 +2093,8 @@ const WIZARD_STEPS = [
       const prunedGoals = getOptValue("goals_required").filter(r => included.includes(r));
       if (prunedGoals.length !== getOptValue("goals_required").length) { setOptValue("goals_required", prunedGoals); updatePreview(); }
 
-      const winKeyByBoss = { chronos: "underworld_wins_needed", typhon: "surface_wins_needed", hades: "nightmare_wins_needed", zagreus: "zagreus_defeats_needed" };
-      const labelByBoss = { chronos: "Chronos (Underworld) Wins Needed", typhon: "Typhon (Surface) Wins Needed", hades: "Hades (Nightmare, Hades 1 Route) Wins Needed", zagreus: "Zagreus Defeats Needed" };
+      const winKeyByBoss = { chronos: "underworld_wins_needed", typhon: "surface_wins_needed", hades: "nightmare_wins_needed", zagreus: "zagreus_defeats_needed", dream: "dream_wins_needed" };
+      const labelByBoss = { chronos: "Chronos (Underworld) Wins Needed", typhon: "Typhon (Surface) Wins Needed", hades: "Hades (Nightmare, Hades 1 Route) Wins Needed", zagreus: "Zagreus Defeats Needed", dream: "Dream Dive Wins Needed" };
 
       function selectedBosses() {
         const gr = ctx.isAnswered("goals_required") ? getOptValue("goals_required") : [];
@@ -1990,6 +2103,7 @@ const WIZARD_STEPS = [
         if (gr.includes("Underworld")) list.push("chronos");
         if (gr.includes("Surface")) list.push("typhon");
         if (gr.includes("Nightmare")) list.push("hades");
+        if (gr.includes("Dream")) list.push("dream");
         if (zg) list.push("zagreus");
         return list;
       }
@@ -1998,16 +2112,20 @@ const WIZARD_STEPS = [
       if (included.includes("Underworld")) bossItems.push({ value: "chronos", label: "Chronos (Underworld)" });
       if (included.includes("Surface")) bossItems.push({ value: "typhon", label: "Typhon (Surface)" });
       if (zjOn && included.includes("Nightmare")) bossItems.push({ value: "hades", label: "Hades (Nightmare, Hades 1 Route)" });
+      if (included.includes("Dream")) bossItems.push({ value: "dream", label: "Dream Dive Final Boss" });
       bossItems.push({ value: "zagreus", label: "Zagreus" });
 
-      const q1 = qCard("Which Final bosses should be included as goals?", "If you select multiple you'll be able to choose whether defeating any of them is your goal, or defeating all of them.");
+      // The Dream sentence only makes sense while the Dream Dive boss is one of the choices
+      // below (Dream included as a route, which pre-0.10.0 it can never be).
+      const q1 = qCard("Which Final bosses should be included as goals?", "If you select multiple you'll be able to choose whether defeating any of them is your goal, or defeating all of them."
+        + (included.includes("Dream") ? " Dream Dive boss is randomized." : ""));
       const warning = el("div", { class: "wizard-warning" }, [document.createTextNode("Select at least one boss, or your goal will be unreachable!")]);
       q1.body.appendChild(checkGrid(bossItems, (v) => selectedBosses().includes(v), (v, checked) => {
         if (v === "zagreus") {
           setOptValue("goal_requires_zagreus", checked);
           ctx.markAnswered("goal_requires_zagreus");
         } else {
-          const routeName = v === "chronos" ? "Underworld" : v === "typhon" ? "Surface" : "Nightmare";
+          const routeName = v === "chronos" ? "Underworld" : v === "typhon" ? "Surface" : v === "dream" ? "Dream" : "Nightmare";
           const cur = ctx.isAnswered("goals_required") ? getOptValue("goals_required") : [];
           setOptValue("goals_required", checked ? [...new Set([...cur, routeName])] : cur.filter(r => r !== routeName));
           ctx.markAnswered("goals_required");
@@ -2073,7 +2191,7 @@ const WIZARD_STEPS = [
         const q5 = qCard("Should more than one win be required for any of the bosses?", "Select this if you want to require beating a boss more than once.");
         q5.body.appendChild(yesNoControl(synAns(ctx, "multiWin"), (v) => {
           synMark(ctx, "multiWin", v);
-          if (!v) ["underworld_wins_needed", "surface_wins_needed", "nightmare_wins_needed", "zagreus_defeats_needed"].forEach(k => setOptValue(k, 1));
+          if (!v) ["underworld_wins_needed", "surface_wins_needed", "nightmare_wins_needed", "zagreus_defeats_needed", "dream_wins_needed"].forEach(k => setOptValue(k, 1));
           updatePreview();
           refreshAll();
           ctx.notify();
@@ -2134,6 +2252,159 @@ const WIZARD_STEPS = [
         if (!ctx.isAnswered("multiWin")) return false;
         if (synAns(ctx, "multiWin") && !bosses.every(b => ctx.isAnswered(winKeyByBoss[b]))) return false;
         if (!ctx.isAnswered("weapons_clears_needed")) return false;
+        return true;
+      });
+    }
+  },
+  {
+    id: "keepsakes",
+    title: () => versionAtLeast(selectedAppVersion, "0.10.0") ? "Keepsakes, Enemies, and Pets" : "Keepsakes and Pets",
+    crumb: () => versionAtLeast(selectedAppVersion, "0.10.0") ? "Keepsakes/Enemies/Pets" : "Keepsakes/Pets",
+    render(root, ctx) {
+      const q1 = qCard(
+        "Would you like Keepsakes to be items/locations? If so, how would you like that to work?",
+        "Off just makes it exactly the same as the base game, no randomization going on here. Randomized makes each individual keepsake an item, and an NPC giving you a keepsake will instead send a check. If you feel like you have too many items and not enough locations, we also have Progressive, which adds only 3 progressive keepsake items; the first unlocks all keepsakes, the rest level them up. If you choose Progressive you will not be able to level up the keepsakes like you normally would be able to. Lastly Progressive_per adds 3 progressive items for each keepsake, which adds by far the most items."
+      );
+      q1.body.appendChild(choiceCards(OPTS_BY_KEY.keepsakesanity.options.map(([v, l]) => ({ value: v, label: l })), ans(ctx, "keepsakesanity"), (v) => {
+        setOptValue("keepsakesanity", v);
+        ctx.markAnswered("keepsakesanity");
+        updatePreview();
+        ctx.notify();
+      }));
+      root.appendChild(q1.card);
+
+      const hasEnemysanity = versionAtLeast(selectedAppVersion, "0.10.0");
+      if (hasEnemysanity) {
+        // enemysanity is one real Choice option, but the wizard asks it as up to 3 questions
+        // that combine into it -- same "synthetic sub-answers -> setOptValue on the real key"
+        // shape as godsanity_enabled/separate_checks_yn elsewhere in this file.
+        function combineEnemysanity(mode, locations) {
+          if (mode === "randomized") return "pure_random";
+          if (mode === "shuffled") return locations ? "shuffled_plus_locations" : "shuffled";
+          return locations ? "vanilla_plus_locations" : "vanilla";
+        }
+
+        const qMode = qCard(
+          "Would you like Enemies to be shuffled or randomized? (EXPERIMENTAL)",
+          "Stats of the enemies will always match the region they're in, so it shouldn't make things too much more difficult. Shuffled means each time an enemy spawns, a different specific enemy will spawn instead. Randomized means each time an enemy spawns, a random enemy spawns. This is still a little unstable, and might result in some weird situations, but it's pretty fun."
+        );
+        qMode.body.appendChild(choiceCards(
+          [{ value: "no", label: "No" }, { value: "shuffled", label: "Shuffled" }, { value: "randomized", label: "Randomized" }],
+          synAns(ctx, "enemysanity_mode"),
+          (v) => {
+            synMark(ctx, "enemysanity_mode", v);
+            setOptValue("enemysanity", combineEnemysanity(v, synAns(ctx, "enemysanity_locations_yn")));
+            updatePreview();
+            refreshEnemyLocations();
+            refreshMinibosses();
+            ctx.notify();
+          }
+        ));
+        root.appendChild(qMode.card);
+
+        const enemyLocationsWrap = el("div");
+        root.appendChild(enemyLocationsWrap);
+        function refreshEnemyLocations() {
+          enemyLocationsWrap.innerHTML = "";
+          const mode = synAns(ctx, "enemysanity_mode");
+          if (mode !== "no" && mode !== "shuffled") return;
+          const qLoc = qCard(
+            "Would you like defeating enemies to send checks?",
+            "If enabled, the first time you defeat each enemy, a check is sent. Logic is set up to account for shuffling."
+          );
+          qLoc.body.appendChild(yesNoControl(synAns(ctx, "enemysanity_locations_yn"), (v) => {
+            synMark(ctx, "enemysanity_locations_yn", v);
+            setOptValue("enemysanity", combineEnemysanity(synAns(ctx, "enemysanity_mode"), v));
+            updatePreview();
+            refreshEnemyLocations();
+            refreshMinibosses();
+            ctx.notify();
+          }));
+          enemyLocationsWrap.appendChild(qLoc.card);
+
+          if (synAns(ctx, "enemysanity_locations_yn") && (getOptValue("include_regions") || []).includes("Dream")) {
+            const qDream = qCard(
+              "How many regions worth of enemies should you need to defeat in Dream Dive?",
+              "In Dream Dive things work a bit different, it'll just be a counter that goes up and sends a new check each time you defeat a new enemy. This option allows you to change how many regions worth of enemies you'll need to defeat to send every Dream Enemy Defeated check. This includes minibosses."
+            );
+            // Starts at the option's own default (8, same as Options.py) until the player picks
+            // a number here themselves.
+            const dreamMax = dreamRegionMax(getOptValue("include_regions"));
+            if (!wizSynthetic.dream_enemy_locations_picked) {
+              setOptValue("dream_enemy_locations", Math.min(dreamMax, OPTS_BY_KEY.dream_enemy_locations.def));
+              updatePreview();
+            } else if (getOptValue("dream_enemy_locations") > dreamMax) {
+              setOptValue("dream_enemy_locations", dreamMax);
+              updatePreview();
+            }
+            ctx.markAnswered("dream_enemy_locations");
+            qDream.body.appendChild(rangeControl(1, dreamMax, getOptValue("dream_enemy_locations"), (v) => {
+              setOptValue("dream_enemy_locations", v);
+              wizSynthetic.dream_enemy_locations_picked = true;
+              ctx.markAnswered("dream_enemy_locations");
+              updatePreview();
+              ctx.notify();
+            }));
+            enemyLocationsWrap.appendChild(qDream.card);
+          }
+        }
+        refreshEnemyLocations();
+
+        const minibossWrap = el("div");
+        root.appendChild(minibossWrap);
+        // include_minibosses only does anything when enemies send checks (the two
+        // *_plus_locations modes): it adds the miniboss/boss checks and turns on the miniboss
+        // ROOM shuffle. Minibosses never shuffle as ordinary enemies, so there is nothing to ask
+        // for "shuffled" without locations or for "randomized".
+        function refreshMinibosses() {
+          minibossWrap.innerHTML = "";
+          const mode = synAns(ctx, "enemysanity_mode");
+          if ((mode !== "no" && mode !== "shuffled") || !synAns(ctx, "enemysanity_locations_yn")) {
+            wizAnswered.delete("include_minibosses");
+            if (getOptValue("include_minibosses")) {
+              setOptValue("include_minibosses", false);
+              updatePreview();
+            }
+            return;
+          }
+          const qMb = qCard(
+            "Should minibosses and bosses send checks too? (EXPERIMENTAL)",
+            "This adds a check the first time you defeat each miniboss and boss. It also shuffles the miniboss rooms themselves, so you might walk into a miniboss room in Erebus and find Charybdis waiting for you. Don't worry, they're scaled to match the region you find them in."
+          );
+          qMb.body.appendChild(yesNoControl(ans(ctx, "include_minibosses"), (v) => {
+            setOptValue("include_minibosses", v);
+            ctx.markAnswered("include_minibosses");
+            updatePreview();
+            ctx.notify();
+          }));
+          minibossWrap.appendChild(qMb.card);
+        }
+        refreshMinibosses();
+      }
+
+      const q2 = qCard(
+        "How do you want to unlock pets?",
+        "Four options: Unlocked means you have all of them at max level from the start. Randomized means each familiar gets its own item, and you receive them at max level when the item is found. Lastly, Progressive adds a progressive familiar item; the first unlocks all of them at base level, the rest increase familiarity (upgrading them). Progressive_per adds progressive items for each familiar. The first Progressive Frinos item would unlock Frinos, the rest upgrade him. This adds the most items."
+      );
+      q2.body.appendChild(choiceCards(OPTS_BY_KEY.petsanity.options.map(([v, l]) => ({ value: v, label: l })), ans(ctx, "petsanity"), (v) => {
+        setOptValue("petsanity", v);
+        ctx.markAnswered("petsanity");
+        updatePreview();
+        ctx.notify();
+      }));
+      root.appendChild(q2.card);
+
+      ctx.setValidate(() => {
+        if (!ctx.isAnswered("keepsakesanity")) return false;
+        if (!ctx.isAnswered("petsanity")) return false;
+        if (hasEnemysanity) {
+          if (!ctx.isAnswered("enemysanity_mode")) return false;
+          const mode = synAns(ctx, "enemysanity_mode");
+          if ((mode === "no" || mode === "shuffled") && !ctx.isAnswered("enemysanity_locations_yn")) return false;
+          if ((mode === "no" || mode === "shuffled") && synAns(ctx, "enemysanity_locations_yn") && !ctx.isAnswered("include_minibosses")) return false;
+          if ((mode === "no" || mode === "shuffled") && synAns(ctx, "enemysanity_locations_yn") &&
+              (getOptValue("include_regions") || []).includes("Dream") && !ctx.isAnswered("dream_enemy_locations")) return false;
+        }
         return true;
       });
     }
@@ -2208,7 +2479,10 @@ const WIZARD_STEPS = [
 
 const guidedRoot = document.getElementById("guidedRoot");
 
-function stepCrumbLabel(step) { return step.crumb || step.title || "Name"; }
+// step.title/step.crumb are normally plain strings, but a step whose label depends on
+// selectedAppVersion (e.g. "keepsakes") can supply a zero-arg function instead.
+function resolveStepText(value) { return typeof value === "function" ? value() : value; }
+function stepCrumbLabel(step) { return resolveStepText(step.crumb) || resolveStepText(step.title) || "Name"; }
 
 function renderBreadcrumbs() {
   const row = el("div", { class: "wizard-breadcrumbs" });
@@ -2266,7 +2540,8 @@ function renderWizardStep() {
   labelRow.appendChild(restartBtn);
   guidedRoot.appendChild(labelRow);
 
-  if (step.title) guidedRoot.appendChild(el("h2", { class: "wizard-step-title" }, [document.createTextNode(step.title)]));
+  const stepTitleText = resolveStepText(step.title);
+  if (stepTitleText) guidedRoot.appendChild(el("h2", { class: "wizard-step-title" }, [document.createTextNode(stepTitleText)]));
 
   let validateFn = () => true;
   const ctx = {
