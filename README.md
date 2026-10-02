@@ -4,7 +4,7 @@ Hades 2 implementation for the Archipelago Multiworld Randomizer - Created by Br
 
 
 
-Windows only at this time.
+Windows only at this time
 
 
 
@@ -19,7 +19,7 @@ Windows only at this time.
 * Select or create a profile.
 * Select online on the left side, and search and find "Hades2RogueArchipelago"
 * Select download, then Download with Dependencies
-* (OPTIONAL) Search and Find Zagreus Journey so you can add the Nightmare route. Only works if you have Hades 1 installed.
+* Zagreus Journey is no longer a dependency, so it won't be downloaded automatically. If you want the Hades 1 content, search for and download "Zagreus Journey" by NikkelM on the same profile. It only works if you have Hades 1 installed.
 
 
 
@@ -33,7 +33,7 @@ Windows only at this time.
 **Then EITHER**
 
 * Open the Archipelago Launcher
-* Click and drag the Hades\_2.apworld file onto the Archipelago Window
+* Click and drag the Hades2Rogue.apworld file onto the Archipelago Window
 * It will give you a confirmation message, relaunch Archipelago, and you're done.
 
 **OR**
@@ -44,18 +44,19 @@ Windows only at this time.
 
 
 
-* Search for the Hades 2 Client in the archipelago launcher
+* Search for the Hades 2 Rogue Client in the archipelago launcher
 * Launch, connect to a server, select your slot.
 * Launch the game with mods from r2modman
 * Start a NEW SAVE
 * You should be good to go!
 
-# **YAML Creator**
-I put together an [quick website](https://brittish39.github.io/Hades2Archipelago/#home) for Hades 2 Rogue, included is a YAML Creator that should make things a lot easier to understand
+
 
 # **Notes**
 
 
 
 I consider this to be stable, but you will still likely run into a few bugs or issues. Please let me know if you do. Additionally I would love to hear any thoughts or ideas you have; the [Discord](https://discord.com/channels/731205301247803413/1375345291926044722) is the best way to share those.
+
+Zagreus Journey is no longer a dependency for the mod. If you still have it downloaded from an older version and you don't have Hades 1, it will pop-up and tell you it's not installed correctly. As long as you turned off (Or left off) Zagreus Journey in the YAML, you can ignore this.
 
