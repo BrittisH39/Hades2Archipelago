@@ -1,0 +1,20 @@
+{
+  "name": "Hades2RogueArchipelago",
+  "version_number": "0.11.0",
+  "website_url": "https://github.com/BrittisH39/Hades2Archipelago",
+  "description": "Archipelago multiworld integration for Hades II.",
+  "dependencies": [
+    "Hell2Modding-Hell2Modding-1.0.112",
+    "LuaENVY-ENVY-1.2.0",
+    "SGG_Modding-Chalk-2.1.1",
+    "SGG_Modding-ReLoad-1.0.2",
+    "SGG_Modding-SJSON-1.0.0",
+    "SGG_Modding-ModUtil-4.0.1",
+    "zerp-NPCRoomRandomizer-0.4.8",
+    "zerp-Extended_NPC_Encounters-0.6.5",
+    "zerp-DreamDiveTweaks-1.13.2"
+  ],
+  "rom_soft_deps": [
+    "NikkelM-Zagreus_Journey-1.3.0"
+  ]
+}

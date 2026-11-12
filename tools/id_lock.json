@@ -1,0 +1,4955 @@
+{
+ "_comment": "Written by tools/sync_check.py --update-id-lock. Shipped ids are frozen; see sync_check.py's id-lock section before editing by hand.",
+ "items": {
+  "Staff Weapon Unlock Item": 1,
+  "Blades Weapon Unlock Item": 2,
+  "Flames Weapon Unlock Item": 3,
+  "Axe Weapon Unlock Item": 4,
+  "Skull Weapon Unlock Item": 5,
+  "Coat Weapon Unlock Item": 6,
+  "Ashes": 7,
+  "Nectar": 10,
+  "Progressive Grasp": 11,
+  "The Sorceress Arcana": 12,
+  "Wayward Son Arcana": 13,
+  "Huntress Arcana": 14,
+  "Eternity Arcana": 15,
+  "Moon Arcana": 16,
+  "Furies Arcana": 17,
+  "Persistence Arcana": 18,
+  "Messenger Arcana": 19,
+  "Unseen Arcana": 20,
+  "Night Arcana": 21,
+  "Swift Runner Arcana": 22,
+  "Death Arcana": 23,
+  "Centaur Arcana": 24,
+  "Origination Arcana": 25,
+  "Lovers Arcana": 26,
+  "The Enchantress Arcana": 27,
+  "Boatman Arcana": 28,
+  "Artificer Arcana": 29,
+  "Excellence Arcana": 30,
+  "Queen Arcana": 31,
+  "The Fates Arcana": 32,
+  "Champions Arcana": 33,
+  "Strength Arcana": 34,
+  "Divinity Arcana": 35,
+  "Judgment Arcana": 36,
+  "Pain Vow Removal": 37,
+  "Grit Vow Removal": 38,
+  "Wards Vow Removal": 39,
+  "Frenzy Vow Removal": 40,
+  "Hordes Vow Removal": 41,
+  "Menace Vow Removal": 42,
+  "Return Vow Removal": 43,
+  "Fangs Vow Removal": 44,
+  "Scars Vow Removal": 45,
+  "Debt Vow Removal": 46,
+  "Shadow Vow Removal": 47,
+  "Forfeit Vow Removal": 48,
+  "Time Vow Removal": 49,
+  "Void Vow Removal": 50,
+  "Hubris Vow Removal": 51,
+  "Denial Vow Removal": 52,
+  "Rivals Vow Removal": 53,
+  "Progressive Underworld": 54,
+  "Progressive Surface": 55,
+  "Surface Access": 56,
+  "Surface Penalty Cure": 57,
+  "Aspect of Circe": 58,
+  "Aspect of Momus": 59,
+  "Aspect of Anubis": 60,
+  "Aspect of Pan": 61,
+  "Aspect of Artemis": 62,
+  "Aspect of the Morrigan": 63,
+  "Aspect of Medea": 64,
+  "Aspect of Persephone": 65,
+  "Aspect of Hel": 66,
+  "Aspect of Eos": 67,
+  "Aspect of Moros": 68,
+  "Aspect of Supay": 69,
+  "Aspect of Charon": 70,
+  "Aspect of Thanatos": 71,
+  "Aspect of Nergal": 72,
+  "Aspect of Nyx": 73,
+  "Aspect of Selene": 74,
+  "Aspect of Shiva": 75,
+  "Progressive Staff Aspect": 76,
+  "Progressive Blades Aspect": 77,
+  "Progressive Skull Aspect": 78,
+  "Progressive Flames Aspect": 79,
+  "Progressive Axe Aspect": 80,
+  "Progressive Coat Aspect": 81,
+  "Frinos": 82,
+  "Toula": 83,
+  "Raki": 84,
+  "Hecuba": 85,
+  "Gale": 86,
+  "Progressive Familiar": 87,
+  "Engraved Pin": 91,
+  "Luckier Tooth": 92,
+  "Ghost Onion": 93,
+  "Evil Eye": 94,
+  "White Antler": 95,
+  "Moon Beam": 96,
+  "Gold Purse": 97,
+  "Knuckle Bones": 98,
+  "Silver Wheel": 99,
+  "Crystal Figurine": 100,
+  "Aromatic Phial": 101,
+  "Silken Sash": 102,
+  "Experimental Hammer": 103,
+  "Lion Fang": 104,
+  "Blackened Fleece": 105,
+  "Discordant Bell": 106,
+  "Metallic Droplet": 107,
+  "Concave Stone": 108,
+  "Transcendent Embryo": 109,
+  "Fig Leaf": 110,
+  "Gorgon Amulet": 111,
+  "Calling Card": 112,
+  "Jeweled Pom": 113,
+  "Time Piece": 114,
+  "Adamant Shard": 115,
+  "Cloud Bangle": 116,
+  "Barley Sheaf": 117,
+  "Beautiful Mirror": 118,
+  "Vivid Sea": 119,
+  "Harmonic Photon": 120,
+  "Everlasting Ember": 121,
+  "Sword Hilt": 122,
+  "Iridescent Fan": 123,
+  "Rarity Increase": 126,
+  "Progressive The Sorceress Arcana": 127,
+  "Progressive Wayward Son Arcana": 128,
+  "Progressive Huntress Arcana": 129,
+  "Progressive Eternity Arcana": 130,
+  "Progressive Moon Arcana": 131,
+  "Progressive Furies Arcana": 132,
+  "Progressive Persistence Arcana": 133,
+  "Progressive Messenger Arcana": 134,
+  "Progressive Unseen Arcana": 135,
+  "Progressive Night Arcana": 136,
+  "Progressive Swift Runner Arcana": 137,
+  "Progressive Death Arcana": 138,
+  "Progressive Centaur Arcana": 139,
+  "Progressive Origination Arcana": 140,
+  "Progressive Lovers Arcana": 141,
+  "Progressive The Enchantress Arcana": 142,
+  "Progressive Boatman Arcana": 143,
+  "Progressive Artificer Arcana": 144,
+  "Progressive Excellence Arcana": 145,
+  "Progressive Queen Arcana": 146,
+  "Progressive The Fates Arcana": 147,
+  "Progressive Champions Arcana": 148,
+  "Progressive Strength Arcana": 149,
+  "Progressive Divinity Arcana": 150,
+  "Progressive Judgment Arcana": 151,
+  "Starting Arachne Armor": 153,
+  "Moon Dust": 154,
+  "Doomed Beckoning": 162,
+  "Cleansing of Fountain-Waters": 173,
+  "Purification of Fountain-Waters": 174,
+  "Necromantic Influence": 177,
+  "Eyes of Night and Darkness": 178,
+  "Bones of Arcane Wisdom": 182,
+  "Ashen Memories of Life": 185,
+  "Nectar of Godly Savor": 186,
+  "Circles of the Moon": 190,
+  "Circles of Protection": 195,
+  "Starting Max Health": 207,
+  "Starting Max Magick": 208,
+  "Starting Gold": 209,
+  "Starting Armor": 210,
+  "Daedalus Upgrade": 211,
+  "Progressive Staff": 212,
+  "Progressive Blades": 213,
+  "Progressive Skull": 214,
+  "Progressive Flames": 215,
+  "Progressive Axe": 216,
+  "Progressive Coat": 217,
+  "Increased Odds of Major Finds": 218,
+  "Progressive Zagreus Weaken": 219,
+  "Progressive Aspect of Circe": 220,
+  "Progressive Aspect of Momus": 221,
+  "Progressive Aspect of Anubis": 222,
+  "Progressive Aspect of Pan": 223,
+  "Progressive Aspect of Artemis": 224,
+  "Progressive Aspect of the Morrigan": 225,
+  "Progressive Aspect of Medea": 226,
+  "Progressive Aspect of Persephone": 227,
+  "Progressive Aspect of Hel": 228,
+  "Progressive Aspect of Eos": 229,
+  "Progressive Aspect of Moros": 230,
+  "Progressive Aspect of Supay": 231,
+  "Progressive Aspect of Charon": 232,
+  "Progressive Aspect of Thanatos": 233,
+  "Progressive Aspect of Nergal": 234,
+  "Progressive Aspect of Nyx": 235,
+  "Progressive Aspect of Selene": 236,
+  "Progressive Aspect of Shiva": 237,
+  "Progressive Staff Base Aspect": 238,
+  "Progressive Blades Base Aspect": 239,
+  "Progressive Skull Base Aspect": 240,
+  "Progressive Flames Base Aspect": 241,
+  "Progressive Axe Base Aspect": 242,
+  "Progressive Coat Base Aspect": 243,
+  "Nightmare Access": 244,
+  "Progressive Nightmare": 245,
+  "Progressive Keepsake": 246,
+  "Hades Badges": 264,
+  "Orpheus' Lyre": 265,
+  "New Music for the Music Maker": 267,
+  "Shattered Shackle": 268,
+  "Evergreen Acorn": 269,
+  "Broken Spearpoint": 270,
+  "Distant Memory": 271,
+  "Skull Earring": 272,
+  "Pierced Butterfly": 273,
+  "Myrmidon Bracer": 274,
+  "Aspect of Melinoe (Staff)": 275,
+  "Aspect of Melinoe (Blades)": 276,
+  "Aspect of Melinoe (Skull)": 277,
+  "Aspect of Melinoe (Flames)": 278,
+  "Aspect of Melinoe (Axe)": 279,
+  "Aspect of Melinoe (Coat)": 280,
+  "Progressive Boon Level": 281,
+  "Starting Medea Curse": 282,
+  "Starting Icarus Invention": 283,
+  "Starting Circe Blessing": 284,
+  "Starting Dionysus Boon": 285,
+  "Starting Artemis Boon": 286,
+  "Starting Athena Boon": 287,
+  "Starting Hades Boon": 288,
+  "Stygian Wells": 289,
+  "Lifespring/Fountain Rooms": 290,
+  "Desecrating Pools": 291,
+  "Shrine of Hermes": 292,
+  "Troves": 293,
+  "Keepsake Rack": 294,
+  "Gold Urns": 295,
+  "Hephaestus Unlock": 296,
+  "Zeus Unlock": 297,
+  "Demeter Unlock": 298,
+  "Aphrodite Unlock": 299,
+  "Poseidon Unlock": 300,
+  "Apollo Unlock": 301,
+  "Hestia Unlock": 302,
+  "Ares Unlock": 303,
+  "Hera Unlock": 304,
+  "Arachne Room": 305,
+  "Narcissus Room": 306,
+  "Echo Room": 307,
+  "Hades Room": 308,
+  "Medea Room": 309,
+  "Circe Room": 310,
+  "Dionysus Room": 311,
+  "Sisyphus Room": 312,
+  "Eurydice Room": 313,
+  "Patroclus Room": 314,
+  "Hermes Unlock": 315,
+  "Selene Unlock": 316,
+  "Artemis Helper": 317,
+  "Heracles Helper": 318,
+  "Icarus Helper": 319,
+  "Athena Helper": 320,
+  "Thanatos Helper": 321,
+  "Nemesis Helper": 322,
+  "Hephaestus Unlock + Keepsake": 323,
+  "Zeus Unlock + Keepsake": 324,
+  "Demeter Unlock + Keepsake": 325,
+  "Aphrodite Unlock + Keepsake": 326,
+  "Poseidon Unlock + Keepsake": 327,
+  "Apollo Unlock + Keepsake": 328,
+  "Hestia Unlock + Keepsake": 329,
+  "Ares Unlock + Keepsake": 330,
+  "Hera Unlock + Keepsake": 331,
+  "Hermes Unlock + Keepsake": 332,
+  "Selene Unlock + Keepsake": 333,
+  "Chaos Unlock + Keepsake": 334,
+  "Chaos Unlock": 335,
+  "Progressive Dream": 401,
+  "Dream Access": 402,
+  "Progressive Engraved Pin": 403,
+  "Progressive Luckier Tooth": 404,
+  "Progressive Ghost Onion": 405,
+  "Progressive Evil Eye": 406,
+  "Progressive White Antler": 407,
+  "Progressive Moon Beam": 408,
+  "Progressive Gold Purse": 409,
+  "Progressive Knuckle Bones": 410,
+  "Progressive Silver Wheel": 411,
+  "Progressive Crystal Figurine": 412,
+  "Progressive Aromatic Phial": 413,
+  "Progressive Silken Sash": 414,
+  "Progressive Experimental Hammer": 415,
+  "Progressive Lion Fang": 416,
+  "Progressive Blackened Fleece": 417,
+  "Progressive Discordant Bell": 418,
+  "Progressive Metallic Droplet": 419,
+  "Progressive Concave Stone": 420,
+  "Progressive Transcendent Embryo": 421,
+  "Progressive Fig Leaf": 422,
+  "Progressive Gorgon Amulet": 423,
+  "Progressive Calling Card": 424,
+  "Progressive Jeweled Pom": 425,
+  "Progressive Time Piece": 426,
+  "Progressive Adamant Shard": 427,
+  "Progressive Cloud Bangle": 428,
+  "Progressive Barley Sheaf": 429,
+  "Progressive Beautiful Mirror": 430,
+  "Progressive Vivid Sea": 431,
+  "Progressive Harmonic Photon": 432,
+  "Progressive Everlasting Ember": 433,
+  "Progressive Sword Hilt": 434,
+  "Progressive Iridescent Fan": 435,
+  "Progressive Shattered Shackle": 436,
+  "Progressive Evergreen Acorn": 437,
+  "Progressive Broken Spearpoint": 438,
+  "Progressive Distant Memory": 439,
+  "Progressive Skull Earring": 440,
+  "Progressive Pierced Butterfly": 441,
+  "Progressive Myrmidon Bracer": 442,
+  "Progressive Frinos": 443,
+  "Progressive Toula": 444,
+  "Progressive Raki": 445,
+  "Progressive Hecuba": 446,
+  "Progressive Gale": 447,
+  "Sheep Trap": 448,
+  "Chronos Trap": 449,
+  "Invisible Trap": 450,
+  "Pause Trap": 451,
+  "Asphodel Trap": 452,
+  "Aspect Trap": 453,
+  "Onion Trap": 454,
+  "Keepsake Trap": 455,
+  "Rarity Decrease": 456,
+  "Starting Max Health Loss": 457,
+  "Starting Armor Loss": 458,
+  "Starting Mana Loss": 459,
+  "Eagle Trap": 460,
+  "Typhon Trap": 461,
+  "Spawn Trap": 462,
+  "Shield Trap": 463,
+  "Music Trap": 464,
+  "Boulder Trap": 465,
+  "Chaos Curse Trap": 466
+ },
+ "locations": {
+  "Moros Keepsake": 6101,
+  "Skelly Keepsake": 6102,
+  "Dora Keepsake": 6103,
+  "Nemesis Keepsake": 6104,
+  "Artemis Keepsake": 6105,
+  "Selene Keepsake": 6106,
+  "Charon Keepsake": 6107,
+  "Odysseus Keepsake": 6108,
+  "Hecate Keepsake": 6109,
+  "Circe Keepsake": 6110,
+  "Narcissus Keepsake": 6111,
+  "Arachne Keepsake": 6112,
+  "Icarus Keepsake": 6113,
+  "Heracles Keepsake": 6114,
+  "Medea Keepsake": 6115,
+  "Eris Keepsake": 6116,
+  "Hermes Keepsake": 6117,
+  "Echo Keepsake": 6118,
+  "Chaos Keepsake": 6119,
+  "Dionysus Keepsake": 6120,
+  "Athena Keepsake": 6121,
+  "Hephaestus Keepsake": 6125,
+  "Zeus Keepsake": 6126,
+  "Demeter Keepsake": 6127,
+  "Aphrodite Keepsake": 6128,
+  "Poseidon Keepsake": 6129,
+  "Apollo Keepsake": 6130,
+  "Hestia Keepsake": 6131,
+  "Ares Keepsake": 6132,
+  "Hera Keepsake": 6133,
+  "Sisyphus Keepsake": 6134,
+  "Eurydice Keepsake": 6135,
+  "Patroclus Keepsake": 6136,
+  "Orpheus Keepsake": 6137,
+  "Thanatos Keepsake": 6139,
+  "Met Zagreus": 6141,
+  "Zagreus Defeated": 6142,
+  "Casket Defeated": 30001,
+  "Lanthorn Defeated": 30002,
+  "Sister of the Dead Defeated": 30003,
+  "Spindle Defeated": 30004,
+  "Wailer Defeated": 30005,
+  "Wastrel Defeated": 30006,
+  "Whisper Defeated": 30007,
+  "Thorn-Weeper Defeated": 30008,
+  "Root-Stalker Defeated": 30009,
+  "Shadow-Spiller Defeated": 30010,
+  "Headmistress Hecate Defeated": 30011,
+  "Master-Slicer Defeated": 30012,
+  "Hippo Defeated": 30013,
+  "Lurker Defeated": 30014,
+  "Pinhead Defeated": 30015,
+  "Sea-Serpent Defeated": 30016,
+  "Shellback Defeated": 30017,
+  "Sop-Spindle Defeated": 30018,
+  "Wet-Whisper Defeated": 30019,
+  "Wretched Pest Defeated": 30020,
+  "Deep Serpent Defeated": 30021,
+  "Hellifish Defeated": 30022,
+  "King Vermin Defeated": 30023,
+  "Scylla Defeated": 30024,
+  "Roxy Defeated": 30025,
+  "Jetty Defeated": 30026,
+  "Wretched Witch Defeated": 30027,
+  "Bloodless Defeated": 30028,
+  "Bone-Raker Defeated": 30029,
+  "Wave-Maker Defeated": 30030,
+  "Inferno-Bomber Defeated": 30031,
+  "Slam-Dancer Defeated": 30032,
+  "Burn-Flinger Defeated": 30033,
+  "Bawlder Defeated": 30034,
+  "Blight-Shade Defeated": 30035,
+  "Bloat-Shade Defeated": 30036,
+  "Blood-Shade Defeated": 30037,
+  "Canine Defeated": 30038,
+  "Holeheart Defeated": 30039,
+  "Lamia Defeated": 30040,
+  "Lycaon Defeated": 30041,
+  "Mourner Defeated": 30042,
+  "Smacker Defeated": 30043,
+  "Sorrow-Spiller Defeated": 30044,
+  "Phantom Defeated": 30045,
+  "Queen Lamia Defeated": 30046,
+  "Brush-Stalker Defeated": 30047,
+  "Infernal Beast Defeated": 30048,
+  "Dread-Wailer Defeated": 30049,
+  "Crawler Defeated": 30050,
+  "Goldwraith Defeated": 30051,
+  "Numbskull Defeated": 30052,
+  "Sandskull Defeated": 30053,
+  "Satyr Hoplite Defeated": 30054,
+  "Satyr Supplicant Defeated": 30055,
+  "Satyr Vierophant Defeated": 30056,
+  "Tempus Defeated": 30057,
+  "Wretched Thug Defeated": 30058,
+  "Goldwrath Defeated": 30059,
+  "The Verminancer Defeated": 30060,
+  "Wringer Defeated": 30061,
+  "Chronos Defeated": 30062,
+  "Bronzebeak Defeated": 30063,
+  "Cutthroat Defeated": 30064,
+  "Eidolon Defeated": 30065,
+  "Lubber Defeated": 30066,
+  "Shambler Defeated": 30067,
+  "Tombstone Defeated": 30068,
+  "Satyr Champion Defeated": 30069,
+  "Erymanthian Boar Defeated": 30070,
+  "The Cyclops Polyphemus Defeated": 30071,
+  "Anchor Defeated": 30072,
+  "Blasket Defeated": 30073,
+  "Boozer Defeated": 30074,
+  "Droplet Defeated": 30075,
+  "Harpy Talon Defeated": 30076,
+  "Sea-Shambler Defeated": 30077,
+  "Seesword Defeated": 30078,
+  "Stickler Defeated": 30079,
+  "Charybdis Defeated": 30080,
+  "The Yargonaut Defeated": 30081,
+  "Eris Defeated": 30082,
+  "Auto-Forcer Defeated": 30083,
+  "Auto-Seeker Defeated": 30084,
+  "Auto-Watcher Defeated": 30085,
+  "Harpy Raptor Defeated": 30086,
+  "Satyr Goldpike Defeated": 30087,
+  "Satyr Raider Defeated": 30088,
+  "Satyr Sapper Defeated": 30089,
+  "Sky-Dracon Defeated": 30090,
+  "Snow-Shambler Defeated": 30091,
+  "Mega-Dracon Defeated": 30092,
+  "Talos Defeated": 30093,
+  "Prometheus Defeated": 30094,
+  "Eyesore Defeated": 30095,
+  "Headstone Defeated": 30096,
+  "Horror Defeated": 30097,
+  "Land-Dracon Defeated": 30098,
+  "Polyp Defeated": 30099,
+  "Stalker Defeated": 30100,
+  "Eye of Typhon Defeated": 30101,
+  "Spawn of Typhon Defeated": 30102,
+  "Tail of Typhon Defeated": 30103,
+  "Twins of Typhon Defeated": 30104,
+  "Typhon Defeated": 30105,
+  "Skullomat Defeated": 30106,
+  "Wretched Lout Defeated": 30107,
+  "Brimstone Defeated": 30108,
+  "Dire Inferno-Bomber Defeated": 30109,
+  "Doomstone Defeated": 30110,
+  "Wretched Sneak Defeated": 30111,
+  "Megaera Defeated": 30112,
+  "Alecto Defeated": 30113,
+  "Tisiphone Defeated": 30114,
+  "Spreader Defeated": 30115,
+  "Voidstone Defeated": 30116,
+  "Skull-Crusher Defeated": 30117,
+  "Gorgon Defeated": 30118,
+  "Dracon Defeated": 30119,
+  "Megagorgon Defeated": 30120,
+  "Dire Spreader Defeated": 30121,
+  "Bone Hydra Defeated": 30122,
+  "Splitter Defeated": 30123,
+  "Nemean Chariot Defeated": 30124,
+  "Flame Wheel Defeated": 30125,
+  "Brightsword Defeated": 30126,
+  "Longspear Defeated": 30127,
+  "Strongbow Defeated": 30128,
+  "Greatshield Defeated": 30129,
+  "Soul Catcher Defeated": 30130,
+  "Theseus Defeated": 30131,
+  "Asterius Defeated": 30132,
+  "Gigantic Vermin Defeated": 30133,
+  "Bother Defeated": 30134,
+  "Snakestone Defeated": 30135,
+  "Satyr Cultist Defeated": 30136,
+  "Hades Defeated": 30137,
+  "SHUSH Homer": 31001,
+  "Met Moros": 31101,
+  "Met Skelly": 31102,
+  "Met Dora": 31103,
+  "Met Nemesis": 31104,
+  "Met Artemis": 31105,
+  "Met Selene": 31106,
+  "Met Charon": 31107,
+  "Met Odysseus": 31108,
+  "Met Circe": 31109,
+  "Met Narcissus": 31110,
+  "Met Arachne": 31111,
+  "Met Icarus": 31112,
+  "Met Heracles": 31113,
+  "Met Medea": 31114,
+  "Met Hermes": 31115,
+  "Met Echo": 31116,
+  "Met Chaos": 31117,
+  "Met Dionysus": 31118,
+  "Met Athena": 31119,
+  "Met Hades": 31120,
+  "Met Hephaestus": 31121,
+  "Met Zeus": 31122,
+  "Met Demeter": 31123,
+  "Met Aphrodite": 31124,
+  "Met Poseidon": 31125,
+  "Met Apollo": 31126,
+  "Met Hestia": 31127,
+  "Met Ares": 31128,
+  "Met Hera": 31129,
+  "Met Sisyphus": 31130,
+  "Met Eurydice": 31131,
+  "Met Patroclus": 31132,
+  "Met Hypnos": 31133,
+  "Met Thanatos": 31134,
+  "Met Orpheus": 31135,
+  "Met Hecate": 31201,
+  "Met Scylla": 31202,
+  "Met Roxy": 31203,
+  "Met Jetty": 31204,
+  "Met Cerberus": 31205,
+  "Met Chronos": 31206,
+  "Met Polyphemus": 31207,
+  "Met Eris": 31208,
+  "Met Prometheus": 31209,
+  "Met Typhon": 31210,
+  "Met Bone Hydra": 31211,
+  "Met Theseus": 31212,
+  "Met Asterius": 31213,
+  "Met Megaera": 31214
+ },
+ "location_families": {
+  "Anubis Staff Dream Region # Room #": {
+   "count": 144,
+   "first_id": 229501,
+   "digest": "a5f9e3ec23dfe306"
+  },
+  "Anubis Staff Dream Region # Room # +#": {
+   "count": 1008,
+   "first_id": 281501,
+   "digest": "87fe06f7496a2237"
+  },
+  "Anubis Staff Nightmare Asphodel Room #": {
+   "count": 15,
+   "first_id": 160316,
+   "digest": "59bc01079abe9e27"
+  },
+  "Anubis Staff Nightmare Asphodel Room # +#": {
+   "count": 105,
+   "first_id": 162816,
+   "digest": "5b5ca4c9b91eb596"
+  },
+  "Anubis Staff Nightmare Elysium Room #": {
+   "count": 15,
+   "first_id": 160331,
+   "digest": "81a8560f9e2fd142"
+  },
+  "Anubis Staff Nightmare Elysium Room # +#": {
+   "count": 105,
+   "first_id": 162831,
+   "digest": "63f51c5965946119"
+  },
+  "Anubis Staff Nightmare Styx Room #": {
+   "count": 15,
+   "first_id": 160346,
+   "digest": "00e28f709f9a111d"
+  },
+  "Anubis Staff Nightmare Styx Room # +#": {
+   "count": 105,
+   "first_id": 162846,
+   "digest": "c2a04f549300b2dd"
+  },
+  "Anubis Staff Nightmare Tartarus Room #": {
+   "count": 15,
+   "first_id": 160301,
+   "digest": "5aca0684fb33ae2e"
+  },
+  "Anubis Staff Nightmare Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 162801,
+   "digest": "8e35a4a615ad71b5"
+  },
+  "Anubis Staff Room #": {
+   "count": 60,
+   "first_id": 190301,
+   "digest": "a8c08b1f46ea4f42"
+  },
+  "Anubis Staff Room # +#": {
+   "count": 420,
+   "first_id": 192801,
+   "digest": "4d17a020bc970d6d"
+  },
+  "Anubis Staff Surface City of Ephyra Room #": {
+   "count": 15,
+   "first_id": 130301,
+   "digest": "7e880db67865a3f0"
+  },
+  "Anubis Staff Surface City of Ephyra Room # +#": {
+   "count": 105,
+   "first_id": 132801,
+   "digest": "c25113e6165ccce6"
+  },
+  "Anubis Staff Surface Mount Olympus Room #": {
+   "count": 15,
+   "first_id": 130331,
+   "digest": "48e0e95c443c2017"
+  },
+  "Anubis Staff Surface Mount Olympus Room # +#": {
+   "count": 105,
+   "first_id": 132831,
+   "digest": "bead6d0e6ddd4415"
+  },
+  "Anubis Staff Surface Rift of Thessaly Room #": {
+   "count": 15,
+   "first_id": 130316,
+   "digest": "b10cd32c43303236"
+  },
+  "Anubis Staff Surface Rift of Thessaly Room # +#": {
+   "count": 105,
+   "first_id": 132816,
+   "digest": "3619688eff908ef7"
+  },
+  "Anubis Staff Surface The Summit Room #": {
+   "count": 15,
+   "first_id": 130346,
+   "digest": "cdd6fc6f7e233951"
+  },
+  "Anubis Staff Surface The Summit Room # +#": {
+   "count": 105,
+   "first_id": 132846,
+   "digest": "944d35563fd8d030"
+  },
+  "Anubis Staff Underworld Erebus Room #": {
+   "count": 15,
+   "first_id": 100301,
+   "digest": "361dcf2e31d339fd"
+  },
+  "Anubis Staff Underworld Erebus Room # +#": {
+   "count": 105,
+   "first_id": 102801,
+   "digest": "f57f3dff28442de6"
+  },
+  "Anubis Staff Underworld Fields of Mourning Room #": {
+   "count": 15,
+   "first_id": 100331,
+   "digest": "0bf2956580fd62aa"
+  },
+  "Anubis Staff Underworld Fields of Mourning Room # +#": {
+   "count": 105,
+   "first_id": 102831,
+   "digest": "22efc5fbb45c361a"
+  },
+  "Anubis Staff Underworld Oceanus Room #": {
+   "count": 15,
+   "first_id": 100316,
+   "digest": "5e598b44f3358b5d"
+  },
+  "Anubis Staff Underworld Oceanus Room # +#": {
+   "count": 105,
+   "first_id": 102816,
+   "digest": "e78606eb64c1db62"
+  },
+  "Anubis Staff Underworld Tartarus Room #": {
+   "count": 15,
+   "first_id": 100346,
+   "digest": "6bb56ab6188e1c1e"
+  },
+  "Anubis Staff Underworld Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 102846,
+   "digest": "578fcf0448c4a867"
+  },
+  "Artemis Blades Dream Region # Room #": {
+   "count": 144,
+   "first_id": 231001,
+   "digest": "810c858af3b940bf"
+  },
+  "Artemis Blades Dream Region # Room # +#": {
+   "count": 1008,
+   "first_id": 283001,
+   "digest": "6924967bb88afb77"
+  },
+  "Artemis Blades Nightmare Asphodel Room #": {
+   "count": 15,
+   "first_id": 160616,
+   "digest": "d26cf7312684bd04"
+  },
+  "Artemis Blades Nightmare Asphodel Room # +#": {
+   "count": 105,
+   "first_id": 163116,
+   "digest": "af11074d7bff8b3f"
+  },
+  "Artemis Blades Nightmare Elysium Room #": {
+   "count": 15,
+   "first_id": 160631,
+   "digest": "62a9611b6c6b9ca4"
+  },
+  "Artemis Blades Nightmare Elysium Room # +#": {
+   "count": 105,
+   "first_id": 163131,
+   "digest": "484cf342d7f1ec2c"
+  },
+  "Artemis Blades Nightmare Styx Room #": {
+   "count": 15,
+   "first_id": 160646,
+   "digest": "a401cc6962dd6d3b"
+  },
+  "Artemis Blades Nightmare Styx Room # +#": {
+   "count": 105,
+   "first_id": 163146,
+   "digest": "aa49d1a575658ef1"
+  },
+  "Artemis Blades Nightmare Tartarus Room #": {
+   "count": 15,
+   "first_id": 160601,
+   "digest": "946aef0b667117e7"
+  },
+  "Artemis Blades Nightmare Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 163101,
+   "digest": "f6a52763d2ee116b"
+  },
+  "Artemis Blades Room #": {
+   "count": 60,
+   "first_id": 190601,
+   "digest": "562c1c93bfc57fd8"
+  },
+  "Artemis Blades Room # +#": {
+   "count": 420,
+   "first_id": 193101,
+   "digest": "837b1548452cd258"
+  },
+  "Artemis Blades Surface City of Ephyra Room #": {
+   "count": 15,
+   "first_id": 130601,
+   "digest": "391fb03953a89786"
+  },
+  "Artemis Blades Surface City of Ephyra Room # +#": {
+   "count": 105,
+   "first_id": 133101,
+   "digest": "ccf36ab0a93973cf"
+  },
+  "Artemis Blades Surface Mount Olympus Room #": {
+   "count": 15,
+   "first_id": 130631,
+   "digest": "780a0840c12acbfa"
+  },
+  "Artemis Blades Surface Mount Olympus Room # +#": {
+   "count": 105,
+   "first_id": 133131,
+   "digest": "55da2c13a643082d"
+  },
+  "Artemis Blades Surface Rift of Thessaly Room #": {
+   "count": 15,
+   "first_id": 130616,
+   "digest": "ca5a6aaed486bdc8"
+  },
+  "Artemis Blades Surface Rift of Thessaly Room # +#": {
+   "count": 105,
+   "first_id": 133116,
+   "digest": "e9cce3794c02b533"
+  },
+  "Artemis Blades Surface The Summit Room #": {
+   "count": 15,
+   "first_id": 130646,
+   "digest": "ed9538a1d042eab8"
+  },
+  "Artemis Blades Surface The Summit Room # +#": {
+   "count": 105,
+   "first_id": 133146,
+   "digest": "f9c24f90464a4c77"
+  },
+  "Artemis Blades Underworld Erebus Room #": {
+   "count": 15,
+   "first_id": 100601,
+   "digest": "397c2bc8721139f2"
+  },
+  "Artemis Blades Underworld Erebus Room # +#": {
+   "count": 105,
+   "first_id": 103101,
+   "digest": "cf30ba1d76ed209b"
+  },
+  "Artemis Blades Underworld Fields of Mourning Room #": {
+   "count": 15,
+   "first_id": 100631,
+   "digest": "56ed65f9ff9c120d"
+  },
+  "Artemis Blades Underworld Fields of Mourning Room # +#": {
+   "count": 105,
+   "first_id": 103131,
+   "digest": "8922b89bf4401afc"
+  },
+  "Artemis Blades Underworld Oceanus Room #": {
+   "count": 15,
+   "first_id": 100616,
+   "digest": "ae7e609c3d534d67"
+  },
+  "Artemis Blades Underworld Oceanus Room # +#": {
+   "count": 105,
+   "first_id": 103116,
+   "digest": "35a9680cd1f6eb64"
+  },
+  "Artemis Blades Underworld Tartarus Room #": {
+   "count": 15,
+   "first_id": 100646,
+   "digest": "9e25721aae46b500"
+  },
+  "Artemis Blades Underworld Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 103146,
+   "digest": "ea0448b3e0d1826e"
+  },
+  "Charon Axe Dream Region # Room #": {
+   "count": 144,
+   "first_id": 236501,
+   "digest": "91ff04301f88d102"
+  },
+  "Charon Axe Dream Region # Room # +#": {
+   "count": 1008,
+   "first_id": 288501,
+   "digest": "ce4201dba5417bf8"
+  },
+  "Charon Axe Nightmare Asphodel Room #": {
+   "count": 15,
+   "first_id": 161716,
+   "digest": "9189be859d5c0f06"
+  },
+  "Charon Axe Nightmare Asphodel Room # +#": {
+   "count": 105,
+   "first_id": 164216,
+   "digest": "23c18b6ab54ddade"
+  },
+  "Charon Axe Nightmare Elysium Room #": {
+   "count": 15,
+   "first_id": 161731,
+   "digest": "a422baa5e7d16dd3"
+  },
+  "Charon Axe Nightmare Elysium Room # +#": {
+   "count": 105,
+   "first_id": 164231,
+   "digest": "20bfd413fdd74923"
+  },
+  "Charon Axe Nightmare Styx Room #": {
+   "count": 15,
+   "first_id": 161746,
+   "digest": "b9e6ee8732ac4bef"
+  },
+  "Charon Axe Nightmare Styx Room # +#": {
+   "count": 105,
+   "first_id": 164246,
+   "digest": "878576922850f0f4"
+  },
+  "Charon Axe Nightmare Tartarus Room #": {
+   "count": 15,
+   "first_id": 161701,
+   "digest": "0ab7220dbcbf027d"
+  },
+  "Charon Axe Nightmare Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 164201,
+   "digest": "5ec0753cee91bbec"
+  },
+  "Charon Axe Room #": {
+   "count": 60,
+   "first_id": 191701,
+   "digest": "c8be215d1a56eb6c"
+  },
+  "Charon Axe Room # +#": {
+   "count": 420,
+   "first_id": 194201,
+   "digest": "994ee659ea2eea02"
+  },
+  "Charon Axe Surface City of Ephyra Room #": {
+   "count": 15,
+   "first_id": 131701,
+   "digest": "8c6a491b06d99e4b"
+  },
+  "Charon Axe Surface City of Ephyra Room # +#": {
+   "count": 105,
+   "first_id": 134201,
+   "digest": "f257d09fdfcf5881"
+  },
+  "Charon Axe Surface Mount Olympus Room #": {
+   "count": 15,
+   "first_id": 131731,
+   "digest": "d8fbef03cabbfb25"
+  },
+  "Charon Axe Surface Mount Olympus Room # +#": {
+   "count": 105,
+   "first_id": 134231,
+   "digest": "de5533c3555843b7"
+  },
+  "Charon Axe Surface Rift of Thessaly Room #": {
+   "count": 15,
+   "first_id": 131716,
+   "digest": "085c89c02c1fb762"
+  },
+  "Charon Axe Surface Rift of Thessaly Room # +#": {
+   "count": 105,
+   "first_id": 134216,
+   "digest": "8bcd167278a7e1a3"
+  },
+  "Charon Axe Surface The Summit Room #": {
+   "count": 15,
+   "first_id": 131746,
+   "digest": "ef8117bce774fe11"
+  },
+  "Charon Axe Surface The Summit Room # +#": {
+   "count": 105,
+   "first_id": 134246,
+   "digest": "768f82aacb99b264"
+  },
+  "Charon Axe Underworld Erebus Room #": {
+   "count": 15,
+   "first_id": 101701,
+   "digest": "2c34ad97917f02ac"
+  },
+  "Charon Axe Underworld Erebus Room # +#": {
+   "count": 105,
+   "first_id": 104201,
+   "digest": "bedff7331389e072"
+  },
+  "Charon Axe Underworld Fields of Mourning Room #": {
+   "count": 15,
+   "first_id": 101731,
+   "digest": "4d010e1fed0329fd"
+  },
+  "Charon Axe Underworld Fields of Mourning Room # +#": {
+   "count": 105,
+   "first_id": 104231,
+   "digest": "6c7c5d29771d9eb9"
+  },
+  "Charon Axe Underworld Oceanus Room #": {
+   "count": 15,
+   "first_id": 101716,
+   "digest": "d9a24d0c64ba6590"
+  },
+  "Charon Axe Underworld Oceanus Room # +#": {
+   "count": 105,
+   "first_id": 104216,
+   "digest": "8a0fd479b56e9537"
+  },
+  "Charon Axe Underworld Tartarus Room #": {
+   "count": 15,
+   "first_id": 101746,
+   "digest": "1b63f58a2e8dfe58"
+  },
+  "Charon Axe Underworld Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 104246,
+   "digest": "84d37289b13edf05"
+  },
+  "Circe Staff Dream Region # Room #": {
+   "count": 144,
+   "first_id": 228501,
+   "digest": "8a480444758ce5ce"
+  },
+  "Circe Staff Dream Region # Room # +#": {
+   "count": 1008,
+   "first_id": 280501,
+   "digest": "9039544dc2a883c2"
+  },
+  "Circe Staff Nightmare Asphodel Room #": {
+   "count": 15,
+   "first_id": 160116,
+   "digest": "be3e0ca04b3acb20"
+  },
+  "Circe Staff Nightmare Asphodel Room # +#": {
+   "count": 105,
+   "first_id": 162616,
+   "digest": "0e1b5419b8b4e95d"
+  },
+  "Circe Staff Nightmare Elysium Room #": {
+   "count": 15,
+   "first_id": 160131,
+   "digest": "72c41396be4f8c3b"
+  },
+  "Circe Staff Nightmare Elysium Room # +#": {
+   "count": 105,
+   "first_id": 162631,
+   "digest": "7dc44ce3025f6747"
+  },
+  "Circe Staff Nightmare Styx Room #": {
+   "count": 15,
+   "first_id": 160146,
+   "digest": "87ea70456fef07d6"
+  },
+  "Circe Staff Nightmare Styx Room # +#": {
+   "count": 105,
+   "first_id": 162646,
+   "digest": "5894f24b5d6184f6"
+  },
+  "Circe Staff Nightmare Tartarus Room #": {
+   "count": 15,
+   "first_id": 160101,
+   "digest": "e1c582a2cc37e9a4"
+  },
+  "Circe Staff Nightmare Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 162601,
+   "digest": "f1e4e429fc295bbd"
+  },
+  "Circe Staff Room #": {
+   "count": 60,
+   "first_id": 190101,
+   "digest": "c5e5bcbd73d094ed"
+  },
+  "Circe Staff Room # +#": {
+   "count": 420,
+   "first_id": 192601,
+   "digest": "e0ff1ac310eaff3b"
+  },
+  "Circe Staff Surface City of Ephyra Room #": {
+   "count": 15,
+   "first_id": 130101,
+   "digest": "dedb73f750566169"
+  },
+  "Circe Staff Surface City of Ephyra Room # +#": {
+   "count": 105,
+   "first_id": 132601,
+   "digest": "760fd5c51ff85f22"
+  },
+  "Circe Staff Surface Mount Olympus Room #": {
+   "count": 15,
+   "first_id": 130131,
+   "digest": "0b240e5e577b964b"
+  },
+  "Circe Staff Surface Mount Olympus Room # +#": {
+   "count": 105,
+   "first_id": 132631,
+   "digest": "0c59f84dc7b8bdaf"
+  },
+  "Circe Staff Surface Rift of Thessaly Room #": {
+   "count": 15,
+   "first_id": 130116,
+   "digest": "e4accc07234c1b84"
+  },
+  "Circe Staff Surface Rift of Thessaly Room # +#": {
+   "count": 105,
+   "first_id": 132616,
+   "digest": "6e077094d8281937"
+  },
+  "Circe Staff Surface The Summit Room #": {
+   "count": 15,
+   "first_id": 130146,
+   "digest": "7d85b981bcf97099"
+  },
+  "Circe Staff Surface The Summit Room # +#": {
+   "count": 105,
+   "first_id": 132646,
+   "digest": "8ae212122cb5748f"
+  },
+  "Circe Staff Underworld Erebus Room #": {
+   "count": 15,
+   "first_id": 100101,
+   "digest": "29b83730abba7a72"
+  },
+  "Circe Staff Underworld Erebus Room # +#": {
+   "count": 105,
+   "first_id": 102601,
+   "digest": "bc87879c7ca781db"
+  },
+  "Circe Staff Underworld Fields of Mourning Room #": {
+   "count": 15,
+   "first_id": 100131,
+   "digest": "ae3d5f2f79b17816"
+  },
+  "Circe Staff Underworld Fields of Mourning Room # +#": {
+   "count": 105,
+   "first_id": 102631,
+   "digest": "6a6f6721c25cc574"
+  },
+  "Circe Staff Underworld Oceanus Room #": {
+   "count": 15,
+   "first_id": 100116,
+   "digest": "3f98a75d92e186cc"
+  },
+  "Circe Staff Underworld Oceanus Room # +#": {
+   "count": 105,
+   "first_id": 102616,
+   "digest": "b821c695a410c472"
+  },
+  "Circe Staff Underworld Tartarus Room #": {
+   "count": 15,
+   "first_id": 100146,
+   "digest": "a1456c3979d653b3"
+  },
+  "Circe Staff Underworld Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 102646,
+   "digest": "8900edb8ff56c65b"
+  },
+  "Dream Boss #": {
+   "count": 12,
+   "first_id": 243001,
+   "digest": "f3ec0c4c36846e79"
+  },
+  "Dream Enemy #": {
+   "count": 100,
+   "first_id": 241001,
+   "digest": "2533b3b7ae41d4a5"
+  },
+  "Dream Miniboss #": {
+   "count": 60,
+   "first_id": 242001,
+   "digest": "e1d1a81bbeb95092"
+  },
+  "Dream Region # Room #": {
+   "count": 144,
+   "first_id": 221501,
+   "digest": "d44e3745289e6e9c"
+  },
+  "Dream Region # Room # +#": {
+   "count": 1008,
+   "first_id": 221751,
+   "digest": "ae7fd8cd741a3113"
+  },
+  "Dream Region # Room # +# Axe": {
+   "count": 1008,
+   "first_id": 252001,
+   "digest": "d6e175f064777443"
+  },
+  "Dream Region # Room # +# Blades": {
+   "count": 1008,
+   "first_id": 250501,
+   "digest": "e442f04ec4687086"
+  },
+  "Dream Region # Room # +# Coat": {
+   "count": 1008,
+   "first_id": 252501,
+   "digest": "b8efd60702b72d6c"
+  },
+  "Dream Region # Room # +# Flames": {
+   "count": 1008,
+   "first_id": 251501,
+   "digest": "0432ac71b670a6c2"
+  },
+  "Dream Region # Room # +# Skull": {
+   "count": 1008,
+   "first_id": 251001,
+   "digest": "6918a3983983e713"
+  },
+  "Dream Region # Room # +# Staff": {
+   "count": 1008,
+   "first_id": 250001,
+   "digest": "237fbd2bb4ee0922"
+  },
+  "Dream Region # Room # Axe": {
+   "count": 144,
+   "first_id": 226001,
+   "digest": "b086df07b840e668"
+  },
+  "Dream Region # Room # Blades": {
+   "count": 144,
+   "first_id": 224501,
+   "digest": "842e4403a7b73b96"
+  },
+  "Dream Region # Room # Coat": {
+   "count": 144,
+   "first_id": 226501,
+   "digest": "bdd8b4439452573c"
+  },
+  "Dream Region # Room # Flames": {
+   "count": 144,
+   "first_id": 225501,
+   "digest": "cd7108bfc9a217ab"
+  },
+  "Dream Region # Room # Skull": {
+   "count": 144,
+   "first_id": 225001,
+   "digest": "c405aee79c8fc274"
+  },
+  "Dream Region # Room # Staff": {
+   "count": 144,
+   "first_id": 224001,
+   "digest": "20dccfda21e8f78c"
+  },
+  "Dream Score #": {
+   "count": 1000,
+   "first_id": 220001,
+   "digest": "5483b44154bb0273"
+  },
+  "Eos Flames Dream Region # Room #": {
+   "count": 144,
+   "first_id": 234501,
+   "digest": "ff13c80d0662c41e"
+  },
+  "Eos Flames Dream Region # Room # +#": {
+   "count": 1008,
+   "first_id": 286501,
+   "digest": "2bac30017fffa834"
+  },
+  "Eos Flames Nightmare Asphodel Room #": {
+   "count": 15,
+   "first_id": 161316,
+   "digest": "c01229f1b0099aae"
+  },
+  "Eos Flames Nightmare Asphodel Room # +#": {
+   "count": 105,
+   "first_id": 163816,
+   "digest": "664c162937f698c1"
+  },
+  "Eos Flames Nightmare Elysium Room #": {
+   "count": 15,
+   "first_id": 161331,
+   "digest": "b3ec8abaf2fc7fbc"
+  },
+  "Eos Flames Nightmare Elysium Room # +#": {
+   "count": 105,
+   "first_id": 163831,
+   "digest": "9488afd434c45712"
+  },
+  "Eos Flames Nightmare Styx Room #": {
+   "count": 15,
+   "first_id": 161346,
+   "digest": "ae3868daace0aa0d"
+  },
+  "Eos Flames Nightmare Styx Room # +#": {
+   "count": 105,
+   "first_id": 163846,
+   "digest": "4bae049300784668"
+  },
+  "Eos Flames Nightmare Tartarus Room #": {
+   "count": 15,
+   "first_id": 161301,
+   "digest": "e5ef1cdf4aff64a2"
+  },
+  "Eos Flames Nightmare Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 163801,
+   "digest": "3b57e084ef46fd28"
+  },
+  "Eos Flames Room #": {
+   "count": 60,
+   "first_id": 191301,
+   "digest": "caf6d5a8417564f3"
+  },
+  "Eos Flames Room # +#": {
+   "count": 420,
+   "first_id": 193801,
+   "digest": "8c3602eefbd33b55"
+  },
+  "Eos Flames Surface City of Ephyra Room #": {
+   "count": 15,
+   "first_id": 131301,
+   "digest": "109b4ee063423d12"
+  },
+  "Eos Flames Surface City of Ephyra Room # +#": {
+   "count": 105,
+   "first_id": 133801,
+   "digest": "0e61743ce9ba8090"
+  },
+  "Eos Flames Surface Mount Olympus Room #": {
+   "count": 15,
+   "first_id": 131331,
+   "digest": "775796ad77f66750"
+  },
+  "Eos Flames Surface Mount Olympus Room # +#": {
+   "count": 105,
+   "first_id": 133831,
+   "digest": "da0e436255a98586"
+  },
+  "Eos Flames Surface Rift of Thessaly Room #": {
+   "count": 15,
+   "first_id": 131316,
+   "digest": "1c20216fa675a0df"
+  },
+  "Eos Flames Surface Rift of Thessaly Room # +#": {
+   "count": 105,
+   "first_id": 133816,
+   "digest": "4aecb67f9309f0f9"
+  },
+  "Eos Flames Surface The Summit Room #": {
+   "count": 15,
+   "first_id": 131346,
+   "digest": "3eb002761466f73b"
+  },
+  "Eos Flames Surface The Summit Room # +#": {
+   "count": 105,
+   "first_id": 133846,
+   "digest": "7ec0ca3402348627"
+  },
+  "Eos Flames Underworld Erebus Room #": {
+   "count": 15,
+   "first_id": 101301,
+   "digest": "3626acf2a25a5912"
+  },
+  "Eos Flames Underworld Erebus Room # +#": {
+   "count": 105,
+   "first_id": 103801,
+   "digest": "68a75ff80ee81835"
+  },
+  "Eos Flames Underworld Fields of Mourning Room #": {
+   "count": 15,
+   "first_id": 101331,
+   "digest": "7f0b62cb8883196c"
+  },
+  "Eos Flames Underworld Fields of Mourning Room # +#": {
+   "count": 105,
+   "first_id": 103831,
+   "digest": "0185568a16685eb3"
+  },
+  "Eos Flames Underworld Oceanus Room #": {
+   "count": 15,
+   "first_id": 101316,
+   "digest": "f1f7fececa0c61b8"
+  },
+  "Eos Flames Underworld Oceanus Room # +#": {
+   "count": 105,
+   "first_id": 103816,
+   "digest": "c44a9ced19228954"
+  },
+  "Eos Flames Underworld Tartarus Room #": {
+   "count": 15,
+   "first_id": 101346,
+   "digest": "1460c6ffd50651e0"
+  },
+  "Eos Flames Underworld Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 103846,
+   "digest": "ad02132e891a146a"
+  },
+  "Find Hecate #": {
+   "count": 3,
+   "first_id": 31002,
+   "digest": "7a8afea524c03895"
+  },
+  "Hel Skull Dream Region # Room #": {
+   "count": 144,
+   "first_id": 233501,
+   "digest": "7419cd04429cebc9"
+  },
+  "Hel Skull Dream Region # Room # +#": {
+   "count": 1008,
+   "first_id": 285501,
+   "digest": "42f22f6b02754f2c"
+  },
+  "Hel Skull Nightmare Asphodel Room #": {
+   "count": 15,
+   "first_id": 161116,
+   "digest": "3cd48a67031ddeaf"
+  },
+  "Hel Skull Nightmare Asphodel Room # +#": {
+   "count": 105,
+   "first_id": 163616,
+   "digest": "5d31589207e2ebbe"
+  },
+  "Hel Skull Nightmare Elysium Room #": {
+   "count": 15,
+   "first_id": 161131,
+   "digest": "5143d6cbde455b9a"
+  },
+  "Hel Skull Nightmare Elysium Room # +#": {
+   "count": 105,
+   "first_id": 163631,
+   "digest": "9b10c149597e8241"
+  },
+  "Hel Skull Nightmare Styx Room #": {
+   "count": 15,
+   "first_id": 161146,
+   "digest": "698e1d4bf7637cb8"
+  },
+  "Hel Skull Nightmare Styx Room # +#": {
+   "count": 105,
+   "first_id": 163646,
+   "digest": "f2cd82a3324dc029"
+  },
+  "Hel Skull Nightmare Tartarus Room #": {
+   "count": 15,
+   "first_id": 161101,
+   "digest": "7c4f8ed7233eb830"
+  },
+  "Hel Skull Nightmare Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 163601,
+   "digest": "5364d14d47cbe574"
+  },
+  "Hel Skull Room #": {
+   "count": 60,
+   "first_id": 191101,
+   "digest": "652b1c5ff9c0aff7"
+  },
+  "Hel Skull Room # +#": {
+   "count": 420,
+   "first_id": 193601,
+   "digest": "0699e286420c99b9"
+  },
+  "Hel Skull Surface City of Ephyra Room #": {
+   "count": 15,
+   "first_id": 131101,
+   "digest": "d8ce0b2e2860963d"
+  },
+  "Hel Skull Surface City of Ephyra Room # +#": {
+   "count": 105,
+   "first_id": 133601,
+   "digest": "0a749a8aaeb5a7e4"
+  },
+  "Hel Skull Surface Mount Olympus Room #": {
+   "count": 15,
+   "first_id": 131131,
+   "digest": "6f14ed50054ae42c"
+  },
+  "Hel Skull Surface Mount Olympus Room # +#": {
+   "count": 105,
+   "first_id": 133631,
+   "digest": "b9a1b60b7bba51c4"
+  },
+  "Hel Skull Surface Rift of Thessaly Room #": {
+   "count": 15,
+   "first_id": 131116,
+   "digest": "00552129bdf76d2b"
+  },
+  "Hel Skull Surface Rift of Thessaly Room # +#": {
+   "count": 105,
+   "first_id": 133616,
+   "digest": "6b6becf1f13410d3"
+  },
+  "Hel Skull Surface The Summit Room #": {
+   "count": 15,
+   "first_id": 131146,
+   "digest": "c30e9425106300f4"
+  },
+  "Hel Skull Surface The Summit Room # +#": {
+   "count": 105,
+   "first_id": 133646,
+   "digest": "b4a2a8a460975a20"
+  },
+  "Hel Skull Underworld Erebus Room #": {
+   "count": 15,
+   "first_id": 101101,
+   "digest": "93f61339aba5b2d1"
+  },
+  "Hel Skull Underworld Erebus Room # +#": {
+   "count": 105,
+   "first_id": 103601,
+   "digest": "39a4c353491862df"
+  },
+  "Hel Skull Underworld Fields of Mourning Room #": {
+   "count": 15,
+   "first_id": 101131,
+   "digest": "19323cfdd56ad760"
+  },
+  "Hel Skull Underworld Fields of Mourning Room # +#": {
+   "count": 105,
+   "first_id": 103631,
+   "digest": "9f953e9ccf1a3821"
+  },
+  "Hel Skull Underworld Oceanus Room #": {
+   "count": 15,
+   "first_id": 101116,
+   "digest": "09ba642ba0b570ab"
+  },
+  "Hel Skull Underworld Oceanus Room # +#": {
+   "count": 105,
+   "first_id": 103616,
+   "digest": "15262669693c2fe2"
+  },
+  "Hel Skull Underworld Tartarus Room #": {
+   "count": 15,
+   "first_id": 101146,
+   "digest": "ce687848571ef761"
+  },
+  "Hel Skull Underworld Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 103646,
+   "digest": "53a332d187906ffc"
+  },
+  "Medea Skull Dream Region # Room #": {
+   "count": 144,
+   "first_id": 232501,
+   "digest": "87bda47b0cfa6399"
+  },
+  "Medea Skull Dream Region # Room # +#": {
+   "count": 1008,
+   "first_id": 284501,
+   "digest": "98fb78905a95c70d"
+  },
+  "Medea Skull Nightmare Asphodel Room #": {
+   "count": 15,
+   "first_id": 160916,
+   "digest": "ff4cdbb5e80b91a1"
+  },
+  "Medea Skull Nightmare Asphodel Room # +#": {
+   "count": 105,
+   "first_id": 163416,
+   "digest": "c8fadd1c2ca4413b"
+  },
+  "Medea Skull Nightmare Elysium Room #": {
+   "count": 15,
+   "first_id": 160931,
+   "digest": "e296199fc00aa10a"
+  },
+  "Medea Skull Nightmare Elysium Room # +#": {
+   "count": 105,
+   "first_id": 163431,
+   "digest": "5052618f94db0a48"
+  },
+  "Medea Skull Nightmare Styx Room #": {
+   "count": 15,
+   "first_id": 160946,
+   "digest": "77b75078d66b0dbb"
+  },
+  "Medea Skull Nightmare Styx Room # +#": {
+   "count": 105,
+   "first_id": 163446,
+   "digest": "6b3479eb08dc2eb3"
+  },
+  "Medea Skull Nightmare Tartarus Room #": {
+   "count": 15,
+   "first_id": 160901,
+   "digest": "84a906ba78984657"
+  },
+  "Medea Skull Nightmare Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 163401,
+   "digest": "d4ab155708b53659"
+  },
+  "Medea Skull Room #": {
+   "count": 60,
+   "first_id": 190901,
+   "digest": "7fc96e7cca19a93a"
+  },
+  "Medea Skull Room # +#": {
+   "count": 420,
+   "first_id": 193401,
+   "digest": "42743216423012a1"
+  },
+  "Medea Skull Surface City of Ephyra Room #": {
+   "count": 15,
+   "first_id": 130901,
+   "digest": "13ac862af3626582"
+  },
+  "Medea Skull Surface City of Ephyra Room # +#": {
+   "count": 105,
+   "first_id": 133401,
+   "digest": "85a5e6a292c21b0f"
+  },
+  "Medea Skull Surface Mount Olympus Room #": {
+   "count": 15,
+   "first_id": 130931,
+   "digest": "efdc88e85018b3d1"
+  },
+  "Medea Skull Surface Mount Olympus Room # +#": {
+   "count": 105,
+   "first_id": 133431,
+   "digest": "2755eabd3c1339cb"
+  },
+  "Medea Skull Surface Rift of Thessaly Room #": {
+   "count": 15,
+   "first_id": 130916,
+   "digest": "dcb57a21752d1f5c"
+  },
+  "Medea Skull Surface Rift of Thessaly Room # +#": {
+   "count": 105,
+   "first_id": 133416,
+   "digest": "9d29ec85f23a08ae"
+  },
+  "Medea Skull Surface The Summit Room #": {
+   "count": 15,
+   "first_id": 130946,
+   "digest": "7b1e8e17e0df0f1c"
+  },
+  "Medea Skull Surface The Summit Room # +#": {
+   "count": 105,
+   "first_id": 133446,
+   "digest": "f03eb6bc3b4302ff"
+  },
+  "Medea Skull Underworld Erebus Room #": {
+   "count": 15,
+   "first_id": 100901,
+   "digest": "2d999e4552532279"
+  },
+  "Medea Skull Underworld Erebus Room # +#": {
+   "count": 105,
+   "first_id": 103401,
+   "digest": "e586efd3dddd0f1b"
+  },
+  "Medea Skull Underworld Fields of Mourning Room #": {
+   "count": 15,
+   "first_id": 100931,
+   "digest": "74b2822ed17678d0"
+  },
+  "Medea Skull Underworld Fields of Mourning Room # +#": {
+   "count": 105,
+   "first_id": 103431,
+   "digest": "799e6a8e88adab90"
+  },
+  "Medea Skull Underworld Oceanus Room #": {
+   "count": 15,
+   "first_id": 100916,
+   "digest": "c3bea431f72e4f07"
+  },
+  "Medea Skull Underworld Oceanus Room # +#": {
+   "count": 105,
+   "first_id": 103416,
+   "digest": "0d705b6e9d7be66e"
+  },
+  "Medea Skull Underworld Tartarus Room #": {
+   "count": 15,
+   "first_id": 100946,
+   "digest": "4a9ff9b4fad7f266"
+  },
+  "Medea Skull Underworld Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 103446,
+   "digest": "2c8d8912881bfa06"
+  },
+  "Melinoe Axe Dream Region # Room #": {
+   "count": 144,
+   "first_id": 236001,
+   "digest": "645c058324420dca"
+  },
+  "Melinoe Axe Dream Region # Room # +#": {
+   "count": 1008,
+   "first_id": 288001,
+   "digest": "11c2db22c6224fe2"
+  },
+  "Melinoe Axe Nightmare Asphodel Room #": {
+   "count": 15,
+   "first_id": 161616,
+   "digest": "29f37b0aaca2d669"
+  },
+  "Melinoe Axe Nightmare Asphodel Room # +#": {
+   "count": 105,
+   "first_id": 164116,
+   "digest": "5fced1444837a4d1"
+  },
+  "Melinoe Axe Nightmare Elysium Room #": {
+   "count": 15,
+   "first_id": 161631,
+   "digest": "53a4a73f2b557871"
+  },
+  "Melinoe Axe Nightmare Elysium Room # +#": {
+   "count": 105,
+   "first_id": 164131,
+   "digest": "f32fa5c9af2fe618"
+  },
+  "Melinoe Axe Nightmare Styx Room #": {
+   "count": 15,
+   "first_id": 161646,
+   "digest": "3f6213ce2795a0ce"
+  },
+  "Melinoe Axe Nightmare Styx Room # +#": {
+   "count": 105,
+   "first_id": 164146,
+   "digest": "98f96202dabfa02d"
+  },
+  "Melinoe Axe Nightmare Tartarus Room #": {
+   "count": 15,
+   "first_id": 161601,
+   "digest": "5e0c0cfe38cbea0a"
+  },
+  "Melinoe Axe Nightmare Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 164101,
+   "digest": "6ded390d5b57bc15"
+  },
+  "Melinoe Axe Room #": {
+   "count": 60,
+   "first_id": 191601,
+   "digest": "c4c61656729ce29e"
+  },
+  "Melinoe Axe Room # +#": {
+   "count": 420,
+   "first_id": 194101,
+   "digest": "1268f5ceb2328ca9"
+  },
+  "Melinoe Axe Surface City of Ephyra Room #": {
+   "count": 15,
+   "first_id": 131601,
+   "digest": "354c7d2e2bdf4184"
+  },
+  "Melinoe Axe Surface City of Ephyra Room # +#": {
+   "count": 105,
+   "first_id": 134101,
+   "digest": "1850a00661845884"
+  },
+  "Melinoe Axe Surface Mount Olympus Room #": {
+   "count": 15,
+   "first_id": 131631,
+   "digest": "aced380ae95fa265"
+  },
+  "Melinoe Axe Surface Mount Olympus Room # +#": {
+   "count": 105,
+   "first_id": 134131,
+   "digest": "20c70e79b4b03a77"
+  },
+  "Melinoe Axe Surface Rift of Thessaly Room #": {
+   "count": 15,
+   "first_id": 131616,
+   "digest": "1c9037c46b97ec94"
+  },
+  "Melinoe Axe Surface Rift of Thessaly Room # +#": {
+   "count": 105,
+   "first_id": 134116,
+   "digest": "17bcf6bd3d9fa9ea"
+  },
+  "Melinoe Axe Surface The Summit Room #": {
+   "count": 15,
+   "first_id": 131646,
+   "digest": "aa13956bdb30810b"
+  },
+  "Melinoe Axe Surface The Summit Room # +#": {
+   "count": 105,
+   "first_id": 134146,
+   "digest": "0b141c733d41ae14"
+  },
+  "Melinoe Axe Underworld Erebus Room #": {
+   "count": 15,
+   "first_id": 101601,
+   "digest": "f01a7d2684369c60"
+  },
+  "Melinoe Axe Underworld Erebus Room # +#": {
+   "count": 105,
+   "first_id": 104101,
+   "digest": "5bfbc2e053b25001"
+  },
+  "Melinoe Axe Underworld Fields of Mourning Room #": {
+   "count": 15,
+   "first_id": 101631,
+   "digest": "e5becea19f5eefa3"
+  },
+  "Melinoe Axe Underworld Fields of Mourning Room # +#": {
+   "count": 105,
+   "first_id": 104131,
+   "digest": "af2036f9a71e0dca"
+  },
+  "Melinoe Axe Underworld Oceanus Room #": {
+   "count": 15,
+   "first_id": 101616,
+   "digest": "77b638fcc802bb93"
+  },
+  "Melinoe Axe Underworld Oceanus Room # +#": {
+   "count": 105,
+   "first_id": 104116,
+   "digest": "8d111cc4160941d1"
+  },
+  "Melinoe Axe Underworld Tartarus Room #": {
+   "count": 15,
+   "first_id": 101646,
+   "digest": "557577e140452d83"
+  },
+  "Melinoe Axe Underworld Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 104146,
+   "digest": "61196cafa261621a"
+  },
+  "Melinoe Blades Dream Region # Room #": {
+   "count": 144,
+   "first_id": 230001,
+   "digest": "21e5101bc34cd52b"
+  },
+  "Melinoe Blades Dream Region # Room # +#": {
+   "count": 1008,
+   "first_id": 282001,
+   "digest": "3a8297c71705f225"
+  },
+  "Melinoe Blades Nightmare Asphodel Room #": {
+   "count": 15,
+   "first_id": 160416,
+   "digest": "b98e9ebb6eea5c6f"
+  },
+  "Melinoe Blades Nightmare Asphodel Room # +#": {
+   "count": 105,
+   "first_id": 162916,
+   "digest": "2208ca9c7b3a4945"
+  },
+  "Melinoe Blades Nightmare Elysium Room #": {
+   "count": 15,
+   "first_id": 160431,
+   "digest": "604538afb28b83ec"
+  },
+  "Melinoe Blades Nightmare Elysium Room # +#": {
+   "count": 105,
+   "first_id": 162931,
+   "digest": "ae91a4dffa952cb7"
+  },
+  "Melinoe Blades Nightmare Styx Room #": {
+   "count": 15,
+   "first_id": 160446,
+   "digest": "81768f14463867ad"
+  },
+  "Melinoe Blades Nightmare Styx Room # +#": {
+   "count": 105,
+   "first_id": 162946,
+   "digest": "d3ef47d147573590"
+  },
+  "Melinoe Blades Nightmare Tartarus Room #": {
+   "count": 15,
+   "first_id": 160401,
+   "digest": "5ee730b5742f4b41"
+  },
+  "Melinoe Blades Nightmare Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 162901,
+   "digest": "ba3130b7c23d1e1f"
+  },
+  "Melinoe Blades Room #": {
+   "count": 60,
+   "first_id": 190401,
+   "digest": "69b17cde61bce862"
+  },
+  "Melinoe Blades Room # +#": {
+   "count": 420,
+   "first_id": 192901,
+   "digest": "07ec6666d8d315f8"
+  },
+  "Melinoe Blades Surface City of Ephyra Room #": {
+   "count": 15,
+   "first_id": 130401,
+   "digest": "c8e1a2d556ba36ab"
+  },
+  "Melinoe Blades Surface City of Ephyra Room # +#": {
+   "count": 105,
+   "first_id": 132901,
+   "digest": "28ed7628a7804680"
+  },
+  "Melinoe Blades Surface Mount Olympus Room #": {
+   "count": 15,
+   "first_id": 130431,
+   "digest": "5cead963aef6b345"
+  },
+  "Melinoe Blades Surface Mount Olympus Room # +#": {
+   "count": 105,
+   "first_id": 132931,
+   "digest": "ef0fc0e7a6959687"
+  },
+  "Melinoe Blades Surface Rift of Thessaly Room #": {
+   "count": 15,
+   "first_id": 130416,
+   "digest": "c1fb1e114ae7239c"
+  },
+  "Melinoe Blades Surface Rift of Thessaly Room # +#": {
+   "count": 105,
+   "first_id": 132916,
+   "digest": "89db0a075e5bef5f"
+  },
+  "Melinoe Blades Surface The Summit Room #": {
+   "count": 15,
+   "first_id": 130446,
+   "digest": "cb6412c8d16a8d8f"
+  },
+  "Melinoe Blades Surface The Summit Room # +#": {
+   "count": 105,
+   "first_id": 132946,
+   "digest": "25f09c638c087c4d"
+  },
+  "Melinoe Blades Underworld Erebus Room #": {
+   "count": 15,
+   "first_id": 100401,
+   "digest": "0a3a65e04b378a64"
+  },
+  "Melinoe Blades Underworld Erebus Room # +#": {
+   "count": 105,
+   "first_id": 102901,
+   "digest": "f9a995f72d280f01"
+  },
+  "Melinoe Blades Underworld Fields of Mourning Room #": {
+   "count": 15,
+   "first_id": 100431,
+   "digest": "6c7a780d8678d0e4"
+  },
+  "Melinoe Blades Underworld Fields of Mourning Room # +#": {
+   "count": 105,
+   "first_id": 102931,
+   "digest": "b4fc3da6925247c6"
+  },
+  "Melinoe Blades Underworld Oceanus Room #": {
+   "count": 15,
+   "first_id": 100416,
+   "digest": "6556717cab429969"
+  },
+  "Melinoe Blades Underworld Oceanus Room # +#": {
+   "count": 105,
+   "first_id": 102916,
+   "digest": "231e1274026bcbdb"
+  },
+  "Melinoe Blades Underworld Tartarus Room #": {
+   "count": 15,
+   "first_id": 100446,
+   "digest": "fc7a6108f6569d6a"
+  },
+  "Melinoe Blades Underworld Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 102946,
+   "digest": "f089d2d5c4e618d6"
+  },
+  "Melinoe Coat Dream Region # Room #": {
+   "count": 144,
+   "first_id": 238001,
+   "digest": "2982fe783ee536fe"
+  },
+  "Melinoe Coat Dream Region # Room # +#": {
+   "count": 1008,
+   "first_id": 290001,
+   "digest": "6d7b6081a2cf18c5"
+  },
+  "Melinoe Coat Nightmare Asphodel Room #": {
+   "count": 15,
+   "first_id": 162016,
+   "digest": "6a66a9be86544654"
+  },
+  "Melinoe Coat Nightmare Asphodel Room # +#": {
+   "count": 105,
+   "first_id": 164516,
+   "digest": "ef22eb3fa43a3417"
+  },
+  "Melinoe Coat Nightmare Elysium Room #": {
+   "count": 15,
+   "first_id": 162031,
+   "digest": "2743ab1ae8b153e3"
+  },
+  "Melinoe Coat Nightmare Elysium Room # +#": {
+   "count": 105,
+   "first_id": 164531,
+   "digest": "24c0f569c137db07"
+  },
+  "Melinoe Coat Nightmare Styx Room #": {
+   "count": 15,
+   "first_id": 162046,
+   "digest": "d8bc6bba1e5e7263"
+  },
+  "Melinoe Coat Nightmare Styx Room # +#": {
+   "count": 105,
+   "first_id": 164546,
+   "digest": "3cda5e6433be5bca"
+  },
+  "Melinoe Coat Nightmare Tartarus Room #": {
+   "count": 15,
+   "first_id": 162001,
+   "digest": "7ba2d350107fb2c1"
+  },
+  "Melinoe Coat Nightmare Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 164501,
+   "digest": "f120a74083b8d3da"
+  },
+  "Melinoe Coat Room #": {
+   "count": 60,
+   "first_id": 192001,
+   "digest": "76da79165c505a25"
+  },
+  "Melinoe Coat Room # +#": {
+   "count": 420,
+   "first_id": 194501,
+   "digest": "249e2212589a41b4"
+  },
+  "Melinoe Coat Surface City of Ephyra Room #": {
+   "count": 15,
+   "first_id": 132001,
+   "digest": "0c3ea67951017ce6"
+  },
+  "Melinoe Coat Surface City of Ephyra Room # +#": {
+   "count": 105,
+   "first_id": 134501,
+   "digest": "302253e924c999dc"
+  },
+  "Melinoe Coat Surface Mount Olympus Room #": {
+   "count": 15,
+   "first_id": 132031,
+   "digest": "13acdb9b5f63e370"
+  },
+  "Melinoe Coat Surface Mount Olympus Room # +#": {
+   "count": 105,
+   "first_id": 134531,
+   "digest": "fdd31f52c5083752"
+  },
+  "Melinoe Coat Surface Rift of Thessaly Room #": {
+   "count": 15,
+   "first_id": 132016,
+   "digest": "1732df536907ee1a"
+  },
+  "Melinoe Coat Surface Rift of Thessaly Room # +#": {
+   "count": 105,
+   "first_id": 134516,
+   "digest": "70635b9d9f89eb33"
+  },
+  "Melinoe Coat Surface The Summit Room #": {
+   "count": 15,
+   "first_id": 132046,
+   "digest": "b8664e30cc0b142e"
+  },
+  "Melinoe Coat Surface The Summit Room # +#": {
+   "count": 105,
+   "first_id": 134546,
+   "digest": "aaf74298772d6178"
+  },
+  "Melinoe Coat Underworld Erebus Room #": {
+   "count": 15,
+   "first_id": 102001,
+   "digest": "c62895c0e093b565"
+  },
+  "Melinoe Coat Underworld Erebus Room # +#": {
+   "count": 105,
+   "first_id": 104501,
+   "digest": "971371a8aea835fa"
+  },
+  "Melinoe Coat Underworld Fields of Mourning Room #": {
+   "count": 15,
+   "first_id": 102031,
+   "digest": "5b068833511b03b8"
+  },
+  "Melinoe Coat Underworld Fields of Mourning Room # +#": {
+   "count": 105,
+   "first_id": 104531,
+   "digest": "2c1c7ced7a35304f"
+  },
+  "Melinoe Coat Underworld Oceanus Room #": {
+   "count": 15,
+   "first_id": 102016,
+   "digest": "6e2d5b4174a65619"
+  },
+  "Melinoe Coat Underworld Oceanus Room # +#": {
+   "count": 105,
+   "first_id": 104516,
+   "digest": "d301227eac24d6a0"
+  },
+  "Melinoe Coat Underworld Tartarus Room #": {
+   "count": 15,
+   "first_id": 102046,
+   "digest": "13d1e338497fa0ef"
+  },
+  "Melinoe Coat Underworld Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 104546,
+   "digest": "0e875ed2b408cd07"
+  },
+  "Melinoe Flames Dream Region # Room #": {
+   "count": 144,
+   "first_id": 234001,
+   "digest": "74ec96a2dcc6bfd3"
+  },
+  "Melinoe Flames Dream Region # Room # +#": {
+   "count": 1008,
+   "first_id": 286001,
+   "digest": "d389a9809ad0ec90"
+  },
+  "Melinoe Flames Nightmare Asphodel Room #": {
+   "count": 15,
+   "first_id": 161216,
+   "digest": "5f1e922dab8785e5"
+  },
+  "Melinoe Flames Nightmare Asphodel Room # +#": {
+   "count": 105,
+   "first_id": 163716,
+   "digest": "e9a21be4ff3ca72a"
+  },
+  "Melinoe Flames Nightmare Elysium Room #": {
+   "count": 15,
+   "first_id": 161231,
+   "digest": "8e3e1284aa64bf66"
+  },
+  "Melinoe Flames Nightmare Elysium Room # +#": {
+   "count": 105,
+   "first_id": 163731,
+   "digest": "22262d0dedab2f2a"
+  },
+  "Melinoe Flames Nightmare Styx Room #": {
+   "count": 15,
+   "first_id": 161246,
+   "digest": "f0d65e4ec84c0d9a"
+  },
+  "Melinoe Flames Nightmare Styx Room # +#": {
+   "count": 105,
+   "first_id": 163746,
+   "digest": "e4e3dd67afaba14f"
+  },
+  "Melinoe Flames Nightmare Tartarus Room #": {
+   "count": 15,
+   "first_id": 161201,
+   "digest": "d84eba8165a3630c"
+  },
+  "Melinoe Flames Nightmare Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 163701,
+   "digest": "4a15306979c4a994"
+  },
+  "Melinoe Flames Room #": {
+   "count": 60,
+   "first_id": 191201,
+   "digest": "f174829ab42c13a7"
+  },
+  "Melinoe Flames Room # +#": {
+   "count": 420,
+   "first_id": 193701,
+   "digest": "7bd1513721572878"
+  },
+  "Melinoe Flames Surface City of Ephyra Room #": {
+   "count": 15,
+   "first_id": 131201,
+   "digest": "ec389fcdcef29cf3"
+  },
+  "Melinoe Flames Surface City of Ephyra Room # +#": {
+   "count": 105,
+   "first_id": 133701,
+   "digest": "3c62e27e70a61bed"
+  },
+  "Melinoe Flames Surface Mount Olympus Room #": {
+   "count": 15,
+   "first_id": 131231,
+   "digest": "750f7da03ca13162"
+  },
+  "Melinoe Flames Surface Mount Olympus Room # +#": {
+   "count": 105,
+   "first_id": 133731,
+   "digest": "3c9b3baa3c346b59"
+  },
+  "Melinoe Flames Surface Rift of Thessaly Room #": {
+   "count": 15,
+   "first_id": 131216,
+   "digest": "8b211c01bc6382e7"
+  },
+  "Melinoe Flames Surface Rift of Thessaly Room # +#": {
+   "count": 105,
+   "first_id": 133716,
+   "digest": "69a6870e6e90a343"
+  },
+  "Melinoe Flames Surface The Summit Room #": {
+   "count": 15,
+   "first_id": 131246,
+   "digest": "03a6ade8b113395a"
+  },
+  "Melinoe Flames Surface The Summit Room # +#": {
+   "count": 105,
+   "first_id": 133746,
+   "digest": "d385e02b411e989b"
+  },
+  "Melinoe Flames Underworld Erebus Room #": {
+   "count": 15,
+   "first_id": 101201,
+   "digest": "58e16fb2c57df488"
+  },
+  "Melinoe Flames Underworld Erebus Room # +#": {
+   "count": 105,
+   "first_id": 103701,
+   "digest": "3b0f32f0cf5b7e76"
+  },
+  "Melinoe Flames Underworld Fields of Mourning Room #": {
+   "count": 15,
+   "first_id": 101231,
+   "digest": "a299d6797be83305"
+  },
+  "Melinoe Flames Underworld Fields of Mourning Room # +#": {
+   "count": 105,
+   "first_id": 103731,
+   "digest": "e477e03f997ee42e"
+  },
+  "Melinoe Flames Underworld Oceanus Room #": {
+   "count": 15,
+   "first_id": 101216,
+   "digest": "3bcb53f205841c04"
+  },
+  "Melinoe Flames Underworld Oceanus Room # +#": {
+   "count": 105,
+   "first_id": 103716,
+   "digest": "dd97904a3a55173c"
+  },
+  "Melinoe Flames Underworld Tartarus Room #": {
+   "count": 15,
+   "first_id": 101246,
+   "digest": "0c462d64b73579a7"
+  },
+  "Melinoe Flames Underworld Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 103746,
+   "digest": "dc558b837f734b5b"
+  },
+  "Melinoe Skull Dream Region # Room #": {
+   "count": 144,
+   "first_id": 232001,
+   "digest": "001a06ba1e54fdc0"
+  },
+  "Melinoe Skull Dream Region # Room # +#": {
+   "count": 1008,
+   "first_id": 284001,
+   "digest": "d776778168276e3e"
+  },
+  "Melinoe Skull Nightmare Asphodel Room #": {
+   "count": 15,
+   "first_id": 160816,
+   "digest": "0be951ff760d2b18"
+  },
+  "Melinoe Skull Nightmare Asphodel Room # +#": {
+   "count": 105,
+   "first_id": 163316,
+   "digest": "0601e9d2090f84db"
+  },
+  "Melinoe Skull Nightmare Elysium Room #": {
+   "count": 15,
+   "first_id": 160831,
+   "digest": "e4b00d73a3aadc40"
+  },
+  "Melinoe Skull Nightmare Elysium Room # +#": {
+   "count": 105,
+   "first_id": 163331,
+   "digest": "db8e07edfb776d29"
+  },
+  "Melinoe Skull Nightmare Styx Room #": {
+   "count": 15,
+   "first_id": 160846,
+   "digest": "aba79e5da5671aec"
+  },
+  "Melinoe Skull Nightmare Styx Room # +#": {
+   "count": 105,
+   "first_id": 163346,
+   "digest": "ae6f344d5f21c159"
+  },
+  "Melinoe Skull Nightmare Tartarus Room #": {
+   "count": 15,
+   "first_id": 160801,
+   "digest": "663084795ff12eb0"
+  },
+  "Melinoe Skull Nightmare Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 163301,
+   "digest": "021bb2dd951953fb"
+  },
+  "Melinoe Skull Room #": {
+   "count": 60,
+   "first_id": 190801,
+   "digest": "06c4226fd75b0a24"
+  },
+  "Melinoe Skull Room # +#": {
+   "count": 420,
+   "first_id": 193301,
+   "digest": "f7e317f487c4e02b"
+  },
+  "Melinoe Skull Surface City of Ephyra Room #": {
+   "count": 15,
+   "first_id": 130801,
+   "digest": "c4e27a4a8e445c3a"
+  },
+  "Melinoe Skull Surface City of Ephyra Room # +#": {
+   "count": 105,
+   "first_id": 133301,
+   "digest": "05e1c83eaaa63ac0"
+  },
+  "Melinoe Skull Surface Mount Olympus Room #": {
+   "count": 15,
+   "first_id": 130831,
+   "digest": "d5a3bff1bb9e6f46"
+  },
+  "Melinoe Skull Surface Mount Olympus Room # +#": {
+   "count": 105,
+   "first_id": 133331,
+   "digest": "7f6a61314ebc517f"
+  },
+  "Melinoe Skull Surface Rift of Thessaly Room #": {
+   "count": 15,
+   "first_id": 130816,
+   "digest": "2bf2a110eb6cc0cb"
+  },
+  "Melinoe Skull Surface Rift of Thessaly Room # +#": {
+   "count": 105,
+   "first_id": 133316,
+   "digest": "0832e0205fb95104"
+  },
+  "Melinoe Skull Surface The Summit Room #": {
+   "count": 15,
+   "first_id": 130846,
+   "digest": "331ece7c7030626f"
+  },
+  "Melinoe Skull Surface The Summit Room # +#": {
+   "count": 105,
+   "first_id": 133346,
+   "digest": "d2bb237912a48421"
+  },
+  "Melinoe Skull Underworld Erebus Room #": {
+   "count": 15,
+   "first_id": 100801,
+   "digest": "74f6ddc913f3926f"
+  },
+  "Melinoe Skull Underworld Erebus Room # +#": {
+   "count": 105,
+   "first_id": 103301,
+   "digest": "9f67a2b8aabe2643"
+  },
+  "Melinoe Skull Underworld Fields of Mourning Room #": {
+   "count": 15,
+   "first_id": 100831,
+   "digest": "8b8ae13dafe89b11"
+  },
+  "Melinoe Skull Underworld Fields of Mourning Room # +#": {
+   "count": 105,
+   "first_id": 103331,
+   "digest": "16acb6fbc8feb608"
+  },
+  "Melinoe Skull Underworld Oceanus Room #": {
+   "count": 15,
+   "first_id": 100816,
+   "digest": "0a9391523fc082e2"
+  },
+  "Melinoe Skull Underworld Oceanus Room # +#": {
+   "count": 105,
+   "first_id": 103316,
+   "digest": "b9b587a5900c1f5b"
+  },
+  "Melinoe Skull Underworld Tartarus Room #": {
+   "count": 15,
+   "first_id": 100846,
+   "digest": "c0f22fb9b6cd61f9"
+  },
+  "Melinoe Skull Underworld Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 103346,
+   "digest": "7e9c2e59e6cdbb3d"
+  },
+  "Melinoe Staff Dream Region # Room #": {
+   "count": 144,
+   "first_id": 228001,
+   "digest": "f13a32bbaddfce42"
+  },
+  "Melinoe Staff Dream Region # Room # +#": {
+   "count": 1008,
+   "first_id": 280001,
+   "digest": "f588e8360876097b"
+  },
+  "Melinoe Staff Nightmare Asphodel Room #": {
+   "count": 15,
+   "first_id": 160016,
+   "digest": "58237145d700c3ae"
+  },
+  "Melinoe Staff Nightmare Asphodel Room # +#": {
+   "count": 105,
+   "first_id": 162516,
+   "digest": "4c8d41cc745c7f71"
+  },
+  "Melinoe Staff Nightmare Elysium Room #": {
+   "count": 15,
+   "first_id": 160031,
+   "digest": "f3520e28944c3a93"
+  },
+  "Melinoe Staff Nightmare Elysium Room # +#": {
+   "count": 105,
+   "first_id": 162531,
+   "digest": "48dbda7e849160eb"
+  },
+  "Melinoe Staff Nightmare Styx Room #": {
+   "count": 15,
+   "first_id": 160046,
+   "digest": "e35e705eb4396992"
+  },
+  "Melinoe Staff Nightmare Styx Room # +#": {
+   "count": 105,
+   "first_id": 162546,
+   "digest": "fe54e8c584847542"
+  },
+  "Melinoe Staff Nightmare Tartarus Room #": {
+   "count": 15,
+   "first_id": 160001,
+   "digest": "84047a7d36755a33"
+  },
+  "Melinoe Staff Nightmare Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 162501,
+   "digest": "a012b365aee9534c"
+  },
+  "Melinoe Staff Room #": {
+   "count": 60,
+   "first_id": 190001,
+   "digest": "96e47a5ab7201097"
+  },
+  "Melinoe Staff Room # +#": {
+   "count": 420,
+   "first_id": 192501,
+   "digest": "e27538724a6d0320"
+  },
+  "Melinoe Staff Surface City of Ephyra Room #": {
+   "count": 15,
+   "first_id": 130001,
+   "digest": "faf94dc403a7eb9c"
+  },
+  "Melinoe Staff Surface City of Ephyra Room # +#": {
+   "count": 105,
+   "first_id": 132501,
+   "digest": "292b7e17a626efdf"
+  },
+  "Melinoe Staff Surface Mount Olympus Room #": {
+   "count": 15,
+   "first_id": 130031,
+   "digest": "e1631f30418f8356"
+  },
+  "Melinoe Staff Surface Mount Olympus Room # +#": {
+   "count": 105,
+   "first_id": 132531,
+   "digest": "3ec0ebb191b326f5"
+  },
+  "Melinoe Staff Surface Rift of Thessaly Room #": {
+   "count": 15,
+   "first_id": 130016,
+   "digest": "33f5e64a5ee9b66b"
+  },
+  "Melinoe Staff Surface Rift of Thessaly Room # +#": {
+   "count": 105,
+   "first_id": 132516,
+   "digest": "16fafb8cc72ecd12"
+  },
+  "Melinoe Staff Surface The Summit Room #": {
+   "count": 15,
+   "first_id": 130046,
+   "digest": "895ad838aa5ddf3e"
+  },
+  "Melinoe Staff Surface The Summit Room # +#": {
+   "count": 105,
+   "first_id": 132546,
+   "digest": "ddbe66f751535e4c"
+  },
+  "Melinoe Staff Underworld Erebus Room #": {
+   "count": 15,
+   "first_id": 100001,
+   "digest": "796c6392feeb54ff"
+  },
+  "Melinoe Staff Underworld Erebus Room # +#": {
+   "count": 105,
+   "first_id": 102501,
+   "digest": "151b67bad7736438"
+  },
+  "Melinoe Staff Underworld Fields of Mourning Room #": {
+   "count": 15,
+   "first_id": 100031,
+   "digest": "f5eb1c8422d248ce"
+  },
+  "Melinoe Staff Underworld Fields of Mourning Room # +#": {
+   "count": 105,
+   "first_id": 102531,
+   "digest": "e46350a7403c1cba"
+  },
+  "Melinoe Staff Underworld Oceanus Room #": {
+   "count": 15,
+   "first_id": 100016,
+   "digest": "0281b0ff2b6138af"
+  },
+  "Melinoe Staff Underworld Oceanus Room # +#": {
+   "count": 105,
+   "first_id": 102516,
+   "digest": "66c3a3af1d54c5ac"
+  },
+  "Melinoe Staff Underworld Tartarus Room #": {
+   "count": 15,
+   "first_id": 100046,
+   "digest": "dc692e1695c646fe"
+  },
+  "Melinoe Staff Underworld Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 102546,
+   "digest": "20cac9b8cc69bab7"
+  },
+  "Momus Staff Dream Region # Room #": {
+   "count": 144,
+   "first_id": 229001,
+   "digest": "338bf8c1770eddc5"
+  },
+  "Momus Staff Dream Region # Room # +#": {
+   "count": 1008,
+   "first_id": 281001,
+   "digest": "1e0f6c5e1eec850e"
+  },
+  "Momus Staff Nightmare Asphodel Room #": {
+   "count": 15,
+   "first_id": 160216,
+   "digest": "3c49468afddf0da5"
+  },
+  "Momus Staff Nightmare Asphodel Room # +#": {
+   "count": 105,
+   "first_id": 162716,
+   "digest": "4ed2f5195842a691"
+  },
+  "Momus Staff Nightmare Elysium Room #": {
+   "count": 15,
+   "first_id": 160231,
+   "digest": "fa7e91d6fed67186"
+  },
+  "Momus Staff Nightmare Elysium Room # +#": {
+   "count": 105,
+   "first_id": 162731,
+   "digest": "17f444f7f0dbe3df"
+  },
+  "Momus Staff Nightmare Styx Room #": {
+   "count": 15,
+   "first_id": 160246,
+   "digest": "8e613c0efe6ec7ea"
+  },
+  "Momus Staff Nightmare Styx Room # +#": {
+   "count": 105,
+   "first_id": 162746,
+   "digest": "8d01963c8d69ebc2"
+  },
+  "Momus Staff Nightmare Tartarus Room #": {
+   "count": 15,
+   "first_id": 160201,
+   "digest": "754c1ad603a68e1f"
+  },
+  "Momus Staff Nightmare Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 162701,
+   "digest": "2d5a79607b3909dd"
+  },
+  "Momus Staff Room #": {
+   "count": 60,
+   "first_id": 190201,
+   "digest": "8f5ce95948e316fc"
+  },
+  "Momus Staff Room # +#": {
+   "count": 420,
+   "first_id": 192701,
+   "digest": "be7400b11575e6d8"
+  },
+  "Momus Staff Surface City of Ephyra Room #": {
+   "count": 15,
+   "first_id": 130201,
+   "digest": "66c99343a4bb0550"
+  },
+  "Momus Staff Surface City of Ephyra Room # +#": {
+   "count": 105,
+   "first_id": 132701,
+   "digest": "933d690236889c74"
+  },
+  "Momus Staff Surface Mount Olympus Room #": {
+   "count": 15,
+   "first_id": 130231,
+   "digest": "7e3d8066bc27fc91"
+  },
+  "Momus Staff Surface Mount Olympus Room # +#": {
+   "count": 105,
+   "first_id": 132731,
+   "digest": "1b507c6e4b48b53a"
+  },
+  "Momus Staff Surface Rift of Thessaly Room #": {
+   "count": 15,
+   "first_id": 130216,
+   "digest": "dc79a5c891c484dd"
+  },
+  "Momus Staff Surface Rift of Thessaly Room # +#": {
+   "count": 105,
+   "first_id": 132716,
+   "digest": "2fc72d5abe32f6cf"
+  },
+  "Momus Staff Surface The Summit Room #": {
+   "count": 15,
+   "first_id": 130246,
+   "digest": "cd229cbf6ceedad3"
+  },
+  "Momus Staff Surface The Summit Room # +#": {
+   "count": 105,
+   "first_id": 132746,
+   "digest": "1536868c44682fa6"
+  },
+  "Momus Staff Underworld Erebus Room #": {
+   "count": 15,
+   "first_id": 100201,
+   "digest": "232e6d574ee53d24"
+  },
+  "Momus Staff Underworld Erebus Room # +#": {
+   "count": 105,
+   "first_id": 102701,
+   "digest": "ca3b9cb5df50b77a"
+  },
+  "Momus Staff Underworld Fields of Mourning Room #": {
+   "count": 15,
+   "first_id": 100231,
+   "digest": "941869a489ce40d4"
+  },
+  "Momus Staff Underworld Fields of Mourning Room # +#": {
+   "count": 105,
+   "first_id": 102731,
+   "digest": "ea879a65f62bc1f8"
+  },
+  "Momus Staff Underworld Oceanus Room #": {
+   "count": 15,
+   "first_id": 100216,
+   "digest": "28b011cf27d737ee"
+  },
+  "Momus Staff Underworld Oceanus Room # +#": {
+   "count": 105,
+   "first_id": 102716,
+   "digest": "71f9300a1e3335c9"
+  },
+  "Momus Staff Underworld Tartarus Room #": {
+   "count": 15,
+   "first_id": 100246,
+   "digest": "786dc58782dc4303"
+  },
+  "Momus Staff Underworld Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 102746,
+   "digest": "63ef03c5ecad61bb"
+  },
+  "Moros Flames Dream Region # Room #": {
+   "count": 144,
+   "first_id": 235001,
+   "digest": "197de5614d567901"
+  },
+  "Moros Flames Dream Region # Room # +#": {
+   "count": 1008,
+   "first_id": 287001,
+   "digest": "741cbc12cc9d4add"
+  },
+  "Moros Flames Nightmare Asphodel Room #": {
+   "count": 15,
+   "first_id": 161416,
+   "digest": "b851b26f58cb96a3"
+  },
+  "Moros Flames Nightmare Asphodel Room # +#": {
+   "count": 105,
+   "first_id": 163916,
+   "digest": "0243a16b90334f94"
+  },
+  "Moros Flames Nightmare Elysium Room #": {
+   "count": 15,
+   "first_id": 161431,
+   "digest": "16f24f851552c22d"
+  },
+  "Moros Flames Nightmare Elysium Room # +#": {
+   "count": 105,
+   "first_id": 163931,
+   "digest": "b8d4fa3a9dbd070f"
+  },
+  "Moros Flames Nightmare Styx Room #": {
+   "count": 15,
+   "first_id": 161446,
+   "digest": "0d7ae9b823ee93a7"
+  },
+  "Moros Flames Nightmare Styx Room # +#": {
+   "count": 105,
+   "first_id": 163946,
+   "digest": "b39d3b54f294fc3f"
+  },
+  "Moros Flames Nightmare Tartarus Room #": {
+   "count": 15,
+   "first_id": 161401,
+   "digest": "54e787f297e6b3f9"
+  },
+  "Moros Flames Nightmare Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 163901,
+   "digest": "f3faeb9d5e934725"
+  },
+  "Moros Flames Room #": {
+   "count": 60,
+   "first_id": 191401,
+   "digest": "c4d8ce21720c715c"
+  },
+  "Moros Flames Room # +#": {
+   "count": 420,
+   "first_id": 193901,
+   "digest": "65c23f655f9d0d50"
+  },
+  "Moros Flames Surface City of Ephyra Room #": {
+   "count": 15,
+   "first_id": 131401,
+   "digest": "78ced747627afec8"
+  },
+  "Moros Flames Surface City of Ephyra Room # +#": {
+   "count": 105,
+   "first_id": 133901,
+   "digest": "d3d38f58a6992eec"
+  },
+  "Moros Flames Surface Mount Olympus Room #": {
+   "count": 15,
+   "first_id": 131431,
+   "digest": "99198c89ad561cb3"
+  },
+  "Moros Flames Surface Mount Olympus Room # +#": {
+   "count": 105,
+   "first_id": 133931,
+   "digest": "74a2610eea36ae5a"
+  },
+  "Moros Flames Surface Rift of Thessaly Room #": {
+   "count": 15,
+   "first_id": 131416,
+   "digest": "05ef324a4a6e8640"
+  },
+  "Moros Flames Surface Rift of Thessaly Room # +#": {
+   "count": 105,
+   "first_id": 133916,
+   "digest": "6073baefa3c66e88"
+  },
+  "Moros Flames Surface The Summit Room #": {
+   "count": 15,
+   "first_id": 131446,
+   "digest": "c5cdecf3ac988570"
+  },
+  "Moros Flames Surface The Summit Room # +#": {
+   "count": 105,
+   "first_id": 133946,
+   "digest": "de0f26b4e7459663"
+  },
+  "Moros Flames Underworld Erebus Room #": {
+   "count": 15,
+   "first_id": 101401,
+   "digest": "14aab237b9f2c1f3"
+  },
+  "Moros Flames Underworld Erebus Room # +#": {
+   "count": 105,
+   "first_id": 103901,
+   "digest": "94f1bcbbf38b12f4"
+  },
+  "Moros Flames Underworld Fields of Mourning Room #": {
+   "count": 15,
+   "first_id": 101431,
+   "digest": "d1662d22c8383286"
+  },
+  "Moros Flames Underworld Fields of Mourning Room # +#": {
+   "count": 105,
+   "first_id": 103931,
+   "digest": "d94391a1983bee8e"
+  },
+  "Moros Flames Underworld Oceanus Room #": {
+   "count": 15,
+   "first_id": 101416,
+   "digest": "7e1aab37fd07ff1c"
+  },
+  "Moros Flames Underworld Oceanus Room # +#": {
+   "count": 105,
+   "first_id": 103916,
+   "digest": "349aa2cb322691bc"
+  },
+  "Moros Flames Underworld Tartarus Room #": {
+   "count": 15,
+   "first_id": 101446,
+   "digest": "5bca3cf3b9265c59"
+  },
+  "Moros Flames Underworld Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 103946,
+   "digest": "1b6fcc841d625942"
+  },
+  "Morrigan Blades Dream Region # Room #": {
+   "count": 144,
+   "first_id": 231501,
+   "digest": "d8bfdf3ac42b9d77"
+  },
+  "Morrigan Blades Dream Region # Room # +#": {
+   "count": 1008,
+   "first_id": 283501,
+   "digest": "cebb203ba91b5b0b"
+  },
+  "Morrigan Blades Nightmare Asphodel Room #": {
+   "count": 15,
+   "first_id": 160716,
+   "digest": "6bc4203d6e2e2b9b"
+  },
+  "Morrigan Blades Nightmare Asphodel Room # +#": {
+   "count": 105,
+   "first_id": 163216,
+   "digest": "605cc06a5783d27b"
+  },
+  "Morrigan Blades Nightmare Elysium Room #": {
+   "count": 15,
+   "first_id": 160731,
+   "digest": "6b0cc527c640378b"
+  },
+  "Morrigan Blades Nightmare Elysium Room # +#": {
+   "count": 105,
+   "first_id": 163231,
+   "digest": "1998154258d29b92"
+  },
+  "Morrigan Blades Nightmare Styx Room #": {
+   "count": 15,
+   "first_id": 160746,
+   "digest": "12fe15bc6beef4b6"
+  },
+  "Morrigan Blades Nightmare Styx Room # +#": {
+   "count": 105,
+   "first_id": 163246,
+   "digest": "6e2bf515bb2644a2"
+  },
+  "Morrigan Blades Nightmare Tartarus Room #": {
+   "count": 15,
+   "first_id": 160701,
+   "digest": "aaad64325363c58e"
+  },
+  "Morrigan Blades Nightmare Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 163201,
+   "digest": "5f30762c01a2143a"
+  },
+  "Morrigan Blades Room #": {
+   "count": 60,
+   "first_id": 190701,
+   "digest": "57656b08c637f66a"
+  },
+  "Morrigan Blades Room # +#": {
+   "count": 420,
+   "first_id": 193201,
+   "digest": "1c6000deb1e92803"
+  },
+  "Morrigan Blades Surface City of Ephyra Room #": {
+   "count": 15,
+   "first_id": 130701,
+   "digest": "4fe29a0530b43be1"
+  },
+  "Morrigan Blades Surface City of Ephyra Room # +#": {
+   "count": 105,
+   "first_id": 133201,
+   "digest": "042c81958ececca9"
+  },
+  "Morrigan Blades Surface Mount Olympus Room #": {
+   "count": 15,
+   "first_id": 130731,
+   "digest": "73d2f769ba452afa"
+  },
+  "Morrigan Blades Surface Mount Olympus Room # +#": {
+   "count": 105,
+   "first_id": 133231,
+   "digest": "f6dd94aeb5af0f72"
+  },
+  "Morrigan Blades Surface Rift of Thessaly Room #": {
+   "count": 15,
+   "first_id": 130716,
+   "digest": "b002c06708d570fd"
+  },
+  "Morrigan Blades Surface Rift of Thessaly Room # +#": {
+   "count": 105,
+   "first_id": 133216,
+   "digest": "38b9722c2618a7dc"
+  },
+  "Morrigan Blades Surface The Summit Room #": {
+   "count": 15,
+   "first_id": 130746,
+   "digest": "4ab52b01af590353"
+  },
+  "Morrigan Blades Surface The Summit Room # +#": {
+   "count": 105,
+   "first_id": 133246,
+   "digest": "4b28972569d76cb4"
+  },
+  "Morrigan Blades Underworld Erebus Room #": {
+   "count": 15,
+   "first_id": 100701,
+   "digest": "4a1fa94eb56729ad"
+  },
+  "Morrigan Blades Underworld Erebus Room # +#": {
+   "count": 105,
+   "first_id": 103201,
+   "digest": "52e70455365ae854"
+  },
+  "Morrigan Blades Underworld Fields of Mourning Room #": {
+   "count": 15,
+   "first_id": 100731,
+   "digest": "9bb4a865cbc29cdb"
+  },
+  "Morrigan Blades Underworld Fields of Mourning Room # +#": {
+   "count": 105,
+   "first_id": 103231,
+   "digest": "50b4071064608ba4"
+  },
+  "Morrigan Blades Underworld Oceanus Room #": {
+   "count": 15,
+   "first_id": 100716,
+   "digest": "cde906c58a445f28"
+  },
+  "Morrigan Blades Underworld Oceanus Room # +#": {
+   "count": 105,
+   "first_id": 103216,
+   "digest": "c573e58aee863ddc"
+  },
+  "Morrigan Blades Underworld Tartarus Room #": {
+   "count": 15,
+   "first_id": 100746,
+   "digest": "89fa54ed7a15894e"
+  },
+  "Morrigan Blades Underworld Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 103246,
+   "digest": "65ee8d994abe99e2"
+  },
+  "Nergal Axe Dream Region # Room #": {
+   "count": 144,
+   "first_id": 237501,
+   "digest": "1c0f1f3eca6a3673"
+  },
+  "Nergal Axe Dream Region # Room # +#": {
+   "count": 1008,
+   "first_id": 289501,
+   "digest": "908e19ed932e4387"
+  },
+  "Nergal Axe Nightmare Asphodel Room #": {
+   "count": 15,
+   "first_id": 161916,
+   "digest": "675121ceb7c842e0"
+  },
+  "Nergal Axe Nightmare Asphodel Room # +#": {
+   "count": 105,
+   "first_id": 164416,
+   "digest": "22b7441f009ed228"
+  },
+  "Nergal Axe Nightmare Elysium Room #": {
+   "count": 15,
+   "first_id": 161931,
+   "digest": "08d5db9f05d92016"
+  },
+  "Nergal Axe Nightmare Elysium Room # +#": {
+   "count": 105,
+   "first_id": 164431,
+   "digest": "0e969e9116bc99bf"
+  },
+  "Nergal Axe Nightmare Styx Room #": {
+   "count": 15,
+   "first_id": 161946,
+   "digest": "8bcfbc65add0df6b"
+  },
+  "Nergal Axe Nightmare Styx Room # +#": {
+   "count": 105,
+   "first_id": 164446,
+   "digest": "445381fe370e654d"
+  },
+  "Nergal Axe Nightmare Tartarus Room #": {
+   "count": 15,
+   "first_id": 161901,
+   "digest": "9bdd04cf279f9757"
+  },
+  "Nergal Axe Nightmare Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 164401,
+   "digest": "e9d86895418d0ab7"
+  },
+  "Nergal Axe Room #": {
+   "count": 60,
+   "first_id": 191901,
+   "digest": "41381af531d05982"
+  },
+  "Nergal Axe Room # +#": {
+   "count": 420,
+   "first_id": 194401,
+   "digest": "dd1100a3cec0a8dc"
+  },
+  "Nergal Axe Surface City of Ephyra Room #": {
+   "count": 15,
+   "first_id": 131901,
+   "digest": "845019df011895ba"
+  },
+  "Nergal Axe Surface City of Ephyra Room # +#": {
+   "count": 105,
+   "first_id": 134401,
+   "digest": "3a2a8e109408b468"
+  },
+  "Nergal Axe Surface Mount Olympus Room #": {
+   "count": 15,
+   "first_id": 131931,
+   "digest": "1c3edd876fff467a"
+  },
+  "Nergal Axe Surface Mount Olympus Room # +#": {
+   "count": 105,
+   "first_id": 134431,
+   "digest": "34b2e488b39ac508"
+  },
+  "Nergal Axe Surface Rift of Thessaly Room #": {
+   "count": 15,
+   "first_id": 131916,
+   "digest": "ee329a5cea11da7e"
+  },
+  "Nergal Axe Surface Rift of Thessaly Room # +#": {
+   "count": 105,
+   "first_id": 134416,
+   "digest": "be4e300038144b49"
+  },
+  "Nergal Axe Surface The Summit Room #": {
+   "count": 15,
+   "first_id": 131946,
+   "digest": "7c2c9eb313db85ce"
+  },
+  "Nergal Axe Surface The Summit Room # +#": {
+   "count": 105,
+   "first_id": 134446,
+   "digest": "2a85327b22119956"
+  },
+  "Nergal Axe Underworld Erebus Room #": {
+   "count": 15,
+   "first_id": 101901,
+   "digest": "bbc8508bb53f1728"
+  },
+  "Nergal Axe Underworld Erebus Room # +#": {
+   "count": 105,
+   "first_id": 104401,
+   "digest": "d69dc528f70ccaf1"
+  },
+  "Nergal Axe Underworld Fields of Mourning Room #": {
+   "count": 15,
+   "first_id": 101931,
+   "digest": "32533fa71e955ce5"
+  },
+  "Nergal Axe Underworld Fields of Mourning Room # +#": {
+   "count": 105,
+   "first_id": 104431,
+   "digest": "3f3a5bffef4e2636"
+  },
+  "Nergal Axe Underworld Oceanus Room #": {
+   "count": 15,
+   "first_id": 101916,
+   "digest": "c34baa0645ea39c0"
+  },
+  "Nergal Axe Underworld Oceanus Room # +#": {
+   "count": 105,
+   "first_id": 104416,
+   "digest": "ea3307ea1e68ec1c"
+  },
+  "Nergal Axe Underworld Tartarus Room #": {
+   "count": 15,
+   "first_id": 101946,
+   "digest": "5d4e6696b4eac778"
+  },
+  "Nergal Axe Underworld Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 104446,
+   "digest": "a4f7546953bacd8c"
+  },
+  "Nightmare Asphodel Room #": {
+   "count": 15,
+   "first_id": 8516,
+   "digest": "8b1fb0800c22b323"
+  },
+  "Nightmare Asphodel Room # +#": {
+   "count": 105,
+   "first_id": 8576,
+   "digest": "5b2239518903c988"
+  },
+  "Nightmare Asphodel Room # +# Axe": {
+   "count": 105,
+   "first_id": 41416,
+   "digest": "fc3b2b1ef683bbd2"
+  },
+  "Nightmare Asphodel Room # +# Blades": {
+   "count": 105,
+   "first_id": 41116,
+   "digest": "df8f53878506e6c1"
+  },
+  "Nightmare Asphodel Room # +# Coat": {
+   "count": 105,
+   "first_id": 41516,
+   "digest": "897ef4cd10c57a1b"
+  },
+  "Nightmare Asphodel Room # +# Flames": {
+   "count": 105,
+   "first_id": 41316,
+   "digest": "fd3b4ff7a58d343b"
+  },
+  "Nightmare Asphodel Room # +# Skull": {
+   "count": 105,
+   "first_id": 41216,
+   "digest": "b02ed76d548e55fc"
+  },
+  "Nightmare Asphodel Room # +# Staff": {
+   "count": 105,
+   "first_id": 41016,
+   "digest": "cb7cf28e2311c785"
+  },
+  "Nightmare Asphodel Room # Axe": {
+   "count": 15,
+   "first_id": 40416,
+   "digest": "7146116be1ac82f9"
+  },
+  "Nightmare Asphodel Room # Blades": {
+   "count": 15,
+   "first_id": 40116,
+   "digest": "830ece2b953458e2"
+  },
+  "Nightmare Asphodel Room # Coat": {
+   "count": 15,
+   "first_id": 40516,
+   "digest": "50570338325d43d9"
+  },
+  "Nightmare Asphodel Room # Flames": {
+   "count": 15,
+   "first_id": 40316,
+   "digest": "cd1be1a824b4f81a"
+  },
+  "Nightmare Asphodel Room # Skull": {
+   "count": 15,
+   "first_id": 40216,
+   "digest": "73d378a3a5549bc8"
+  },
+  "Nightmare Asphodel Room # Staff": {
+   "count": 15,
+   "first_id": 40016,
+   "digest": "24df3d75ea2d5741"
+  },
+  "Nightmare Elysium Room #": {
+   "count": 15,
+   "first_id": 8531,
+   "digest": "1f5449ea0f93bf83"
+  },
+  "Nightmare Elysium Room # +#": {
+   "count": 105,
+   "first_id": 8591,
+   "digest": "74ecbfac91141f85"
+  },
+  "Nightmare Elysium Room # +# Axe": {
+   "count": 105,
+   "first_id": 41431,
+   "digest": "f25f991ba65804eb"
+  },
+  "Nightmare Elysium Room # +# Blades": {
+   "count": 105,
+   "first_id": 41131,
+   "digest": "8bbd765b1345a7fd"
+  },
+  "Nightmare Elysium Room # +# Coat": {
+   "count": 105,
+   "first_id": 41531,
+   "digest": "74ffac98e9a81b62"
+  },
+  "Nightmare Elysium Room # +# Flames": {
+   "count": 105,
+   "first_id": 41331,
+   "digest": "5325a99d1f02aa9e"
+  },
+  "Nightmare Elysium Room # +# Skull": {
+   "count": 105,
+   "first_id": 41231,
+   "digest": "08d7c135480e4e51"
+  },
+  "Nightmare Elysium Room # +# Staff": {
+   "count": 105,
+   "first_id": 41031,
+   "digest": "5813455a3d5b71b1"
+  },
+  "Nightmare Elysium Room # Axe": {
+   "count": 15,
+   "first_id": 40431,
+   "digest": "611b7908e5a677ef"
+  },
+  "Nightmare Elysium Room # Blades": {
+   "count": 15,
+   "first_id": 40131,
+   "digest": "51e7d68d91a9935c"
+  },
+  "Nightmare Elysium Room # Coat": {
+   "count": 15,
+   "first_id": 40531,
+   "digest": "b7dd227cdf08a654"
+  },
+  "Nightmare Elysium Room # Flames": {
+   "count": 15,
+   "first_id": 40331,
+   "digest": "86a322c59dc31159"
+  },
+  "Nightmare Elysium Room # Skull": {
+   "count": 15,
+   "first_id": 40231,
+   "digest": "d99f4d104dc7f49c"
+  },
+  "Nightmare Elysium Room # Staff": {
+   "count": 15,
+   "first_id": 40031,
+   "digest": "97055a08b16f8cdd"
+  },
+  "Nightmare Score #": {
+   "count": 1000,
+   "first_id": 4001,
+   "digest": "4e53a9e112506f00"
+  },
+  "Nightmare Styx Room #": {
+   "count": 15,
+   "first_id": 8546,
+   "digest": "26d8723a8292fa98"
+  },
+  "Nightmare Styx Room # +#": {
+   "count": 105,
+   "first_id": 8606,
+   "digest": "1170b86e11e9469e"
+  },
+  "Nightmare Styx Room # +# Axe": {
+   "count": 105,
+   "first_id": 41446,
+   "digest": "4b21f21b23026e89"
+  },
+  "Nightmare Styx Room # +# Blades": {
+   "count": 105,
+   "first_id": 41146,
+   "digest": "ecde7eca0e714071"
+  },
+  "Nightmare Styx Room # +# Coat": {
+   "count": 105,
+   "first_id": 41546,
+   "digest": "af47293f7a4280f7"
+  },
+  "Nightmare Styx Room # +# Flames": {
+   "count": 105,
+   "first_id": 41346,
+   "digest": "db4f26abffa315b3"
+  },
+  "Nightmare Styx Room # +# Skull": {
+   "count": 105,
+   "first_id": 41246,
+   "digest": "d79731d4662543a8"
+  },
+  "Nightmare Styx Room # +# Staff": {
+   "count": 105,
+   "first_id": 41046,
+   "digest": "ccd85f618eff25fa"
+  },
+  "Nightmare Styx Room # Axe": {
+   "count": 15,
+   "first_id": 40446,
+   "digest": "d040b9544238c5d5"
+  },
+  "Nightmare Styx Room # Blades": {
+   "count": 15,
+   "first_id": 40146,
+   "digest": "97eab847e3c08032"
+  },
+  "Nightmare Styx Room # Coat": {
+   "count": 15,
+   "first_id": 40546,
+   "digest": "f0512dd1cf042873"
+  },
+  "Nightmare Styx Room # Flames": {
+   "count": 15,
+   "first_id": 40346,
+   "digest": "722d5442c5f60ada"
+  },
+  "Nightmare Styx Room # Skull": {
+   "count": 15,
+   "first_id": 40246,
+   "digest": "43048cd17fa27b8b"
+  },
+  "Nightmare Styx Room # Staff": {
+   "count": 15,
+   "first_id": 40046,
+   "digest": "761be4bbe1fc2302"
+  },
+  "Nightmare Tartarus Room #": {
+   "count": 15,
+   "first_id": 8501,
+   "digest": "368441dc638b0c18"
+  },
+  "Nightmare Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 8561,
+   "digest": "34364992ccf99e74"
+  },
+  "Nightmare Tartarus Room # +# Axe": {
+   "count": 105,
+   "first_id": 41401,
+   "digest": "38d1f0ffdcaa2f40"
+  },
+  "Nightmare Tartarus Room # +# Blades": {
+   "count": 105,
+   "first_id": 41101,
+   "digest": "3110e1aa6c43529b"
+  },
+  "Nightmare Tartarus Room # +# Coat": {
+   "count": 105,
+   "first_id": 41501,
+   "digest": "f353732472e2d380"
+  },
+  "Nightmare Tartarus Room # +# Flames": {
+   "count": 105,
+   "first_id": 41301,
+   "digest": "06d6e2ad7ae4ad92"
+  },
+  "Nightmare Tartarus Room # +# Skull": {
+   "count": 105,
+   "first_id": 41201,
+   "digest": "d3d422a0e251dd42"
+  },
+  "Nightmare Tartarus Room # +# Staff": {
+   "count": 105,
+   "first_id": 41001,
+   "digest": "fcdb73c455d5d260"
+  },
+  "Nightmare Tartarus Room # Axe": {
+   "count": 15,
+   "first_id": 40401,
+   "digest": "8fe0936987f2ec78"
+  },
+  "Nightmare Tartarus Room # Blades": {
+   "count": 15,
+   "first_id": 40101,
+   "digest": "bcd1a89979eb57eb"
+  },
+  "Nightmare Tartarus Room # Coat": {
+   "count": 15,
+   "first_id": 40501,
+   "digest": "f35b7ff088351cbd"
+  },
+  "Nightmare Tartarus Room # Flames": {
+   "count": 15,
+   "first_id": 40301,
+   "digest": "23a8cc86ec7eccbb"
+  },
+  "Nightmare Tartarus Room # Skull": {
+   "count": 15,
+   "first_id": 40201,
+   "digest": "e11ee82fcec39dd7"
+  },
+  "Nightmare Tartarus Room # Staff": {
+   "count": 15,
+   "first_id": 40001,
+   "digest": "62b006de914f3100"
+  },
+  "Nyx Coat Dream Region # Room #": {
+   "count": 144,
+   "first_id": 238501,
+   "digest": "295f526be227fdce"
+  },
+  "Nyx Coat Dream Region # Room # +#": {
+   "count": 1008,
+   "first_id": 290501,
+   "digest": "0873d9a8dac23483"
+  },
+  "Nyx Coat Nightmare Asphodel Room #": {
+   "count": 15,
+   "first_id": 162116,
+   "digest": "28cd71db8f908af5"
+  },
+  "Nyx Coat Nightmare Asphodel Room # +#": {
+   "count": 105,
+   "first_id": 164616,
+   "digest": "21cb0b56c5419a38"
+  },
+  "Nyx Coat Nightmare Elysium Room #": {
+   "count": 15,
+   "first_id": 162131,
+   "digest": "02ae26b3a5413a1a"
+  },
+  "Nyx Coat Nightmare Elysium Room # +#": {
+   "count": 105,
+   "first_id": 164631,
+   "digest": "8f74b9ef1fd45ff4"
+  },
+  "Nyx Coat Nightmare Styx Room #": {
+   "count": 15,
+   "first_id": 162146,
+   "digest": "ed4d852692bc8f5e"
+  },
+  "Nyx Coat Nightmare Styx Room # +#": {
+   "count": 105,
+   "first_id": 164646,
+   "digest": "4d0945d8a4ce48ef"
+  },
+  "Nyx Coat Nightmare Tartarus Room #": {
+   "count": 15,
+   "first_id": 162101,
+   "digest": "7e583adccd88223e"
+  },
+  "Nyx Coat Nightmare Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 164601,
+   "digest": "c63ea7f8bef496ee"
+  },
+  "Nyx Coat Room #": {
+   "count": 60,
+   "first_id": 192101,
+   "digest": "2677562fcb916bb1"
+  },
+  "Nyx Coat Room # +#": {
+   "count": 420,
+   "first_id": 194601,
+   "digest": "734050563182f392"
+  },
+  "Nyx Coat Surface City of Ephyra Room #": {
+   "count": 15,
+   "first_id": 132101,
+   "digest": "1090e1dd3340e1a5"
+  },
+  "Nyx Coat Surface City of Ephyra Room # +#": {
+   "count": 105,
+   "first_id": 134601,
+   "digest": "bf2f31780c8828f2"
+  },
+  "Nyx Coat Surface Mount Olympus Room #": {
+   "count": 15,
+   "first_id": 132131,
+   "digest": "15501e9ec0cc7631"
+  },
+  "Nyx Coat Surface Mount Olympus Room # +#": {
+   "count": 105,
+   "first_id": 134631,
+   "digest": "5eac7e78ad75635c"
+  },
+  "Nyx Coat Surface Rift of Thessaly Room #": {
+   "count": 15,
+   "first_id": 132116,
+   "digest": "2bb48a35c967b5ea"
+  },
+  "Nyx Coat Surface Rift of Thessaly Room # +#": {
+   "count": 105,
+   "first_id": 134616,
+   "digest": "4c99324a3715bd0c"
+  },
+  "Nyx Coat Surface The Summit Room #": {
+   "count": 15,
+   "first_id": 132146,
+   "digest": "36c1b9979cf0e24a"
+  },
+  "Nyx Coat Surface The Summit Room # +#": {
+   "count": 105,
+   "first_id": 134646,
+   "digest": "70584cd26d79b932"
+  },
+  "Nyx Coat Underworld Erebus Room #": {
+   "count": 15,
+   "first_id": 102101,
+   "digest": "71dfdafb18acf351"
+  },
+  "Nyx Coat Underworld Erebus Room # +#": {
+   "count": 105,
+   "first_id": 104601,
+   "digest": "dd9acb516dba94ca"
+  },
+  "Nyx Coat Underworld Fields of Mourning Room #": {
+   "count": 15,
+   "first_id": 102131,
+   "digest": "b061b6c048eb81cc"
+  },
+  "Nyx Coat Underworld Fields of Mourning Room # +#": {
+   "count": 105,
+   "first_id": 104631,
+   "digest": "a06961ab126bf64d"
+  },
+  "Nyx Coat Underworld Oceanus Room #": {
+   "count": 15,
+   "first_id": 102116,
+   "digest": "8b86f5c2c26b41bf"
+  },
+  "Nyx Coat Underworld Oceanus Room # +#": {
+   "count": 105,
+   "first_id": 104616,
+   "digest": "274036f2a5d258a3"
+  },
+  "Nyx Coat Underworld Tartarus Room #": {
+   "count": 15,
+   "first_id": 102146,
+   "digest": "789e7f250b5120dd"
+  },
+  "Nyx Coat Underworld Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 104646,
+   "digest": "d455c6a1a02b0651"
+  },
+  "Pan Blades Dream Region # Room #": {
+   "count": 144,
+   "first_id": 230501,
+   "digest": "de6f1cb31611dc67"
+  },
+  "Pan Blades Dream Region # Room # +#": {
+   "count": 1008,
+   "first_id": 282501,
+   "digest": "4cb18f1b6d092f74"
+  },
+  "Pan Blades Nightmare Asphodel Room #": {
+   "count": 15,
+   "first_id": 160516,
+   "digest": "5a12e6b56c0cbd42"
+  },
+  "Pan Blades Nightmare Asphodel Room # +#": {
+   "count": 105,
+   "first_id": 163016,
+   "digest": "879e7c4dc8f06752"
+  },
+  "Pan Blades Nightmare Elysium Room #": {
+   "count": 15,
+   "first_id": 160531,
+   "digest": "6a7e11b5fb7cfb04"
+  },
+  "Pan Blades Nightmare Elysium Room # +#": {
+   "count": 105,
+   "first_id": 163031,
+   "digest": "02b5a2a1e5392ab2"
+  },
+  "Pan Blades Nightmare Styx Room #": {
+   "count": 15,
+   "first_id": 160546,
+   "digest": "a48885a3486a4e05"
+  },
+  "Pan Blades Nightmare Styx Room # +#": {
+   "count": 105,
+   "first_id": 163046,
+   "digest": "59221ce25336a64c"
+  },
+  "Pan Blades Nightmare Tartarus Room #": {
+   "count": 15,
+   "first_id": 160501,
+   "digest": "8076977a89c33a9e"
+  },
+  "Pan Blades Nightmare Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 163001,
+   "digest": "68960725f1839924"
+  },
+  "Pan Blades Room #": {
+   "count": 60,
+   "first_id": 190501,
+   "digest": "09b6b72bc8c8d0d5"
+  },
+  "Pan Blades Room # +#": {
+   "count": 420,
+   "first_id": 193001,
+   "digest": "97179c8a0c3373d0"
+  },
+  "Pan Blades Surface City of Ephyra Room #": {
+   "count": 15,
+   "first_id": 130501,
+   "digest": "d2c132b0f803c4d6"
+  },
+  "Pan Blades Surface City of Ephyra Room # +#": {
+   "count": 105,
+   "first_id": 133001,
+   "digest": "1a89199fa129d322"
+  },
+  "Pan Blades Surface Mount Olympus Room #": {
+   "count": 15,
+   "first_id": 130531,
+   "digest": "56da895bbb4ba775"
+  },
+  "Pan Blades Surface Mount Olympus Room # +#": {
+   "count": 105,
+   "first_id": 133031,
+   "digest": "ecdb57b09b209eb2"
+  },
+  "Pan Blades Surface Rift of Thessaly Room #": {
+   "count": 15,
+   "first_id": 130516,
+   "digest": "a8684e42cdbbfec3"
+  },
+  "Pan Blades Surface Rift of Thessaly Room # +#": {
+   "count": 105,
+   "first_id": 133016,
+   "digest": "4c49b0084bc2de4c"
+  },
+  "Pan Blades Surface The Summit Room #": {
+   "count": 15,
+   "first_id": 130546,
+   "digest": "facdc17483ffe3d7"
+  },
+  "Pan Blades Surface The Summit Room # +#": {
+   "count": 105,
+   "first_id": 133046,
+   "digest": "ee4bb87fd840ca84"
+  },
+  "Pan Blades Underworld Erebus Room #": {
+   "count": 15,
+   "first_id": 100501,
+   "digest": "8fcf5f4a20dfb6e7"
+  },
+  "Pan Blades Underworld Erebus Room # +#": {
+   "count": 105,
+   "first_id": 103001,
+   "digest": "57b7259ce910b000"
+  },
+  "Pan Blades Underworld Fields of Mourning Room #": {
+   "count": 15,
+   "first_id": 100531,
+   "digest": "a26f0cb5e1df8031"
+  },
+  "Pan Blades Underworld Fields of Mourning Room # +#": {
+   "count": 105,
+   "first_id": 103031,
+   "digest": "6ca1ba3f606ffbc2"
+  },
+  "Pan Blades Underworld Oceanus Room #": {
+   "count": 15,
+   "first_id": 100516,
+   "digest": "c35aefd8f87e9f48"
+  },
+  "Pan Blades Underworld Oceanus Room # +#": {
+   "count": 105,
+   "first_id": 103016,
+   "digest": "6978403a6ed776ec"
+  },
+  "Pan Blades Underworld Tartarus Room #": {
+   "count": 15,
+   "first_id": 100546,
+   "digest": "b8b9e0e64e9a23cd"
+  },
+  "Pan Blades Underworld Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 103046,
+   "digest": "e629b971cffa8350"
+  },
+  "Persephone Skull Dream Region # Room #": {
+   "count": 144,
+   "first_id": 233001,
+   "digest": "57708fdf1f908416"
+  },
+  "Persephone Skull Dream Region # Room # +#": {
+   "count": 1008,
+   "first_id": 285001,
+   "digest": "9f70542df30b83ef"
+  },
+  "Persephone Skull Nightmare Asphodel Room #": {
+   "count": 15,
+   "first_id": 161016,
+   "digest": "566c0900b0df07e1"
+  },
+  "Persephone Skull Nightmare Asphodel Room # +#": {
+   "count": 105,
+   "first_id": 163516,
+   "digest": "65fe066eea5e9ce5"
+  },
+  "Persephone Skull Nightmare Elysium Room #": {
+   "count": 15,
+   "first_id": 161031,
+   "digest": "1edcd8381ef74d34"
+  },
+  "Persephone Skull Nightmare Elysium Room # +#": {
+   "count": 105,
+   "first_id": 163531,
+   "digest": "91245e2277fa73fb"
+  },
+  "Persephone Skull Nightmare Styx Room #": {
+   "count": 15,
+   "first_id": 161046,
+   "digest": "62ea7eb3ca0a6326"
+  },
+  "Persephone Skull Nightmare Styx Room # +#": {
+   "count": 105,
+   "first_id": 163546,
+   "digest": "a23bb8601c59cdb4"
+  },
+  "Persephone Skull Nightmare Tartarus Room #": {
+   "count": 15,
+   "first_id": 161001,
+   "digest": "7fe9fab44216a66c"
+  },
+  "Persephone Skull Nightmare Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 163501,
+   "digest": "82ed08e2e2dd446f"
+  },
+  "Persephone Skull Room #": {
+   "count": 60,
+   "first_id": 191001,
+   "digest": "8519787a981cf00f"
+  },
+  "Persephone Skull Room # +#": {
+   "count": 420,
+   "first_id": 193501,
+   "digest": "e7fa1790c85b9f1d"
+  },
+  "Persephone Skull Surface City of Ephyra Room #": {
+   "count": 15,
+   "first_id": 131001,
+   "digest": "284111f990fbba6d"
+  },
+  "Persephone Skull Surface City of Ephyra Room # +#": {
+   "count": 105,
+   "first_id": 133501,
+   "digest": "454b395d901c36fe"
+  },
+  "Persephone Skull Surface Mount Olympus Room #": {
+   "count": 15,
+   "first_id": 131031,
+   "digest": "05b2ddc613c0b219"
+  },
+  "Persephone Skull Surface Mount Olympus Room # +#": {
+   "count": 105,
+   "first_id": 133531,
+   "digest": "5087d93b63ef69f6"
+  },
+  "Persephone Skull Surface Rift of Thessaly Room #": {
+   "count": 15,
+   "first_id": 131016,
+   "digest": "15d375d19d058362"
+  },
+  "Persephone Skull Surface Rift of Thessaly Room # +#": {
+   "count": 105,
+   "first_id": 133516,
+   "digest": "49b9541521414fef"
+  },
+  "Persephone Skull Surface The Summit Room #": {
+   "count": 15,
+   "first_id": 131046,
+   "digest": "4ba00e54fee222e4"
+  },
+  "Persephone Skull Surface The Summit Room # +#": {
+   "count": 105,
+   "first_id": 133546,
+   "digest": "8af8ca3285b2c192"
+  },
+  "Persephone Skull Underworld Erebus Room #": {
+   "count": 15,
+   "first_id": 101001,
+   "digest": "95f0f7a7dc248fb5"
+  },
+  "Persephone Skull Underworld Erebus Room # +#": {
+   "count": 105,
+   "first_id": 103501,
+   "digest": "7b934e8214d8f932"
+  },
+  "Persephone Skull Underworld Fields of Mourning Room #": {
+   "count": 15,
+   "first_id": 101031,
+   "digest": "b71688a7026716c1"
+  },
+  "Persephone Skull Underworld Fields of Mourning Room # +#": {
+   "count": 105,
+   "first_id": 103531,
+   "digest": "e9469c434fca5591"
+  },
+  "Persephone Skull Underworld Oceanus Room #": {
+   "count": 15,
+   "first_id": 101016,
+   "digest": "200b1f24e88cd3bd"
+  },
+  "Persephone Skull Underworld Oceanus Room # +#": {
+   "count": 105,
+   "first_id": 103516,
+   "digest": "f37f12e077b84d7b"
+  },
+  "Persephone Skull Underworld Tartarus Room #": {
+   "count": 15,
+   "first_id": 101046,
+   "digest": "b5df631159fed2ca"
+  },
+  "Persephone Skull Underworld Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 103546,
+   "digest": "a3585955be4bbaf9"
+  },
+  "Room #": {
+   "count": 60,
+   "first_id": 9001,
+   "digest": "42c7bb1d3122d900"
+  },
+  "Room # +#": {
+   "count": 420,
+   "first_id": 9061,
+   "digest": "3012c79eb8669f6c"
+  },
+  "Room # +# Axe": {
+   "count": 420,
+   "first_id": 61401,
+   "digest": "ecf64dc8df219b16"
+  },
+  "Room # +# Blades": {
+   "count": 420,
+   "first_id": 61101,
+   "digest": "f2ea377051a12be1"
+  },
+  "Room # +# Coat": {
+   "count": 420,
+   "first_id": 61501,
+   "digest": "8bde0dac6032f4af"
+  },
+  "Room # +# Flames": {
+   "count": 420,
+   "first_id": 61301,
+   "digest": "e6d24749423bf054"
+  },
+  "Room # +# Skull": {
+   "count": 420,
+   "first_id": 61201,
+   "digest": "2657a874871ebb6e"
+  },
+  "Room # +# Staff": {
+   "count": 420,
+   "first_id": 61001,
+   "digest": "3afc2d1ba2611e05"
+  },
+  "Room # Axe": {
+   "count": 60,
+   "first_id": 60401,
+   "digest": "565db19370fb516e"
+  },
+  "Room # Blades": {
+   "count": 60,
+   "first_id": 60101,
+   "digest": "8f75542e1be019e2"
+  },
+  "Room # Coat": {
+   "count": 60,
+   "first_id": 60501,
+   "digest": "2c7cd6b5c855e946"
+  },
+  "Room # Flames": {
+   "count": 60,
+   "first_id": 60301,
+   "digest": "fa7191454004ac10"
+  },
+  "Room # Skull": {
+   "count": 60,
+   "first_id": 60201,
+   "digest": "70e0a60e2f2834ae"
+  },
+  "Room # Staff": {
+   "count": 60,
+   "first_id": 60001,
+   "digest": "e0b4aed42b478581"
+  },
+  "Score #": {
+   "count": 1000,
+   "first_id": 3001,
+   "digest": "fe14a732d0037aef"
+  },
+  "Selene Coat Dream Region # Room #": {
+   "count": 144,
+   "first_id": 239001,
+   "digest": "ffbab46d0442141c"
+  },
+  "Selene Coat Dream Region # Room # +#": {
+   "count": 1008,
+   "first_id": 291001,
+   "digest": "e24fe0f25eb41c29"
+  },
+  "Selene Coat Nightmare Asphodel Room #": {
+   "count": 15,
+   "first_id": 162216,
+   "digest": "52173969cbd3dc60"
+  },
+  "Selene Coat Nightmare Asphodel Room # +#": {
+   "count": 105,
+   "first_id": 164716,
+   "digest": "7bd1253eefade7e3"
+  },
+  "Selene Coat Nightmare Elysium Room #": {
+   "count": 15,
+   "first_id": 162231,
+   "digest": "3cc1a360710a39f4"
+  },
+  "Selene Coat Nightmare Elysium Room # +#": {
+   "count": 105,
+   "first_id": 164731,
+   "digest": "76f0e47654a771c4"
+  },
+  "Selene Coat Nightmare Styx Room #": {
+   "count": 15,
+   "first_id": 162246,
+   "digest": "5592dd401bdc9f4e"
+  },
+  "Selene Coat Nightmare Styx Room # +#": {
+   "count": 105,
+   "first_id": 164746,
+   "digest": "95a337d70d089710"
+  },
+  "Selene Coat Nightmare Tartarus Room #": {
+   "count": 15,
+   "first_id": 162201,
+   "digest": "e147eb8dac8b7d7a"
+  },
+  "Selene Coat Nightmare Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 164701,
+   "digest": "d94dff7257fe274c"
+  },
+  "Selene Coat Room #": {
+   "count": 60,
+   "first_id": 192201,
+   "digest": "e6924a92f64887fc"
+  },
+  "Selene Coat Room # +#": {
+   "count": 420,
+   "first_id": 194701,
+   "digest": "28e184cf9126b7bc"
+  },
+  "Selene Coat Surface City of Ephyra Room #": {
+   "count": 15,
+   "first_id": 132201,
+   "digest": "6d37970082b9aafd"
+  },
+  "Selene Coat Surface City of Ephyra Room # +#": {
+   "count": 105,
+   "first_id": 134701,
+   "digest": "20a5e9aac0cb536c"
+  },
+  "Selene Coat Surface Mount Olympus Room #": {
+   "count": 15,
+   "first_id": 132231,
+   "digest": "19cd42b00aa5f451"
+  },
+  "Selene Coat Surface Mount Olympus Room # +#": {
+   "count": 105,
+   "first_id": 134731,
+   "digest": "2b5a3c73cbdd6e13"
+  },
+  "Selene Coat Surface Rift of Thessaly Room #": {
+   "count": 15,
+   "first_id": 132216,
+   "digest": "4f4ac59f5df9c42f"
+  },
+  "Selene Coat Surface Rift of Thessaly Room # +#": {
+   "count": 105,
+   "first_id": 134716,
+   "digest": "6bac09e1f18700d6"
+  },
+  "Selene Coat Surface The Summit Room #": {
+   "count": 15,
+   "first_id": 132246,
+   "digest": "ad270c2b7eb8dfac"
+  },
+  "Selene Coat Surface The Summit Room # +#": {
+   "count": 105,
+   "first_id": 134746,
+   "digest": "5528dbbf0faa0452"
+  },
+  "Selene Coat Underworld Erebus Room #": {
+   "count": 15,
+   "first_id": 102201,
+   "digest": "4c6966d8b9d1e02f"
+  },
+  "Selene Coat Underworld Erebus Room # +#": {
+   "count": 105,
+   "first_id": 104701,
+   "digest": "a75b0f2bd58278bb"
+  },
+  "Selene Coat Underworld Fields of Mourning Room #": {
+   "count": 15,
+   "first_id": 102231,
+   "digest": "f0a330cfa77f1a1e"
+  },
+  "Selene Coat Underworld Fields of Mourning Room # +#": {
+   "count": 105,
+   "first_id": 104731,
+   "digest": "3133574bd6727961"
+  },
+  "Selene Coat Underworld Oceanus Room #": {
+   "count": 15,
+   "first_id": 102216,
+   "digest": "d470cec60199a399"
+  },
+  "Selene Coat Underworld Oceanus Room # +#": {
+   "count": 105,
+   "first_id": 104716,
+   "digest": "29b29b5dad94b260"
+  },
+  "Selene Coat Underworld Tartarus Room #": {
+   "count": 15,
+   "first_id": 102246,
+   "digest": "bbe4a7c71db601bb"
+  },
+  "Selene Coat Underworld Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 104746,
+   "digest": "280f75afff3b3c67"
+  },
+  "Shiva Coat Dream Region # Room #": {
+   "count": 144,
+   "first_id": 239501,
+   "digest": "441b09ba59709181"
+  },
+  "Shiva Coat Dream Region # Room # +#": {
+   "count": 1008,
+   "first_id": 291501,
+   "digest": "f34430f8bab633c9"
+  },
+  "Shiva Coat Nightmare Asphodel Room #": {
+   "count": 15,
+   "first_id": 162316,
+   "digest": "f7879c4895953506"
+  },
+  "Shiva Coat Nightmare Asphodel Room # +#": {
+   "count": 105,
+   "first_id": 164816,
+   "digest": "0d977703e790225d"
+  },
+  "Shiva Coat Nightmare Elysium Room #": {
+   "count": 15,
+   "first_id": 162331,
+   "digest": "e284298eb669ae5b"
+  },
+  "Shiva Coat Nightmare Elysium Room # +#": {
+   "count": 105,
+   "first_id": 164831,
+   "digest": "dc04614164a4ce46"
+  },
+  "Shiva Coat Nightmare Styx Room #": {
+   "count": 15,
+   "first_id": 162346,
+   "digest": "aa78123214cd9a33"
+  },
+  "Shiva Coat Nightmare Styx Room # +#": {
+   "count": 105,
+   "first_id": 164846,
+   "digest": "d2a2a9d4eef1aaf0"
+  },
+  "Shiva Coat Nightmare Tartarus Room #": {
+   "count": 15,
+   "first_id": 162301,
+   "digest": "fc48db34dc86e591"
+  },
+  "Shiva Coat Nightmare Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 164801,
+   "digest": "b53ba699336e1644"
+  },
+  "Shiva Coat Room #": {
+   "count": 60,
+   "first_id": 192301,
+   "digest": "0481aac13e3b631d"
+  },
+  "Shiva Coat Room # +#": {
+   "count": 420,
+   "first_id": 194801,
+   "digest": "35458ba114776756"
+  },
+  "Shiva Coat Surface City of Ephyra Room #": {
+   "count": 15,
+   "first_id": 132301,
+   "digest": "0e4c39e63831cd1e"
+  },
+  "Shiva Coat Surface City of Ephyra Room # +#": {
+   "count": 105,
+   "first_id": 134801,
+   "digest": "8035b87b9d539e72"
+  },
+  "Shiva Coat Surface Mount Olympus Room #": {
+   "count": 15,
+   "first_id": 132331,
+   "digest": "15b828cd87205af5"
+  },
+  "Shiva Coat Surface Mount Olympus Room # +#": {
+   "count": 105,
+   "first_id": 134831,
+   "digest": "bf665b27a779cdd4"
+  },
+  "Shiva Coat Surface Rift of Thessaly Room #": {
+   "count": 15,
+   "first_id": 132316,
+   "digest": "14e426bc91a3b4b7"
+  },
+  "Shiva Coat Surface Rift of Thessaly Room # +#": {
+   "count": 105,
+   "first_id": 134816,
+   "digest": "492aa1f18469b78f"
+  },
+  "Shiva Coat Surface The Summit Room #": {
+   "count": 15,
+   "first_id": 132346,
+   "digest": "9925baef82cf8c34"
+  },
+  "Shiva Coat Surface The Summit Room # +#": {
+   "count": 105,
+   "first_id": 134846,
+   "digest": "5e5167d04ce33c18"
+  },
+  "Shiva Coat Underworld Erebus Room #": {
+   "count": 15,
+   "first_id": 102301,
+   "digest": "662ebf437330d568"
+  },
+  "Shiva Coat Underworld Erebus Room # +#": {
+   "count": 105,
+   "first_id": 104801,
+   "digest": "629573d6c7259932"
+  },
+  "Shiva Coat Underworld Fields of Mourning Room #": {
+   "count": 15,
+   "first_id": 102331,
+   "digest": "47b76368a4f4c3e1"
+  },
+  "Shiva Coat Underworld Fields of Mourning Room # +#": {
+   "count": 105,
+   "first_id": 104831,
+   "digest": "050aadd0ad9a9885"
+  },
+  "Shiva Coat Underworld Oceanus Room #": {
+   "count": 15,
+   "first_id": 102316,
+   "digest": "794484054a3d50c7"
+  },
+  "Shiva Coat Underworld Oceanus Room # +#": {
+   "count": 105,
+   "first_id": 104816,
+   "digest": "afc4afe59a779f3c"
+  },
+  "Shiva Coat Underworld Tartarus Room #": {
+   "count": 15,
+   "first_id": 102346,
+   "digest": "350707c722cb6679"
+  },
+  "Shiva Coat Underworld Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 104846,
+   "digest": "24f8bdface7f4510"
+  },
+  "Supay Flames Dream Region # Room #": {
+   "count": 144,
+   "first_id": 235501,
+   "digest": "7501468694b305b0"
+  },
+  "Supay Flames Dream Region # Room # +#": {
+   "count": 1008,
+   "first_id": 287501,
+   "digest": "fb63bad16393a375"
+  },
+  "Supay Flames Nightmare Asphodel Room #": {
+   "count": 15,
+   "first_id": 161516,
+   "digest": "e6cfbc66795afe5f"
+  },
+  "Supay Flames Nightmare Asphodel Room # +#": {
+   "count": 105,
+   "first_id": 164016,
+   "digest": "35a084fb3f7f6d4e"
+  },
+  "Supay Flames Nightmare Elysium Room #": {
+   "count": 15,
+   "first_id": 161531,
+   "digest": "47787f48a32332a1"
+  },
+  "Supay Flames Nightmare Elysium Room # +#": {
+   "count": 105,
+   "first_id": 164031,
+   "digest": "1b5f31460693105d"
+  },
+  "Supay Flames Nightmare Styx Room #": {
+   "count": 15,
+   "first_id": 161546,
+   "digest": "af1e64bd9c646181"
+  },
+  "Supay Flames Nightmare Styx Room # +#": {
+   "count": 105,
+   "first_id": 164046,
+   "digest": "d29d3fbf92029880"
+  },
+  "Supay Flames Nightmare Tartarus Room #": {
+   "count": 15,
+   "first_id": 161501,
+   "digest": "ba49f9c5b30ef320"
+  },
+  "Supay Flames Nightmare Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 164001,
+   "digest": "c74a27eb520c51b5"
+  },
+  "Supay Flames Room #": {
+   "count": 60,
+   "first_id": 191501,
+   "digest": "9a1e77fe94bc8b1c"
+  },
+  "Supay Flames Room # +#": {
+   "count": 420,
+   "first_id": 194001,
+   "digest": "50e7ef733e549cb8"
+  },
+  "Supay Flames Surface City of Ephyra Room #": {
+   "count": 15,
+   "first_id": 131501,
+   "digest": "12c2ce5f4288a7c5"
+  },
+  "Supay Flames Surface City of Ephyra Room # +#": {
+   "count": 105,
+   "first_id": 134001,
+   "digest": "1aa079bf326fb93d"
+  },
+  "Supay Flames Surface Mount Olympus Room #": {
+   "count": 15,
+   "first_id": 131531,
+   "digest": "734fc10412917676"
+  },
+  "Supay Flames Surface Mount Olympus Room # +#": {
+   "count": 105,
+   "first_id": 134031,
+   "digest": "7b85f7b31204d5b9"
+  },
+  "Supay Flames Surface Rift of Thessaly Room #": {
+   "count": 15,
+   "first_id": 131516,
+   "digest": "82237d128b4eb1b3"
+  },
+  "Supay Flames Surface Rift of Thessaly Room # +#": {
+   "count": 105,
+   "first_id": 134016,
+   "digest": "e44b20a92a249469"
+  },
+  "Supay Flames Surface The Summit Room #": {
+   "count": 15,
+   "first_id": 131546,
+   "digest": "6813c1ec0b4d5ad2"
+  },
+  "Supay Flames Surface The Summit Room # +#": {
+   "count": 105,
+   "first_id": 134046,
+   "digest": "bbfc191d3dc9eafd"
+  },
+  "Supay Flames Underworld Erebus Room #": {
+   "count": 15,
+   "first_id": 101501,
+   "digest": "bd0163d51ccb150e"
+  },
+  "Supay Flames Underworld Erebus Room # +#": {
+   "count": 105,
+   "first_id": 104001,
+   "digest": "df8d20a7dcf74677"
+  },
+  "Supay Flames Underworld Fields of Mourning Room #": {
+   "count": 15,
+   "first_id": 101531,
+   "digest": "8f8aa9eb956cb32c"
+  },
+  "Supay Flames Underworld Fields of Mourning Room # +#": {
+   "count": 105,
+   "first_id": 104031,
+   "digest": "4bed8b67b202f70d"
+  },
+  "Supay Flames Underworld Oceanus Room #": {
+   "count": 15,
+   "first_id": 101516,
+   "digest": "bba751859e9e5ad9"
+  },
+  "Supay Flames Underworld Oceanus Room # +#": {
+   "count": 105,
+   "first_id": 104016,
+   "digest": "d2eec614578b7594"
+  },
+  "Supay Flames Underworld Tartarus Room #": {
+   "count": 15,
+   "first_id": 101546,
+   "digest": "262e2176f2f44db2"
+  },
+  "Supay Flames Underworld Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 104046,
+   "digest": "ed40a66341551291"
+  },
+  "Surface City of Ephyra Room #": {
+   "count": 15,
+   "first_id": 8001,
+   "digest": "8a6b528e2de71765"
+  },
+  "Surface City of Ephyra Room # +#": {
+   "count": 105,
+   "first_id": 8061,
+   "digest": "ff6c63030bdde7af"
+  },
+  "Surface City of Ephyra Room # +# Axe": {
+   "count": 105,
+   "first_id": 21401,
+   "digest": "62ee7ea881ca4e63"
+  },
+  "Surface City of Ephyra Room # +# Blades": {
+   "count": 105,
+   "first_id": 21101,
+   "digest": "c39cac2830e82386"
+  },
+  "Surface City of Ephyra Room # +# Coat": {
+   "count": 105,
+   "first_id": 21501,
+   "digest": "ca7aff0b23235ba2"
+  },
+  "Surface City of Ephyra Room # +# Flames": {
+   "count": 105,
+   "first_id": 21301,
+   "digest": "818623d541cfe24f"
+  },
+  "Surface City of Ephyra Room # +# Skull": {
+   "count": 105,
+   "first_id": 21201,
+   "digest": "310e885ede5591cb"
+  },
+  "Surface City of Ephyra Room # +# Staff": {
+   "count": 105,
+   "first_id": 21001,
+   "digest": "9710a9346e3f97ff"
+  },
+  "Surface City of Ephyra Room # Axe": {
+   "count": 15,
+   "first_id": 20401,
+   "digest": "4b09835cd4167540"
+  },
+  "Surface City of Ephyra Room # Blades": {
+   "count": 15,
+   "first_id": 20101,
+   "digest": "29f4e46b66565841"
+  },
+  "Surface City of Ephyra Room # Coat": {
+   "count": 15,
+   "first_id": 20501,
+   "digest": "2f7e9edeb4630060"
+  },
+  "Surface City of Ephyra Room # Flames": {
+   "count": 15,
+   "first_id": 20301,
+   "digest": "dc83182a7fd1b29b"
+  },
+  "Surface City of Ephyra Room # Skull": {
+   "count": 15,
+   "first_id": 20201,
+   "digest": "44ca8382f400f3b3"
+  },
+  "Surface City of Ephyra Room # Staff": {
+   "count": 15,
+   "first_id": 20001,
+   "digest": "e2edba2bf0a40b3e"
+  },
+  "Surface Mount Olympus Room #": {
+   "count": 15,
+   "first_id": 8031,
+   "digest": "2bec2488027dbb9d"
+  },
+  "Surface Mount Olympus Room # +#": {
+   "count": 105,
+   "first_id": 8091,
+   "digest": "dfaffda93f418b3d"
+  },
+  "Surface Mount Olympus Room # +# Axe": {
+   "count": 105,
+   "first_id": 21431,
+   "digest": "73d951d6130b1784"
+  },
+  "Surface Mount Olympus Room # +# Blades": {
+   "count": 105,
+   "first_id": 21131,
+   "digest": "ac3a1387b6e8d3db"
+  },
+  "Surface Mount Olympus Room # +# Coat": {
+   "count": 105,
+   "first_id": 21531,
+   "digest": "02e3f066b059ffac"
+  },
+  "Surface Mount Olympus Room # +# Flames": {
+   "count": 105,
+   "first_id": 21331,
+   "digest": "5ef701c9c6d0a2a5"
+  },
+  "Surface Mount Olympus Room # +# Skull": {
+   "count": 105,
+   "first_id": 21231,
+   "digest": "a0b2c69ed7442dc7"
+  },
+  "Surface Mount Olympus Room # +# Staff": {
+   "count": 105,
+   "first_id": 21031,
+   "digest": "19c0f074458fe034"
+  },
+  "Surface Mount Olympus Room # Axe": {
+   "count": 15,
+   "first_id": 20431,
+   "digest": "17bd6d06476c591f"
+  },
+  "Surface Mount Olympus Room # Blades": {
+   "count": 15,
+   "first_id": 20131,
+   "digest": "34b0347ed313a51f"
+  },
+  "Surface Mount Olympus Room # Coat": {
+   "count": 15,
+   "first_id": 20531,
+   "digest": "8161ec8c93cb75b2"
+  },
+  "Surface Mount Olympus Room # Flames": {
+   "count": 15,
+   "first_id": 20331,
+   "digest": "2ac471c8cc4f97bc"
+  },
+  "Surface Mount Olympus Room # Skull": {
+   "count": 15,
+   "first_id": 20231,
+   "digest": "c94e73d9153d50da"
+  },
+  "Surface Mount Olympus Room # Staff": {
+   "count": 15,
+   "first_id": 20031,
+   "digest": "c5ec6c8bdb30f91e"
+  },
+  "Surface Rift of Thessaly Room #": {
+   "count": 15,
+   "first_id": 8016,
+   "digest": "0fcc0eabb698acf9"
+  },
+  "Surface Rift of Thessaly Room # +#": {
+   "count": 105,
+   "first_id": 8076,
+   "digest": "66848771e0d424b9"
+  },
+  "Surface Rift of Thessaly Room # +# Axe": {
+   "count": 105,
+   "first_id": 21416,
+   "digest": "25f9baadb1b109ad"
+  },
+  "Surface Rift of Thessaly Room # +# Blades": {
+   "count": 105,
+   "first_id": 21116,
+   "digest": "da2a5ba4af01e477"
+  },
+  "Surface Rift of Thessaly Room # +# Coat": {
+   "count": 105,
+   "first_id": 21516,
+   "digest": "f621a903ca0c483f"
+  },
+  "Surface Rift of Thessaly Room # +# Flames": {
+   "count": 105,
+   "first_id": 21316,
+   "digest": "1a90ade2c64e6313"
+  },
+  "Surface Rift of Thessaly Room # +# Skull": {
+   "count": 105,
+   "first_id": 21216,
+   "digest": "cd2ae4dc8e2545c8"
+  },
+  "Surface Rift of Thessaly Room # +# Staff": {
+   "count": 105,
+   "first_id": 21016,
+   "digest": "34fc3012e4e4444a"
+  },
+  "Surface Rift of Thessaly Room # Axe": {
+   "count": 15,
+   "first_id": 20416,
+   "digest": "fbe35d0ea16a7a74"
+  },
+  "Surface Rift of Thessaly Room # Blades": {
+   "count": 15,
+   "first_id": 20116,
+   "digest": "141d58f4eff97760"
+  },
+  "Surface Rift of Thessaly Room # Coat": {
+   "count": 15,
+   "first_id": 20516,
+   "digest": "7dd8cf23df0d3cb2"
+  },
+  "Surface Rift of Thessaly Room # Flames": {
+   "count": 15,
+   "first_id": 20316,
+   "digest": "5ff615ef7ba47472"
+  },
+  "Surface Rift of Thessaly Room # Skull": {
+   "count": 15,
+   "first_id": 20216,
+   "digest": "8c059ff254dd3d03"
+  },
+  "Surface Rift of Thessaly Room # Staff": {
+   "count": 15,
+   "first_id": 20016,
+   "digest": "3c603e94751ce2c8"
+  },
+  "Surface Score #": {
+   "count": 1000,
+   "first_id": 2001,
+   "digest": "111c03c6a13dfdeb"
+  },
+  "Surface The Summit Room #": {
+   "count": 15,
+   "first_id": 8046,
+   "digest": "ce2bb08eeced5e2a"
+  },
+  "Surface The Summit Room # +#": {
+   "count": 105,
+   "first_id": 8106,
+   "digest": "c56cdf73aed45a60"
+  },
+  "Surface The Summit Room # +# Axe": {
+   "count": 105,
+   "first_id": 21446,
+   "digest": "89804133fdc82192"
+  },
+  "Surface The Summit Room # +# Blades": {
+   "count": 105,
+   "first_id": 21146,
+   "digest": "f34fbe5759110927"
+  },
+  "Surface The Summit Room # +# Coat": {
+   "count": 105,
+   "first_id": 21546,
+   "digest": "9e239d6bc6282825"
+  },
+  "Surface The Summit Room # +# Flames": {
+   "count": 105,
+   "first_id": 21346,
+   "digest": "ee267891697001a1"
+  },
+  "Surface The Summit Room # +# Skull": {
+   "count": 105,
+   "first_id": 21246,
+   "digest": "5f7c3a8707958f3c"
+  },
+  "Surface The Summit Room # +# Staff": {
+   "count": 105,
+   "first_id": 21046,
+   "digest": "c7ce460da4a94024"
+  },
+  "Surface The Summit Room # Axe": {
+   "count": 15,
+   "first_id": 20446,
+   "digest": "adea6387b5b5e7f8"
+  },
+  "Surface The Summit Room # Blades": {
+   "count": 15,
+   "first_id": 20146,
+   "digest": "f6f7e93c5cff98b4"
+  },
+  "Surface The Summit Room # Coat": {
+   "count": 15,
+   "first_id": 20546,
+   "digest": "8d91267e8ddb5830"
+  },
+  "Surface The Summit Room # Flames": {
+   "count": 15,
+   "first_id": 20346,
+   "digest": "11eb85a446c8940a"
+  },
+  "Surface The Summit Room # Skull": {
+   "count": 15,
+   "first_id": 20246,
+   "digest": "9ad1d1f1ee380160"
+  },
+  "Surface The Summit Room # Staff": {
+   "count": 15,
+   "first_id": 20046,
+   "digest": "5b55e27faae62052"
+  },
+  "Thanatos Axe Dream Region # Room #": {
+   "count": 144,
+   "first_id": 237001,
+   "digest": "5576ed5b11ed3176"
+  },
+  "Thanatos Axe Dream Region # Room # +#": {
+   "count": 1008,
+   "first_id": 289001,
+   "digest": "8fc59668cf332268"
+  },
+  "Thanatos Axe Nightmare Asphodel Room #": {
+   "count": 15,
+   "first_id": 161816,
+   "digest": "6a76435dc27b174e"
+  },
+  "Thanatos Axe Nightmare Asphodel Room # +#": {
+   "count": 105,
+   "first_id": 164316,
+   "digest": "fc14044aebb0dd64"
+  },
+  "Thanatos Axe Nightmare Elysium Room #": {
+   "count": 15,
+   "first_id": 161831,
+   "digest": "d438c82bc2236c65"
+  },
+  "Thanatos Axe Nightmare Elysium Room # +#": {
+   "count": 105,
+   "first_id": 164331,
+   "digest": "bee69eaa880e6b0b"
+  },
+  "Thanatos Axe Nightmare Styx Room #": {
+   "count": 15,
+   "first_id": 161846,
+   "digest": "1920918635b5a0e8"
+  },
+  "Thanatos Axe Nightmare Styx Room # +#": {
+   "count": 105,
+   "first_id": 164346,
+   "digest": "130cf28aec79e4a3"
+  },
+  "Thanatos Axe Nightmare Tartarus Room #": {
+   "count": 15,
+   "first_id": 161801,
+   "digest": "ea1f3745fe3c3a1d"
+  },
+  "Thanatos Axe Nightmare Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 164301,
+   "digest": "3cbc4cc79509079e"
+  },
+  "Thanatos Axe Room #": {
+   "count": 60,
+   "first_id": 191801,
+   "digest": "1fa6e731ad8b6e4e"
+  },
+  "Thanatos Axe Room # +#": {
+   "count": 420,
+   "first_id": 194301,
+   "digest": "3cf44bd977feff1a"
+  },
+  "Thanatos Axe Surface City of Ephyra Room #": {
+   "count": 15,
+   "first_id": 131801,
+   "digest": "5d269413ff6c3b9d"
+  },
+  "Thanatos Axe Surface City of Ephyra Room # +#": {
+   "count": 105,
+   "first_id": 134301,
+   "digest": "89095be2084d5291"
+  },
+  "Thanatos Axe Surface Mount Olympus Room #": {
+   "count": 15,
+   "first_id": 131831,
+   "digest": "0f9c8b4d697ff6a1"
+  },
+  "Thanatos Axe Surface Mount Olympus Room # +#": {
+   "count": 105,
+   "first_id": 134331,
+   "digest": "5e47b552b7da67d2"
+  },
+  "Thanatos Axe Surface Rift of Thessaly Room #": {
+   "count": 15,
+   "first_id": 131816,
+   "digest": "a8de2be0be9c167e"
+  },
+  "Thanatos Axe Surface Rift of Thessaly Room # +#": {
+   "count": 105,
+   "first_id": 134316,
+   "digest": "7756236f286e9041"
+  },
+  "Thanatos Axe Surface The Summit Room #": {
+   "count": 15,
+   "first_id": 131846,
+   "digest": "d01fb0bdf7c8940b"
+  },
+  "Thanatos Axe Surface The Summit Room # +#": {
+   "count": 105,
+   "first_id": 134346,
+   "digest": "80d0f27d58bccf37"
+  },
+  "Thanatos Axe Underworld Erebus Room #": {
+   "count": 15,
+   "first_id": 101801,
+   "digest": "6658cb118bd48627"
+  },
+  "Thanatos Axe Underworld Erebus Room # +#": {
+   "count": 105,
+   "first_id": 104301,
+   "digest": "014de0687df63a93"
+  },
+  "Thanatos Axe Underworld Fields of Mourning Room #": {
+   "count": 15,
+   "first_id": 101831,
+   "digest": "aa2da1bdf90cd0b2"
+  },
+  "Thanatos Axe Underworld Fields of Mourning Room # +#": {
+   "count": 105,
+   "first_id": 104331,
+   "digest": "f1ee12e230e5ad4d"
+  },
+  "Thanatos Axe Underworld Oceanus Room #": {
+   "count": 15,
+   "first_id": 101816,
+   "digest": "a379cf9f07515dc8"
+  },
+  "Thanatos Axe Underworld Oceanus Room # +#": {
+   "count": 105,
+   "first_id": 104316,
+   "digest": "87b87bc627ba0373"
+  },
+  "Thanatos Axe Underworld Tartarus Room #": {
+   "count": 15,
+   "first_id": 101846,
+   "digest": "2c91565f8e595c46"
+  },
+  "Thanatos Axe Underworld Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 104346,
+   "digest": "b080d304d43416a6"
+  },
+  "Underworld Erebus Room #": {
+   "count": 15,
+   "first_id": 7001,
+   "digest": "44a6cc19461d3e31"
+  },
+  "Underworld Erebus Room # +#": {
+   "count": 105,
+   "first_id": 7061,
+   "digest": "bb9da316fce72873"
+  },
+  "Underworld Erebus Room # +# Axe": {
+   "count": 105,
+   "first_id": 11401,
+   "digest": "5082ce0f6315f39c"
+  },
+  "Underworld Erebus Room # +# Blades": {
+   "count": 105,
+   "first_id": 11101,
+   "digest": "aa9f15203f5bf51f"
+  },
+  "Underworld Erebus Room # +# Coat": {
+   "count": 105,
+   "first_id": 11501,
+   "digest": "5e1e216c07fe483c"
+  },
+  "Underworld Erebus Room # +# Flames": {
+   "count": 105,
+   "first_id": 11301,
+   "digest": "45f2312f586d83b0"
+  },
+  "Underworld Erebus Room # +# Skull": {
+   "count": 105,
+   "first_id": 11201,
+   "digest": "e0aaa4a251ccc9d2"
+  },
+  "Underworld Erebus Room # +# Staff": {
+   "count": 105,
+   "first_id": 11001,
+   "digest": "8bbb243c32f787b1"
+  },
+  "Underworld Erebus Room # Axe": {
+   "count": 15,
+   "first_id": 10401,
+   "digest": "c5e6bff389a33c6d"
+  },
+  "Underworld Erebus Room # Blades": {
+   "count": 15,
+   "first_id": 10101,
+   "digest": "6e597ec0ab548021"
+  },
+  "Underworld Erebus Room # Coat": {
+   "count": 15,
+   "first_id": 10501,
+   "digest": "13b1eed8c6447495"
+  },
+  "Underworld Erebus Room # Flames": {
+   "count": 15,
+   "first_id": 10301,
+   "digest": "5d32e8b8c775735a"
+  },
+  "Underworld Erebus Room # Skull": {
+   "count": 15,
+   "first_id": 10201,
+   "digest": "e87e549fc3f1cda0"
+  },
+  "Underworld Erebus Room # Staff": {
+   "count": 15,
+   "first_id": 10001,
+   "digest": "33f41a9045eaab6a"
+  },
+  "Underworld Fields of Mourning Room #": {
+   "count": 15,
+   "first_id": 7031,
+   "digest": "672a0cc2ad1e775c"
+  },
+  "Underworld Fields of Mourning Room # +#": {
+   "count": 105,
+   "first_id": 7091,
+   "digest": "302ec6acb6ff9b28"
+  },
+  "Underworld Fields of Mourning Room # +# Axe": {
+   "count": 105,
+   "first_id": 11431,
+   "digest": "d7af341c3532fcab"
+  },
+  "Underworld Fields of Mourning Room # +# Blades": {
+   "count": 105,
+   "first_id": 11131,
+   "digest": "c3a2086eae8e2106"
+  },
+  "Underworld Fields of Mourning Room # +# Coat": {
+   "count": 105,
+   "first_id": 11531,
+   "digest": "8ee68a2a4b8dfeb3"
+  },
+  "Underworld Fields of Mourning Room # +# Flames": {
+   "count": 105,
+   "first_id": 11331,
+   "digest": "908b7d9720d32c7f"
+  },
+  "Underworld Fields of Mourning Room # +# Skull": {
+   "count": 105,
+   "first_id": 11231,
+   "digest": "c3315e0d6ccfb461"
+  },
+  "Underworld Fields of Mourning Room # +# Staff": {
+   "count": 105,
+   "first_id": 11031,
+   "digest": "70101a1c64d5e9b9"
+  },
+  "Underworld Fields of Mourning Room # Axe": {
+   "count": 15,
+   "first_id": 10431,
+   "digest": "71598a5c2af6101e"
+  },
+  "Underworld Fields of Mourning Room # Blades": {
+   "count": 15,
+   "first_id": 10131,
+   "digest": "842e631d19b5c17d"
+  },
+  "Underworld Fields of Mourning Room # Coat": {
+   "count": 15,
+   "first_id": 10531,
+   "digest": "45a657a67987c170"
+  },
+  "Underworld Fields of Mourning Room # Flames": {
+   "count": 15,
+   "first_id": 10331,
+   "digest": "3f6eed3595535b07"
+  },
+  "Underworld Fields of Mourning Room # Skull": {
+   "count": 15,
+   "first_id": 10231,
+   "digest": "0eb7af426dcfbf99"
+  },
+  "Underworld Fields of Mourning Room # Staff": {
+   "count": 15,
+   "first_id": 10031,
+   "digest": "050f73aa21fc1e75"
+  },
+  "Underworld Oceanus Room #": {
+   "count": 15,
+   "first_id": 7016,
+   "digest": "67ec9547189249e4"
+  },
+  "Underworld Oceanus Room # +#": {
+   "count": 105,
+   "first_id": 7076,
+   "digest": "5371aefabd5b2c43"
+  },
+  "Underworld Oceanus Room # +# Axe": {
+   "count": 105,
+   "first_id": 11416,
+   "digest": "d421e0c5de69edaf"
+  },
+  "Underworld Oceanus Room # +# Blades": {
+   "count": 105,
+   "first_id": 11116,
+   "digest": "45546ea9b1040f43"
+  },
+  "Underworld Oceanus Room # +# Coat": {
+   "count": 105,
+   "first_id": 11516,
+   "digest": "13cd30f651d77bde"
+  },
+  "Underworld Oceanus Room # +# Flames": {
+   "count": 105,
+   "first_id": 11316,
+   "digest": "4901c2f4b8b914c6"
+  },
+  "Underworld Oceanus Room # +# Skull": {
+   "count": 105,
+   "first_id": 11216,
+   "digest": "309297e33de182b5"
+  },
+  "Underworld Oceanus Room # +# Staff": {
+   "count": 105,
+   "first_id": 11016,
+   "digest": "aea5642fbb5281e4"
+  },
+  "Underworld Oceanus Room # Axe": {
+   "count": 15,
+   "first_id": 10416,
+   "digest": "2c154c33a3552b7b"
+  },
+  "Underworld Oceanus Room # Blades": {
+   "count": 15,
+   "first_id": 10116,
+   "digest": "aae716487257402b"
+  },
+  "Underworld Oceanus Room # Coat": {
+   "count": 15,
+   "first_id": 10516,
+   "digest": "bfa8d1ea661ff152"
+  },
+  "Underworld Oceanus Room # Flames": {
+   "count": 15,
+   "first_id": 10316,
+   "digest": "e330d94d325cf0ee"
+  },
+  "Underworld Oceanus Room # Skull": {
+   "count": 15,
+   "first_id": 10216,
+   "digest": "332be4e225c881d6"
+  },
+  "Underworld Oceanus Room # Staff": {
+   "count": 15,
+   "first_id": 10016,
+   "digest": "b93e56584b8491dc"
+  },
+  "Underworld Score #": {
+   "count": 1000,
+   "first_id": 1,
+   "digest": "3a20b5019bf2c007"
+  },
+  "Underworld Tartarus Room #": {
+   "count": 15,
+   "first_id": 7046,
+   "digest": "faee447f66d3a092"
+  },
+  "Underworld Tartarus Room # +#": {
+   "count": 105,
+   "first_id": 7106,
+   "digest": "efb9922a841f6e20"
+  },
+  "Underworld Tartarus Room # +# Axe": {
+   "count": 105,
+   "first_id": 11446,
+   "digest": "91f472788c83b195"
+  },
+  "Underworld Tartarus Room # +# Blades": {
+   "count": 105,
+   "first_id": 11146,
+   "digest": "3903f6c09d311ed4"
+  },
+  "Underworld Tartarus Room # +# Coat": {
+   "count": 105,
+   "first_id": 11546,
+   "digest": "83e6eb37867c0c2c"
+  },
+  "Underworld Tartarus Room # +# Flames": {
+   "count": 105,
+   "first_id": 11346,
+   "digest": "81bac6b3456d79c2"
+  },
+  "Underworld Tartarus Room # +# Skull": {
+   "count": 105,
+   "first_id": 11246,
+   "digest": "d3f0d8e6e3a50b7c"
+  },
+  "Underworld Tartarus Room # +# Staff": {
+   "count": 105,
+   "first_id": 11046,
+   "digest": "1e5f010e435f7be6"
+  },
+  "Underworld Tartarus Room # Axe": {
+   "count": 15,
+   "first_id": 10446,
+   "digest": "9d28203159cd0411"
+  },
+  "Underworld Tartarus Room # Blades": {
+   "count": 15,
+   "first_id": 10146,
+   "digest": "6504efc7e69816f1"
+  },
+  "Underworld Tartarus Room # Coat": {
+   "count": 15,
+   "first_id": 10546,
+   "digest": "b0790025c99f7100"
+  },
+  "Underworld Tartarus Room # Flames": {
+   "count": 15,
+   "first_id": 10346,
+   "digest": "2202b4b4af6ce73d"
+  },
+  "Underworld Tartarus Room # Skull": {
+   "count": 15,
+   "first_id": 10246,
+   "digest": "1f74d79291a84e78"
+  },
+  "Underworld Tartarus Room # Staff": {
+   "count": 15,
+   "first_id": 10046,
+   "digest": "73d070eeb68f5ba7"
+  }
+ },
+ "retired": {
+  "items": {},
+  "locations": {}
+ }
+}
