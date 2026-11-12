@@ -381,7 +381,12 @@
     color: var(--text);
   }
   .wizard-choice .wc-label { font-weight: 600; }
-  .wizard-choice .wc-desc { color: var(--muted); font-size: var(--fs-xs); }
+  .wizard-choice .wc-desc-wrap { display: grid; grid-template-rows: 0fr; width: 100%; transition: grid-template-rows 0.15s ease; }
+  .wizard-choice .wc-desc { color: var(--muted); font-size: var(--fs-xs); line-height: 1.5; overflow: hidden; min-height: 0; }
+  .wizard-choice:hover .wc-desc-wrap, .wizard-choice:focus-visible .wc-desc-wrap { grid-template-rows: 1fr; }
+  @media (hover: none) {
+    .wizard-choice.selected .wc-desc-wrap { grid-template-rows: 1fr; }
+  }
   .wizard-choice.selected { border-color: var(--accent); background: var(--accent-soft); }
   .wizard-yesno { display: flex; gap: 10px; max-width: 320px; }
   .wizard-yesno button { flex: 1 1 0; padding: 10px 14px; }
@@ -534,11 +539,13 @@
   <div class="prose">
     <h2>Required Software</h2>
     <ul>
-      <li><a href="https://github.com/ArchipelagoMW/Archipelago/releases">Archipelago</a></li>
+      <li><a href="https://github.com/ArchipelagoMW/Archipelago/releases/latest">Archipelago</a> 0.6.7 or newer</li>
       <li><a href="https://thunderstore.io/c/riskofrain2/p/ebkr/r2modman/">r2modman</a> (or a similar mod launcher for Thunderstore)</li>
-      <li>The Hades2Rogue <a href="https://github.com/BrittisH39/Hades2Archipelago/releases">APWorld</a></li>
+      <li>The Hades2Rogue <a href="https://github.com/BrittisH39/Hades2Archipelago/releases/latest">APWorld</a> (the file is <code>Hades2Rogue.apworld</code>, from the latest release)</li>
       <li>The Hades2Rogue <a href="https://thunderstore.io/c/hades-ii/p/BrittisH39/Hades2RogueArchipelago/">mod</a> (installed via r2modman)</li>
     </ul>
+    <p>Works on Windows. Linux and Steam Deck work through Proton. Steam Deck guide: <a href="https://sgg-modding.github.io/Hades2ModWiki/docs/installing-mods/steam-deck">https://sgg-modding.github.io/Hades2ModWiki/docs/installing-mods/steam-deck</a></p>
+    <p>The mod, the apworld, and the host's apworld must all be the version the seed was generated with. The client now shows an error box naming all three when they don't match.</p>
 
     <h2>Optional</h2>
     <p>
@@ -562,13 +569,15 @@
     <h3>APWorld</h3>
     <ul>
       <li>Launch <a href="https://github.com/ArchipelagoMW/Archipelago/releases">Archipelago</a>.</li>
-      <li>Drag and drop the <a href="https://github.com/BrittisH39/Hades2Archipelago/releases">APWorld</a> onto the Archipelago window.</li>
+      <li>Drag and drop the <a href="https://github.com/BrittisH39/Hades2Archipelago/releases/latest">APWorld</a> onto the Archipelago window.</li>
       <li>Close and relaunch Archipelago.</li>
     </ul>
+    <p>The other way is to place the file in the <code>custom_worlds</code> folder of your Archipelago installation. Install the apworld one way, not both. Two copies is a known cause of checks not sending. When updating, replace the old file. The host needs the same apworld.</p>
 
     <h2>Configuring Your YAML</h2>
     <ul>
       <li>Runs are designed to be possible regardless of your YAML settings, but it's recommended not to set maximum vows unless you are very confident in your Hades 2 skills. You will start the game with nothing, and the logic is set to believe you can at least make it to the boss of each region you have access to.</li>
+      <li>The miniboss room shuffle is fixed per seed (e.g. Olympus always has the same two minibosses). That's by design.</li>
       <li>DO NOT enable Zagreus' Journey unless you have downloaded the Zagreus' Journey mod, and have Hades 1 installed in the same location you have Hades 2 installed in; alternatively you can use the Zagreus' Journey config in r2modman to point to your Hades 1 installation.</li>
     </ul>
     <p>Use the <a href="#yaml" id="setupYamlLink">YAML Creator</a> above to build this file without hand-editing YAML.</p>
@@ -583,6 +592,11 @@
     </ul>
 
     <h2>For Troubleshooting/Issue Reports</h2>
+    <ul>
+      <li>"Items arrive but checks don't send" is almost always a version mismatch. The client's error box names the mod, apworld and seed versions so you can see which one doesn't match.</li>
+      <li>Mod log: r2modman profile folder → <code>ReturnOfModding\LogOutput.log</code>. It resets on every game start, earlier ones are in <code>ReturnOfModding\backup\&lt;date&gt;_LogOutput.log</code>. Client log: <code>&lt;Archipelago folder&gt;\logs\Hades2RogueClient_&lt;date&gt;.txt</code> (default <code>C:\ProgramData\Archipelago\logs</code>).</li>
+      <li>Downpatching: the mod's Thunderstore page → Versions tab → install an older one. Older apworlds are on the <a href="https://github.com/BrittisH39/Hades2Archipelago/releases">GitHub releases list</a>.</li>
+    </ul>
     <p>Visit the Hades 2 Rogue thread found <a href="https://discord.com/channels/731205301247803413/1521929337954238624">here</a>.</p>
   </div>
 </div>
@@ -641,7 +655,7 @@
 // ---------------------------------------------------------------------------
 // Version selector (defaults to the most recent entry)
 // ---------------------------------------------------------------------------
-const APP_VERSIONS = ["0.9.0", "0.9.3", "0.10.0"];
+const APP_VERSIONS = ["0.9.0", "0.9.3", "0.10.0", "0.11.0"];
 let selectedAppVersion = APP_VERSIONS[APP_VERSIONS.length - 1];
 
 const appVersionSelect = document.getElementById("appVersion");
@@ -692,9 +706,10 @@ function optVisibleForVersion(opt, version) {
 // its own -- otherwise older versions get a YAML naming a route their apworld can't resolve.
 const DREAM_MIN_VERSION = "0.10.0";
 function dreamAvailable() { return versionAtLeast(selectedAppVersion, DREAM_MIN_VERSION); }
-// A Dream Dive can only draw as many regions as its biome pool holds: 8, or 12 once the Nightmare
-// route adds Zagreus' Journey's four. The apworld clamps to the same numbers at generation.
-function dreamRegionMax(includedRegions) { return (includedRegions || []).includes("Nightmare") ? 12 : 8; }
+// A Dream Dive can only draw as many regions as its biome pool holds: 8, or 12 once Zagreus'
+// Journey is included and adds its four (the Nightmare route itself needn't be). The apworld
+// clamps to the same numbers at generation.
+function dreamRegionMax() { return getOptValue("include_zagreus_journey") ? 12 : 8; }
 
 // ---------------------------------------------------------------------------
 // Page tab switching
@@ -788,6 +803,8 @@ const GROUPS = [
       { key: "keepsakesanity", label: "KeepsakeSanity", type: "choice", def: "randomized",
         options: [["false","Off"],["randomized","Randomized"],["progressive","Progressive"],["progressive_per","Progressive Per Keepsake"]],
         desc: "false: unchanged from base game.\nrandomized: each keepsake is its own check/item.\nprogressive: 3 Progressive Keepsake items; first unlocks all, rest level them.\nprogressive_per: 3 Progressive <Keepsake> items for each keepsake. This adds by far the most items." },
+      { key: "keepsake_items_only", label: "Keepsake Items Only", type: "bool", def: false, minVersion: "0.11.0",
+        desc: "Turns off keepsake locations, but keeps keepsake items. This means you can still receive keepsakes, but you don't need to give nectar to each npc." },
       { key: "enemysanity", label: "EnemySanity", type: "choice", def: "vanilla_plus_locations", minVersion: "0.10.0",
         options: [["vanilla","Vanilla"],["vanilla_plus_locations","Vanilla + Locations"],["shuffled","Shuffled"],["shuffled_plus_locations","Shuffled + Locations"],["pure_random","Pure Random"]],
         desc: "How do you want enemies handled? Note that enemies are nerfed/buffed based on region number so they should feel relatively balanced to the depth you're at.\nvanilla: enemies spawn where they're supposed to, no locations.\nvanilla_plus_locations: vanilla spawns, plus a location the first time you kill each enemy.\nshuffled: (EXPERIMENTAL) enemies are shuffled, so each time an enemy would spawn, a specific different enemy spawns instead. No locations.\nshuffled_plus_locations: (EXPERIMENTAL) shuffled, plus a location the first time you kill each enemy.\npure_random: (EXPERIMENTAL) each time an enemy spawns, a different random enemy spawns instead. No locations." },
@@ -805,6 +822,8 @@ const GROUPS = [
       { key: "godsanity", label: "GodSanity", type: "choice", def: "unlocked",
         options: [["unlocked","Unlocked"],["onions","Onions"],["no_waste_less_odds","No Waste (less odds)"],["no_waste_same_odds","No Waste (same odds)"]],
         desc: "Locks each god's boons behind a check.\nunlocked: all available from start.\nonions: (EXPERIMENTAL) locked gods' boons are replaced by Onions.\nno_waste_less_odds / no_waste_same_odds: (EXPERIMENTAL) boon spawn odds scale (or don't) with gods unlocked, but never waste a spawn on a locked god." },
+      { key: "unlimited_gods", label: "Unlimited Gods", type: "bool", def: false, minVersion: "0.11.0",
+        desc: "Removes the base game's rules around how many gods you can get in a given run. So each time you get a boon it could be any god, regardless of who else you've seen." },
     ]
   },
   {
@@ -844,6 +863,8 @@ const GROUPS = [
       { key: "vow_rivals", label: "Vow of Rivals", type: "range", min: 0, max: 4, def: 0, desc: "Guardians are stronger.", showIf: (s) => s.reverse_vow },
       { key: "reverse_rivals", label: "Reverse Rivals", type: "bool", def: true, showIf: (s) => s.reverse_vow,
         desc: "Reverse which Guardians the Vow of Rivals strengthens: makes Chronos and Typhon the last boss to return to normal." },
+      { key: "minimum_fear", label: "Minimum Fear", type: "range", min: 0, max: 67, def: 0, minVersion: "0.11.0",
+        desc: "The lowest fear you can have, regardless of vow removal. This can work independently of reverse vow. If you set this above 0, you will have to keep some vows on." },
     ]
   },
   {
@@ -859,13 +880,13 @@ const GROUPS = [
         options: [["all_selected","All Selected"],["any_selected","Any Selected"]],
         showIf: (s) => (s.goals_required || []).length + (s.goal_requires_zagreus ? 1 : 0) > 1,
         desc: "Whether all toggled goals must be achieved, or just any one of them." },
-      { key: "zagreus_encounter_mode", label: "Zagreus Encounter Mode", type: "choice", def: "empowered",
-        options: [["vanilla","Vanilla"],["empowered","Empowered"],["final_challenge","Final Challenge"]],
+      { key: "zagreus_encounter_mode", label: "Zagreus Encounter Mode", type: "choice", def: "empowered_final_challenge",
+        options: [["vanilla","Vanilla"],["empowered","Empowered"],["final_challenge","Final Challenge"],["empowered_final_challenge","Empowered Final Challenge"]],
         showIf: (s) => s.goal_requires_zagreus,
-        desc: "Vanilla: normal late-game Zagreus fights.\nEmpowered: Zagreus starts heavily empowered; Progressive Zagreus Weaken items weaken him.\nFinal Challenge: any route's final boss spawns a contract to fight Zagreus instead of ending the run." },
+        desc: "Vanilla: normal late-game Zagreus fights.\nEmpowered: Zagreus starts heavily empowered; Progressive Zagreus Weaken items weaken him.\nFinal Challenge: any route's final boss spawns a contract to fight Zagreus instead of ending the run.\nEmpowered Final Challenge: Contract after a route's final boss only, and Zagreus is empowered (Weakened by items you get from the multiworld)" },
       { key: "zagreus_weaken_tiers", label: "Zagreus Weaken Tiers", type: "range", min: 1, max: 10, def: 5,
-        showIf: (s) => s.goal_requires_zagreus && s.zagreus_encounter_mode === "empowered",
-        desc: "Empowered mode only: how many Progressive Zagreus Weaken items exist." },
+        showIf: (s) => s.goal_requires_zagreus && s.zagreus_encounter_mode.startsWith("empowered"),
+        desc: "Empowered modes only: how many Progressive Zagreus Weaken items exist." },
       { key: "include_regions", label: "Include Regions", type: "set",
         keys: ["Underworld","Surface","Nightmare","Dream"], def: ["Underworld","Surface"],
         keyShowIf: (k, s) => (k !== "Nightmare" || s.include_zagreus_journey) && (k !== "Dream" || dreamAvailable()),
@@ -873,11 +894,11 @@ const GROUPS = [
       { key: "dream_region_count", label: "Dream Region Count", type: "range", min: 1, max: 12, def: 4,
         minVersion: "0.10.0",
         showIf: (s) => (s.include_regions || []).includes("Dream"),
-        desc: "How many regions each Dream Dive run has. The max is 8, or 12 if Nightmare is included; anything higher is just lowered to the max. Logic assumes you need half your resources to make it halfway." },
+        desc: "How many regions each Dream Dive run has. The max is 8, or 12 if Zagreus' Journey is included; anything higher is just lowered to the max. Logic assumes you need half your resources to make it halfway." },
       { key: "dream_enemy_locations", label: "Dream Enemy Locations", type: "range", min: 1, max: 12, def: 8,
         minVersion: "0.10.0",
         showIf: (s) => (s.include_regions || []).includes("Dream"),
-        desc: "Only matters if enemysanity has locations. How many regions worth of enemies you'll need to defeat in Dream Dive to send every Dream Enemy check. The max is 8 unless Nightmare is included." },
+        desc: "Only matters if enemysanity has locations. How many regions worth of enemies you'll need to defeat in Dream Dive to send every Dream Enemy check. The max is 8 unless Zagreus' Journey is included." },
       { key: "include_zagreus_journey", label: "Include Zagreus Journey", type: "bool", def: false,
         desc: "Whether to include any content from NikkelM's Zagreus' Journey mod. When off, Nightmare is fully removed and its 7 keepsakes never enter the pool." },
       { key: "lock_routes", label: "Lock Routes", type: "bool", def: true,
@@ -926,7 +947,7 @@ const GROUPS = [
     opts: [
       { key: "nectar_pack_value", label: "Nectar Pack Value", type: "range", min: 0, max: 50, def: 2, desc: "Amount of Nectar granted per Nectar item." },
       { key: "nectar_pack_percentage", label: "Nectar Pack Percentage", type: "range", min: 0, max: 100, def: 5, desc: "Share of the filler pool that is Nectar." },
-      { key: "starting_health_value", label: "Starting Health Value", type: "range", min: 0, max: 50, def: 20, desc: "Max health granted per Starting Max Health item." },
+      { key: "starting_health_value", label: "Starting Health Value", type: "range", min: 0, max: 50, def: 15, desc: "Max health granted per Starting Max Health item." },
       { key: "starting_health_percentage", label: "Starting Health Percentage", type: "range", min: 0, max: 100, def: 15, desc: "Share of the filler pool that is Max Health." },
       { key: "starting_magick_value", label: "Starting Magick Value", type: "range", min: 0, max: 50, def: 2, desc: "Max Magick granted per Starting Max Magick item." },
       { key: "starting_magick_percentage", label: "Starting Magick Percentage", type: "range", min: 0, max: 100, def: 15, desc: "Share of the filler pool that is Max Magick." },
@@ -936,6 +957,11 @@ const GROUPS = [
       { key: "starting_armor_percentage", label: "Starting Armor Percentage", type: "range", min: 0, max: 100, def: 15, desc: "Share of the filler pool that is Starting Armor." },
       { key: "rarity_increase_percentage", label: "Rarity Increase Percentage", type: "range", min: 0, max: 100, def: 15, desc: "Share of the filler pool that permanently raises higher-rarity boon odds." },
       { key: "major_finds_percentage", label: "Major Finds Percentage", type: "range", min: 0, max: 100, def: 10, desc: "Share of the filler pool that nudges door rewards toward Major Finds and away from Minor Finds." },
+      { key: "trap_percentage", label: "Trap Percentage", type: "range", min: 0, max: 100, def: 0, minVersion: "0.11.0", desc: "(EXPERIMENTAL) Percentage of your filler checks that become traps" },
+      { key: "enabled_traps", label: "Enabled Traps", type: "set", minVersion: "0.11.0",
+        keys: ["Sheep Trap","Chronos Trap","Invisible Trap","Pause Trap","Asphodel Trap","Aspect Trap","Onion Trap","Keepsake Trap","Rarity Decrease","Starting Max Health Loss","Starting Armor Loss","Starting Mana Loss","Eagle Trap","Typhon Trap","Spawn Trap","Shield Trap","Music Trap","Boulder Trap","Chaos Curse Trap"],
+        def: ["Sheep Trap","Chronos Trap","Invisible Trap","Pause Trap","Asphodel Trap","Aspect Trap","Onion Trap","Keepsake Trap","Rarity Decrease","Starting Max Health Loss","Starting Armor Loss","Starting Mana Loss","Eagle Trap","Typhon Trap","Spawn Trap","Shield Trap","Music Trap","Boulder Trap","Chaos Curse Trap"],
+        desc: "(EXPERIMENTAL) Traps that can be in your run, the options are: Sheep Trap, Chronos Trap, Invisible Trap, Pause Trap, Asphodel Trap, Aspect Trap, Onion Trap, Keepsake Trap, Rarity Decrease, Starting Max Health Loss, Starting Armor Loss, Starting Mana Loss, Eagle Trap, Typhon Trap, Spawn Trap, Shield Trap, Music Trap, Boulder Trap, Chaos Curse Trap" },
     ]
   },
 ];
@@ -1390,12 +1416,50 @@ function rangeControl(min, max, value, onChange) {
   return wrap;
 }
 
+// Hover text for each choice button in the guided wizard, keyed by question then by choice
+// value. Anything left "" falls back to that choice's own "value: ..." line in the option's
+// desc above (if it has one), otherwise the button just has no hover text.
+const GUIDED_CHOICE_DESCS = {
+  initial_weapon: { random: "", Staff: "", Blades: "", Flames: "", Axe: "", Skull: "", Coat: "" },
+  aspectsanity: { unlocked: "", randomized: "", progressive: "", per_aspect: "" },
+  location_system: { point_based: "", room_based: "", per_weapon_room_based: "", per_aspect_room_based: "" },
+  arcanasanity: { arcana: "", progressive_arcana: "" },
+  helper_room_sanity: { unlocked: "", items: "", unlocked_random: "", items_random: "" },
+  combat_helper_sanity: { unlocked: "", items: "", unlocked_random: "", items_random: "" },
+  godsanity: { onions: "", no_waste_less_odds: "", no_waste_same_odds: "" },
+  starting_route: { random_1_route: "", underworld: "", surface: "", nightmare: "", dream: "", all: "" },
+  goal_mode: { all_selected: "", any_selected: "" },
+  zagreus_encounter_mode: { vanilla: "", empowered: "", final_challenge: "", empowered_final_challenge: "" },
+  keepsakesanity: { "false": "", randomized: "", progressive: "", progressive_per: "" },
+  enemysanity_mode: { no: "", shuffled: "", randomized: "" },
+  petsanity: { unlocked: "", randomized: "", progressive: "", progressive_per: "" },
+};
+
+function choiceDesc(key, value) {
+  const written = (GUIDED_CHOICE_DESCS[key] || {})[value];
+  if (written) return written;
+  const opt = OPTS_BY_KEY[key];
+  if (!opt || !opt.desc) return "";
+  for (const line of opt.desc.split(/\r?\n/)) {
+    const m = line.match(/^([A-Za-z_ ]+):\s*(.+)$/);
+    if (m && m[1].trim().toLowerCase().replace(/ /g, "_") === String(value).toLowerCase()) {
+      return m[2].charAt(0).toUpperCase() + m[2].slice(1);
+    }
+  }
+  return "";
+}
+function withChoiceDescs(key, choices) {
+  return choices.map(c => Object.assign({ desc: choiceDesc(key, c.value) }, c));
+}
+
 function choiceCards(options, value, onChange) {
   const wrap = el("div", { class: "wizard-choices" });
   options.forEach(opt => {
     const card = el("button", { type: "button", class: "wizard-choice" });
     card.appendChild(el("span", { class: "wc-label" }, [document.createTextNode(opt.label)]));
-    if (opt.desc) card.appendChild(el("span", { class: "wc-desc" }, [document.createTextNode(opt.desc)]));
+    if (opt.desc) {
+      card.appendChild(el("span", { class: "wc-desc-wrap" }, [el("span", { class: "wc-desc" }, [document.createTextNode(opt.desc)])]));
+    }
     if (opt.value === value) card.classList.add("selected");
     card.addEventListener("click", () => {
       wrap.querySelectorAll(".wizard-choice").forEach(c => c.classList.remove("selected"));
@@ -1525,7 +1589,7 @@ const WIZARD_STEPS = [
         let current = ans(ctx, "initial_weapon");
         if (current !== undefined && current !== "random" && !included.includes(current)) current = undefined;
         const choices = [{ value: "random", label: "Random" }].concat(included.map(k => ({ value: k, label: WEAPON_FULL_NAMES[k] })));
-        q3.body.appendChild(choiceCards(choices, current, (v) => {
+        q3.body.appendChild(choiceCards(withChoiceDescs("initial_weapon", choices), current, (v) => {
           setOptValue("initial_weapon", v);
           ctx.markAnswered("initial_weapon");
           updatePreview();
@@ -1553,7 +1617,7 @@ const WIZARD_STEPS = [
         "How do you want your weapons to be upgraded?",
         "There's a few different ways you can have your weapons be upgraded. Unlocked means the weapon will be max level on every aspect as soon as you have access to it. Randomized means each aspect is an item, and once you have it, it's available at max level. Progressive (my preference) adds 5 progressive items for each weapon: the first unlocks all 4 aspects at level one, the rest upgrade all four aspects one level at a time. Lastly there's Per Aspect, which instead adds 5 progressive items for each individual aspect. This adds a ton of items and I don't recommend it unless you know what you're doing."
       );
-      q1.body.appendChild(choiceCards(OPTS_BY_KEY.aspectsanity.options.map(([v, l]) => ({ value: v, label: l })), ans(ctx, "aspectsanity"), (v) => {
+      q1.body.appendChild(choiceCards(withChoiceDescs("aspectsanity", OPTS_BY_KEY.aspectsanity.options.map(([v, l]) => ({ value: v, label: l }))), ans(ctx, "aspectsanity"), (v) => {
         setOptValue("aspectsanity", v);
         ctx.markAnswered("aspectsanity");
         updatePreview();
@@ -1593,7 +1657,7 @@ const WIZARD_STEPS = [
         "What are the core locations?",
         "Room Based is my preference: each location has a set amount of rooms and you'll need to get deeper in order to unlock more checks, this means if you don't make it further, you don't get more items. With Point Based you build up points in every room you clear, and once your points add up to the next threshold, it sends the check; this means you make progress even on runs that don't make it as far, but it can also mean a lot of grinding. Lastly we have Per Weapon Room Based and Per Aspect Room Based, which make it so each weapon/aspect have their own checks to go and find. I recommend against this unless you know what you're doing, or you've heavily limited the amount of weapons/aspects you'll have."
       );
-      q1.body.appendChild(choiceCards(OPTS_BY_KEY.location_system.options.map(([v, l]) => ({ value: v, label: l })), ans(ctx, "location_system"), (v) => {
+      q1.body.appendChild(choiceCards(withChoiceDescs("location_system", OPTS_BY_KEY.location_system.options.map(([v, l]) => ({ value: v, label: l }))), ans(ctx, "location_system"), (v) => {
         setOptValue("location_system", v);
         ctx.markAnswered("location_system");
         updatePreview();
@@ -1688,7 +1752,7 @@ const WIZARD_STEPS = [
         "How do you want to unlock Arcanas?",
         "Two options: Arcana means each Arcana will be shuffled in as one single item. When you receive that item, it unlocks the Arcana at max level. The second option is Progressive Arcana. Instead of only one item, there are multiple; the first unlocks it at level one, and the rest level it up."
       );
-      q3.body.appendChild(choiceCards(OPTS_BY_KEY.arcanasanity.options.map(([v, l]) => ({ value: v, label: l })), ans(ctx, "arcanasanity"), (v) => {
+      q3.body.appendChild(choiceCards(withChoiceDescs("arcanasanity", OPTS_BY_KEY.arcanasanity.options.map(([v, l]) => ({ value: v, label: l }))), ans(ctx, "arcanasanity"), (v) => {
         setOptValue("arcanasanity", v);
         ctx.markAnswered("arcanasanity");
         updatePreview();
@@ -1713,7 +1777,7 @@ const WIZARD_STEPS = [
         "Helper Room Randomization",
         "Should the static room encounters be mixed up? This means you could enter a helper room in Erebus expecting to find Arachne and instead find Hades. Remember that the item options mean you'll only see those rooms once you find their item."
       );
-      q1.body.appendChild(choiceCards(OPTS_BY_KEY.helper_room_sanity.options.map(([v, l]) => ({ value: v, label: l })), ans(ctx, "helper_room_sanity"), (v) => {
+      q1.body.appendChild(choiceCards(withChoiceDescs("helper_room_sanity", OPTS_BY_KEY.helper_room_sanity.options.map(([v, l]) => ({ value: v, label: l }))), ans(ctx, "helper_room_sanity"), (v) => {
         setOptValue("helper_room_sanity", v);
         ctx.markAnswered("helper_room_sanity");
         updatePreview();
@@ -1725,7 +1789,7 @@ const WIZARD_STEPS = [
         "Combat Helper Randomization",
         "Should the combat helpers be mixed up? This means that Nemesis might show up on the surface route, or that Heracles might show up in the underworld. Remember that the item options mean you'll only see those combat helpers once you find their item."
       );
-      q2.body.appendChild(choiceCards(OPTS_BY_KEY.combat_helper_sanity.options.map(([v, l]) => ({ value: v, label: l })), ans(ctx, "combat_helper_sanity"), (v) => {
+      q2.body.appendChild(choiceCards(withChoiceDescs("combat_helper_sanity", OPTS_BY_KEY.combat_helper_sanity.options.map(([v, l]) => ({ value: v, label: l }))), ans(ctx, "combat_helper_sanity"), (v) => {
         setOptValue("combat_helper_sanity", v);
         ctx.markAnswered("combat_helper_sanity");
         updatePreview();
@@ -1756,7 +1820,7 @@ const WIZARD_STEPS = [
           "A few options: you can make it so when you would get a boon from a god you don't have unlocked it'll just turn into an onion, or you can make it so only gods you've unlocked will spawn boons. To balance this, you can also lower the odds of boons spawning so you don't just get 20 boons from one god, which I promise you is overpowered (it's also very fun, but overpowered). Onions turns the boons into onions. No Waste (less odds) lowers the amount of boons that spawn, but each spawn is one you can use. No Waste (same odds) means you get a lot of boons, and those boons might all be from the same god if that's all you have unlocked."
         );
         const choices = OPTS_BY_KEY.godsanity.options.filter(([v]) => v !== "unlocked").map(([v, l]) => ({ value: v, label: l }));
-        q4.body.appendChild(choiceCards(choices, ans(ctx, "godsanity"), (v) => {
+        q4.body.appendChild(choiceCards(withChoiceDescs("godsanity", choices), ans(ctx, "godsanity"), (v) => {
           setOptValue("godsanity", v);
           ctx.markAnswered("godsanity");
           updatePreview();
@@ -1851,7 +1915,22 @@ const WIZARD_STEPS = [
 
       const restWrap = el("div");
       root.appendChild(restWrap);
-      const vowOpts = GROUPS.find(g => g.id === "vow").opts.filter(o => o.key !== "reverse_vow" && o.key !== "reverse_rivals");
+
+      // Independent of Reverse Vow, so it sits outside restWrap and always shows.
+      const fearOpt = OPTS_BY_KEY.minimum_fear;
+      if (optVisibleForVersion(fearOpt, selectedAppVersion)) {
+        const qf = qCard(fearOpt.label, fearOpt.desc);
+        ctx.markAnswered("minimum_fear");
+        qf.body.appendChild(rangeControl(fearOpt.min, fearOpt.max, getOptValue("minimum_fear"), (v) => {
+          setOptValue("minimum_fear", v);
+          ctx.markAnswered("minimum_fear");
+          updatePreview();
+          ctx.notify();
+        }));
+        root.appendChild(qf.card);
+      }
+
+      const vowOpts = GROUPS.find(g => g.id === "vow").opts.filter(o => o.key !== "reverse_vow" && o.key !== "reverse_rivals" && o.key !== "minimum_fear");
 
       const VOW_PRESETS = [
         { id: "easy", label: "Easy", values: {
@@ -1992,13 +2071,13 @@ const WIZARD_STEPS = [
         if (!(getOptValue("include_regions") || []).includes("Dream")) return;
         const qd = qCard(
           "How many Dream Dive Regions?",
-          "Using zerp's DreamDiveTweaks we're able to add additional Dream Dive regions, up to 8, or up to 12 if you included Nightmare. This means much longer runs. Keep in mind though, logically it assumes that you need half the resources to make it halfway. If you set it to 12, you better be able to defeat the boss in region 6 with half your resources. Additionally, each region you add will add some room locations, if you're using a room system."
+          "Using zerp's DreamDiveTweaks we're able to add additional Dream Dive regions, up to 8, or up to 12 if you included Zagreus' Journey. This means much longer runs. Keep in mind though, logically it assumes that you need half the resources to make it halfway. If you set it to 12, you better be able to defeat the boss in region 6 with half your resources. Additionally, each region you add will add some room locations, if you're using a room system."
         );
         // Pre-filled control: the pill row already shows the current value, so it counts as
         // answered on render (same as grasp_count/included_aspects above). Without this, Next
         // stays disabled while every question on screen looks answered.
         ctx.markAnswered("dream_region_count");
-        const dreamMax = dreamRegionMax(getOptValue("include_regions"));
+        const dreamMax = dreamRegionMax();
         if (getOptValue("dream_region_count") > dreamMax) {
           setOptValue("dream_region_count", dreamMax);
           updatePreview();
@@ -2030,7 +2109,7 @@ const WIZARD_STEPS = [
         const choices = OPTS_BY_KEY.starting_route.options.filter(([v]) => validValues.includes(v)).map(([v, l]) => ({ value: v, label: l }));
         const allIdx = choices.findIndex(c => c.value === "all");
         if (allIdx !== -1) choices.push(choices.splice(allIdx, 1)[0]);
-        q2.body.appendChild(choiceCards(choices, current, (v) => {
+        q2.body.appendChild(choiceCards(withChoiceDescs("starting_route", choices), current, (v) => {
           setOptValue("starting_route", v);
           ctx.markAnswered("starting_route");
           updatePreview();
@@ -2148,7 +2227,7 @@ const WIZARD_STEPS = [
 
         if (bosses.length >= 2) {
           const q2 = qCard("Defeat any of the bosses you selected, or defeat all of them?", null);
-          q2.body.appendChild(choiceCards(OPTS_BY_KEY.goal_mode.options.map(([v, l]) => ({ value: v, label: l })), ans(ctx, "goal_mode"), (v) => {
+          q2.body.appendChild(choiceCards(withChoiceDescs("goal_mode", OPTS_BY_KEY.goal_mode.options.map(([v, l]) => ({ value: v, label: l }))), ans(ctx, "goal_mode"), (v) => {
             setOptValue("goal_mode", v);
             ctx.markAnswered("goal_mode");
             updatePreview();
@@ -2162,9 +2241,9 @@ const WIZARD_STEPS = [
         if (bosses.includes("zagreus")) {
           const q3 = qCard(
             "How do you want to encounter Zagreus?",
-            "Vanilla means he'll show up relatively how he does in vanilla late game. Empowered means he'll show up the same as Vanilla, but that he will be buffed — weaken him by receiving Zagreus Weaken items from the item pool. Final Challenge means his contract will show up when you defeat any other final boss."
+            "Vanilla means he'll show up relatively how he does in vanilla late game. Empowered means he'll show up the same as Vanilla, but that he will be buffed — weaken him by receiving Zagreus Weaken items from the item pool. Final Challenge means his contract will show up when you defeat any other final boss. Empowered Final Challenge means his contract will show up after a route's final boss only, and Zagreus is empowered (Weakened by items you get from the multiworld)."
           );
-          q3.body.appendChild(choiceCards(OPTS_BY_KEY.zagreus_encounter_mode.options.map(([v, l]) => ({ value: v, label: l })), ans(ctx, "zagreus_encounter_mode"), (v) => {
+          q3.body.appendChild(choiceCards(withChoiceDescs("zagreus_encounter_mode", OPTS_BY_KEY.zagreus_encounter_mode.options.map(([v, l]) => ({ value: v, label: l }))), ans(ctx, "zagreus_encounter_mode"), (v) => {
             setOptValue("zagreus_encounter_mode", v);
             ctx.markAnswered("zagreus_encounter_mode");
             updatePreview();
@@ -2174,7 +2253,7 @@ const WIZARD_STEPS = [
           restWrap.appendChild(q3.card);
           if (!ctx.isAnswered("zagreus_encounter_mode")) return;
 
-          if (getOptValue("zagreus_encounter_mode") === "empowered") {
+          if (getOptValue("zagreus_encounter_mode").startsWith("empowered")) {
             const q4 = qCard("How many Zagreus Weaken items should there be?", "Adding more won't make him eventually weaker, just make him weaker in smaller intervals.");
             q4.body.appendChild(rangeControl(1, 10, ans(ctx, "zagreus_weaken_tiers"), (v) => {
               setOptValue("zagreus_weaken_tiers", v);
@@ -2247,7 +2326,7 @@ const WIZARD_STEPS = [
         if (bosses.length >= 2 && !ctx.isAnswered("goal_mode")) return false;
         if (bosses.includes("zagreus")) {
           if (!ctx.isAnswered("zagreus_encounter_mode")) return false;
-          if (getOptValue("zagreus_encounter_mode") === "empowered" && !ctx.isAnswered("zagreus_weaken_tiers")) return false;
+          if (getOptValue("zagreus_encounter_mode").startsWith("empowered") && !ctx.isAnswered("zagreus_weaken_tiers")) return false;
         }
         if (!ctx.isAnswered("multiWin")) return false;
         if (synAns(ctx, "multiWin") && !bosses.every(b => ctx.isAnswered(winKeyByBoss[b]))) return false;
@@ -2265,7 +2344,7 @@ const WIZARD_STEPS = [
         "Would you like Keepsakes to be items/locations? If so, how would you like that to work?",
         "Off just makes it exactly the same as the base game, no randomization going on here. Randomized makes each individual keepsake an item, and an NPC giving you a keepsake will instead send a check. If you feel like you have too many items and not enough locations, we also have Progressive, which adds only 3 progressive keepsake items; the first unlocks all keepsakes, the rest level them up. If you choose Progressive you will not be able to level up the keepsakes like you normally would be able to. Lastly Progressive_per adds 3 progressive items for each keepsake, which adds by far the most items."
       );
-      q1.body.appendChild(choiceCards(OPTS_BY_KEY.keepsakesanity.options.map(([v, l]) => ({ value: v, label: l })), ans(ctx, "keepsakesanity"), (v) => {
+      q1.body.appendChild(choiceCards(withChoiceDescs("keepsakesanity", OPTS_BY_KEY.keepsakesanity.options.map(([v, l]) => ({ value: v, label: l }))), ans(ctx, "keepsakesanity"), (v) => {
         setOptValue("keepsakesanity", v);
         ctx.markAnswered("keepsakesanity");
         updatePreview();
@@ -2289,7 +2368,7 @@ const WIZARD_STEPS = [
           "Stats of the enemies will always match the region they're in, so it shouldn't make things too much more difficult. Shuffled means each time an enemy spawns, a different specific enemy will spawn instead. Randomized means each time an enemy spawns, a random enemy spawns. This is still a little unstable, and might result in some weird situations, but it's pretty fun."
         );
         qMode.body.appendChild(choiceCards(
-          [{ value: "no", label: "No" }, { value: "shuffled", label: "Shuffled" }, { value: "randomized", label: "Randomized" }],
+          withChoiceDescs("enemysanity_mode", [{ value: "no", label: "No" }, { value: "shuffled", label: "Shuffled" }, { value: "randomized", label: "Randomized" }]),
           synAns(ctx, "enemysanity_mode"),
           (v) => {
             synMark(ctx, "enemysanity_mode", v);
@@ -2329,7 +2408,7 @@ const WIZARD_STEPS = [
             );
             // Starts at the option's own default (8, same as Options.py) until the player picks
             // a number here themselves.
-            const dreamMax = dreamRegionMax(getOptValue("include_regions"));
+            const dreamMax = dreamRegionMax();
             if (!wizSynthetic.dream_enemy_locations_picked) {
               setOptValue("dream_enemy_locations", Math.min(dreamMax, OPTS_BY_KEY.dream_enemy_locations.def));
               updatePreview();
@@ -2386,7 +2465,7 @@ const WIZARD_STEPS = [
         "How do you want to unlock pets?",
         "Four options: Unlocked means you have all of them at max level from the start. Randomized means each familiar gets its own item, and you receive them at max level when the item is found. Lastly, Progressive adds a progressive familiar item; the first unlocks all of them at base level, the rest increase familiarity (upgrading them). Progressive_per adds progressive items for each familiar. The first Progressive Frinos item would unlock Frinos, the rest upgrade him. This adds the most items."
       );
-      q2.body.appendChild(choiceCards(OPTS_BY_KEY.petsanity.options.map(([v, l]) => ({ value: v, label: l })), ans(ctx, "petsanity"), (v) => {
+      q2.body.appendChild(choiceCards(withChoiceDescs("petsanity", OPTS_BY_KEY.petsanity.options.map(([v, l]) => ({ value: v, label: l }))), ans(ctx, "petsanity"), (v) => {
         setOptValue("petsanity", v);
         ctx.markAnswered("petsanity");
         updatePreview();
@@ -2459,8 +2538,23 @@ const WIZARD_STEPS = [
         if (!synAns(ctx, "showFiller")) return;
         const grid = el("div", { class: "wizard-grid" });
         GROUPS.find(g => g.id === "filler").opts.forEach(opt => {
+          if (!optVisibleForVersion(opt, selectedAppVersion)) return;
+          // Traps are left out of the guided creator for now (user, 11/11): flat YAML Creator only.
+          if (opt.key === "trap_percentage" || opt.key === "enabled_traps") return;
           const q = qCard(opt.label, opt.desc);
-          q.body.appendChild(rangeControl(opt.min, opt.max, getOptValue(opt.key), (v) => { setOptValue(opt.key, v); updatePreview(); }));
+          if (opt.type === "set") {
+            q.body.appendChild(checkGrid(
+              opt.keys.map(k => ({ value: k, label: k })),
+              (v) => getOptValue(opt.key).includes(v),
+              (v, checked) => {
+                const cur = getOptValue(opt.key);
+                setOptValue(opt.key, checked ? [...new Set([...cur, v])] : cur.filter(x => x !== v));
+                updatePreview();
+              }
+            ));
+          } else {
+            q.body.appendChild(rangeControl(opt.min, opt.max, getOptValue(opt.key), (v) => { setOptValue(opt.key, v); updatePreview(); }));
+          }
           grid.appendChild(q.card);
         });
         fillerWrap.appendChild(grid);
